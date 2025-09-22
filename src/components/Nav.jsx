@@ -7,7 +7,7 @@ const Nav = ({sortBy, setSortby, filter, setFilter}) => {
     const showNav = localPath.pathname === '/'
     
     return ( 
-    <div className="flex justify-between">
+    <div className="flex justify-between sm:flex-row flex-col px-5 sm:px-10">
        <div className="flex flex-row justify-end gap-5 px-5">
         <Link to={'/'}>Home</Link>
         <Link to={'/about'}>About</Link>
