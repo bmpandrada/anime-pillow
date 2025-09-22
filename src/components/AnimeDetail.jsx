@@ -20,11 +20,11 @@ export default function AnimeDetail() {
   if (!anime) return <p className="text-center p-6">Loading...</p>;
 
   return (
-      <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow p-6 mb-10">
+      <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow p-10 mb-10">
         <img
           src={anime.images.jpg.large_image_url}
           alt={anime.title}
-          className="max-w-md mx-auto rounded-xl mb-4"
+          className="w-full max-w-xs sm:max-w-md mx-auto rounded-xl mb-4 sm:object-contain"
         />
         <h1 className="text-3xl font-bold mb-2">{anime.title}</h1>
         <p className="text-gray-600 mb-4">{anime.synopsis}</p>
