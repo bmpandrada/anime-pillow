@@ -1,15 +1,20 @@
-import { useContext } from "react";
-import { ContextApi } from "../context/ContextApi";
+import { useAnime } from "../context/ContextApi";
 import { Link } from "react-router";
 
 const HomePage = () => {
-    const {filteredAnime} = useContext(ContextApi);
+    const {filteredAnime} = useAnime();
 
     return ( 
         <div className="px-5 sm:px-10">  
 
          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-5">
-        {filteredAnime.map((item) => (
+        {filteredAnime.length === 0 ?
+
+          <p className="text-center font-bold text-4xl">
+            Not Found
+          </p>
+
+        : filteredAnime.map((item) => (
           <Link  to={`/anime/${item.mal_id}`}
             key={item.mal_id}
             className="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden"

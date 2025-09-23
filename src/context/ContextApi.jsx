@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 export const ContextApi = createContext();
 export function ContextProvider ({children}){
@@ -44,4 +44,8 @@ export function ContextProvider ({children}){
             {children}
         </ContextApi.Provider>
     )
+}
+
+export function useAnime() {
+  return useContext(ContextApi)
 }

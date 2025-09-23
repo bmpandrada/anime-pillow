@@ -29,7 +29,7 @@ export default function AnimeDetail() {
         <h1 className="text-3xl font-bold mb-2">{anime.title}</h1>
         <p className="text-gray-600 mb-4">{anime.synopsis}</p>
         <div className="flex gap-4 text-sm text-gray-700">
-          <span>⭐ {anime.score || "N/A"}</span>
+          <span>⭐ {anime.score.toFixed(2) || "N/A"}</span>
           <span>🎬 {anime.episodes || "?"} episodes</span>
           <span>📅 {anime.year || "Unknown"}</span>
         </div>
