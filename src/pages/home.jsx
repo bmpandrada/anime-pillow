@@ -60,7 +60,7 @@ const HomePage = () => {
                 <button 
                     key={ibtn + 1} 
                     onClick={()=> setCurrentPage(ibtn + 1)}
-                    className={`px-3 py-1  cursor-pointer rounded
+                    className={`px-3 py-1  cursor-pointer rounded mb-10 
                      ${currentPage === ibtn + 1 ? 'bg-blue-600 text-white' : 'bg-blue-700 text-gray-200'}`}>
                         {ibtn + 1}
                      </button>
