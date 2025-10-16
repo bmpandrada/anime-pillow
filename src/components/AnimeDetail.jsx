@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import SpinnerLoading from "./SpinnerLoader";
 
 export default function AnimeDetail() {
   const { id } =  useParams();
@@ -17,7 +18,11 @@ export default function AnimeDetail() {
     fetchAnime();
   }, [id]);
 
-  if (!anime) return <p className="text-center p-6">Loading...</p>;
+   if (!anime)
+    return (
+      <SpinnerLoading />
+    );
+
 
   return (
       <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow p-10 mb-10">

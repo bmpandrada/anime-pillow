@@ -9,8 +9,8 @@ const Nav = ({sortBy, setSortby, filter, setFilter}) => {
     return ( 
     <div className="flex justify-between sm:flex-row flex-col px-5 sm:px-10">
        <div className="flex flex-row justify-end gap-5 px-5">
-        <Link to={'/'}>Home</Link>
-        <Link to={'/about'}>About</Link>
+        <Link to={'/'} className="text-gray-700 font-semibold">Home</Link>
+        <Link to={'/about'} className="text-gray-700 font-semibold">About</Link>
       </div>
 
         {showNav &&
