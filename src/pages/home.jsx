@@ -49,22 +49,22 @@ const HomePage = () => {
                 Episodes: {item.episodes || "?"}
               </p>
               <p className="text-yellow-500 font-bold mt-2">
-                ⭐ {item.score || "N/A"}
+                ⭐ {item.score.toFixed(1) || "N/A"}
               </p>
             </div>
           </Link>
         ))}
       </div>
-               <div className="flex justify-center gap-2 mt-8">
+        <div className="flex justify-center gap-2 mt-8">
             {Array.from({length: totalPage}, (_, ibtn)=>(
-                <button 
-                    key={ibtn + 1} 
-                    onClick={()=> setCurrentPage(ibtn + 1)}
-                    className={`px-3 py-1  cursor-pointer rounded mb-10 
-                     ${currentPage === ibtn + 1 ? 'bg-blue-600 text-white' : 'bg-blue-700 text-gray-200'}`}>
-                        {ibtn + 1}
-                     </button>
-            ))}
+              <button 
+                  key={ibtn + 1} 
+                  onClick={()=> setCurrentPage(ibtn + 1)}
+                  className={`px-3 py-1  cursor-pointer rounded mb-10 
+                  ${currentPage === ibtn + 1 ? 'bg-slate-600 text-white' : 'bg-slate-700 text-gray-200'}`}>
+                      {ibtn + 1}
+                </button>
+              ))}
         </div>
         </div>
      );
