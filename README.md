@@ -1,26 +1,29 @@
-# 🗂️ Personal Job Application Tracker
-
-A simple **job application tracker** built for personal use. Keep track of jobs you applied to, along with position, company, location, source, and status — all stored **locally in your browser** using **LocalStorage**.
+### 🖼️ Anime Pillow Project
+A small **personal project** to browse and explore anime pillow images. Built for learning purposes and to practice **React + TypeScript**.
 
 ---
 
 ### 💡 Features
-- Add, edit, and delete job applications
-- Track application status (e.g., applied, interview, offer)
-- Persistent storage with **LocalStorage** (no backend required)
-- Simple, lightweight, and easy to use
+- Browse anime pillow images  
+- Responsive design for desktop and mobile  
+- Uses **free public images from MyAnimeList** for demonstration purposes  
+- Lightweight, fast, and simple UI
 
 ---
 
 ### 🛠️ Tech Stack
 - **Frontend:** React, TypeScript  
-- **Styling:** SASS, Tailwind CSS  
-- **Persistence:** LocalStorage  
+- **Styling:** Tailwind CSS, SASS  
 
 ---
 
 ### 📸 Screenshots
-<!-- Add screenshots here if you want to showcase your UI -->
-![Job Tracker Screenshot](https://res.cloudinary.com/bmpa-dev/image/upload/v1761118477/Screenshot_2025_10_22_150544_b3079f72ec.png)
+![Anime Pillow Screenshot](https://res.cloudinary.com/bmpa-dev/image/upload/v1761019782/Screenshot_2025_10_09_112747_94a5b86b5e.png)
 
 ---
+
+### 🚀 Key Takeaways
+- Practiced building **interactive UI components** in React  
+- Learned to structure a small project with **TypeScript**  
+- Improved styling skills with **Tailwind CSS** and **SASS**  
+- Learned to use **public image URLs** for displaying content without a backend
