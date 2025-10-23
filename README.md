@@ -21,6 +21,6 @@ A simple **job application tracker** built for personal use. Keep track of jobs 
 
 ### 📸 Screenshots
 <!-- Add screenshots here if you want to showcase your UI -->
-![Job Tracker Screenshot]([link-to-screenshot.png](https://res.cloudinary.com/bmpa-dev/image/upload/v1761118477/Screenshot_2025_10_22_150544_b3079f72ec.png))
+![Job Tracker Screenshot](https://res.cloudinary.com/bmpa-dev/image/upload/v1761118477/Screenshot_2025_10_22_150544_b3079f72ec.png)
 
 ---
