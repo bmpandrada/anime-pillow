@@ -1,13 +1,26 @@
-# React + Vite
+# 🗂️ Personal Job Application Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple **job application tracker** built for personal use. Keep track of jobs you applied to, along with position, company, location, source, and status — all stored **locally in your browser** using **LocalStorage**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 💡 Features
+- Add, edit, and delete job applications
+- Track application status (e.g., applied, interview, offer)
+- Persistent storage with **LocalStorage** (no backend required)
+- Simple, lightweight, and easy to use
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# anime-pillow
+### 🛠️ Tech Stack
+- **Frontend:** React, TypeScript  
+- **Styling:** SASS, Tailwind CSS  
+- **Persistence:** LocalStorage  
+
+---
+
+### 📸 Screenshots
+<!-- Add screenshots here if you want to showcase your UI -->
+![Job Tracker Screenshot]([link-to-screenshot.png](https://res.cloudinary.com/bmpa-dev/image/upload/v1761118477/Screenshot_2025_10_22_150544_b3079f72ec.png))
+
+---
