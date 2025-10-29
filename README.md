@@ -1,13 +1,29 @@
-# React + Vite
+### 🖼️ Anime Pillow Project
+A small **personal project** to browse and explore anime pillow images. Built for learning purposes and to practice **React + TypeScript**.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+### 💡 Features
+- Browse anime pillow images  
+- Responsive design for desktop and mobile  
+- Uses **free public images from MyAnimeList** for demonstration purposes  
+- Lightweight, fast, and simple UI
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+### 🛠️ Tech Stack
+- **Frontend:** React, TypeScript  
+- **Styling:** Tailwind CSS, SASS  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# anime-pillow
+---
+
+### 📸 Screenshots
+![Anime Pillow Screenshot](https://res.cloudinary.com/bmpa-dev/image/upload/v1761019782/Screenshot_2025_10_09_112747_94a5b86b5e.png)
+
+---
+
+### 🚀 Key Takeaways
+- Practiced building **interactive UI components** in React  
+- Learned to structure a small project with **TypeScript**  
+- Improved styling skills with **Tailwind CSS** and **SASS**  
+- Learned to use **public image URLs** for displaying content without a backend
