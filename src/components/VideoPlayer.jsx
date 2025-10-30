@@ -1,4 +1,4 @@
-export default function TrailerPlayer({ trailer }) {
+export default function TrailerPlayer({ trailer, className }) {
   const embedUrl = `${trailer}=1&mute=1`;
 
   return (
@@ -7,6 +7,7 @@ export default function TrailerPlayer({ trailer }) {
         position: "relative",
         paddingTop: "56.25%",
       }}
+      className={className}
     >
       <iframe
         src={embedUrl}
