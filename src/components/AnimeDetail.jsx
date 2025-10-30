@@ -24,7 +24,7 @@ export default function AnimeDetail() {
   if (!anime) return <SpinnerLoading />;
 
   return (
-    <div className='max-w-3xl mx-auto bg-white rounded-2xl shadow p-10 mb-10'>
+    <div className='max-w-3xl mx-auto bg-white rounded-2xl sm:shadow p-10 mb-10'>
       <TrailerPlayer trailer={anime.trailer.embed_url} />
       <div className='flex gap-4 text-sm text-gray-700 mb-5'>
         <span>⭐ {anime.score.toFixed(2) || "N/A"}</span>
