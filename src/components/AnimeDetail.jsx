@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import TrailerPlayer from "./VideoPlayer";
+import SpinnerLoading from "./SpinnerLoader";
 
 export default function AnimeDetail() {
   const { id } = useParams();
   const [anime, setAnime] = useState(null);
-  // const [promoVideos, setPromoVideos] = useState([]);
 
   useEffect(() => {
     if (!id) return;
@@ -18,6 +18,8 @@ export default function AnimeDetail() {
 
     fetchAnime();
   }, [id]);
+
+  if (!anime) return <SpinnerLoading />;
 
   return (
     <div className='max-w-3xl mx-auto rounded-2xl sm:shadow p-10 mb-10'>
