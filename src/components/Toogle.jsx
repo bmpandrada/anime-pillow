@@ -38,7 +38,7 @@ const ThemeToggle = () => {
       {theme === "mytheme" ? (
         <AiOutlineMoon size={20} />
       ) : (
-        <WiDaySunny size={22} />
+        <WiDaySunny size={20} />
       )}
     </label>
   );

@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import SpinnerLoading from "./SpinnerLoader";
 import TrailerPlayer from "./VideoPlayer";
-import PromoVideos from "./PromoVideos";
-import PromoCarousel from "./PromoVideos";
 
 export default function AnimeDetail() {
   const { id } = useParams();
@@ -22,34 +19,9 @@ export default function AnimeDetail() {
     fetchAnime();
   }, [id]);
 
-  // useEffect(() => {
-  //   if (!id) return;
-
-  //   const fetchAnime = async () => {
-  //     const res = await fetch(`https://api.jikan.moe/v4/anime/${id}/videos`);
-  //     const data = await res.json();
-  //     setPromoVideos(data.data.promo);
-  //   };
-
-  //   fetchAnime();
-  // }, [id]);
-
-  if (!anime) return <SpinnerLoading />;
-
   return (
     <div className='max-w-3xl mx-auto rounded-2xl sm:shadow p-10 mb-10'>
       <TrailerPlayer trailer={anime.trailer.embed_url} />
-
-      {/* <PromoCarousel>
-        {promoVideos.map((item) => (
-          <TrailerPlayer
-            key={item.id}
-            trailer={item.trailer.embed_url}
-            className={"p-5"}
-          />
-        ))}
-      </PromoCarousel> */}
-
       <div className='flex gap-4 text-sm  mb-5'>
         <span>⭐ {anime.score.toFixed(2) || "N/A"}</span>
         <span>🎬 {anime.episodes || "?"} episodes</span>

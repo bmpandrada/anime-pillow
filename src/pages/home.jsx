@@ -1,7 +1,8 @@
 import { useState } from "react";
-import SpinnerLoading from "../components/SpinnerLoader";
 import { useAnime } from "../context/ContextApi";
-import { Link } from "react-router";
+import CardContainer from "../components/CardContainer";
+import Pagination from "../components/Pagination";
+import SkeletonCard from "../components/SkeletonCard";
 
 const HomePage = () => {
   const { filteredAnime, loading } = useAnime();
@@ -14,58 +15,37 @@ const HomePage = () => {
   const firstIndex = lastIndex - perPage;
   const currentAnime = filteredAnime.slice(firstIndex, lastIndex);
 
-  if (loading) return <SpinnerLoading />;
-
   return (
     <div className='px-5 sm:px-10'>
       <div className='grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-5'>
-        {filteredAnime.length === 0 ? (
-          <div className='flex justify-center items-center min-h-[60vh] col-span-full'>
-            <p className='text-center font-bold text-4xl text-gray-600'>
-              Not Found
-            </p>
-          </div>
+        {loading ? (
+          Array.from({ length: perPage }).map((_, i) => (
+            <SkeletonCard key={i} />
+          ))
         ) : (
-          currentAnime.map((item) => (
-            <Link
-              to={`/anime/${item.mal_id}`}
-              key={item.mal_id}
-              className='bg-base-200 rounded-2xl shadow hover:shadow-lg transition overflow-hidden'
-            >
-              <img
-                src={item.images.webp.large_image_url}
-                alt={item.title}
-                className='w-full h-60 object-cover transform transition-transform duration-300 hover:scale-105'
-              />
-              <div className='p-4'>
-                <h2 className='text-lg font-semibold text-base-900 truncate'>
-                  {item.title}
-                </h2>
-                <p className='text-sm text-base-500 mt-1'>
-                  Episodes: {item.episodes || "?"}
-                </p>
-                <p className='text-yellow-500 font-bold mt-2'>
-                  ⭐ {item.score.toFixed(1) || "N/A"}
+          <>
+            {filteredAnime.length === 0 ? (
+              <div className='flex justify-center items-center min-h-[60vh] col-span-full'>
+                <p className='text-center font-bold text-4xl text-gray-600'>
+                  Not Found
                 </p>
               </div>
-            </Link>
-          ))
+            ) : (
+              currentAnime.map((item) => (
+                <CardContainer key={item.mal_id} item={item} />
+              ))
+            )}
+          </>
         )}
       </div>
       <div className='flex justify-center gap-2 mt-8'>
         {Array.from({ length: totalPage }, (_, ibtn) => (
-          <button
+          <Pagination
+            totalPage={totalPage}
+            ibtn={ibtn}
             key={ibtn + 1}
-            onClick={() => setCurrentPage(ibtn + 1)}
-            className={`px-3 py-1  cursor-pointer rounded mb-10 
-                  ${
-                    currentPage === ibtn + 1
-                      ? "bg-slate-600 text-white"
-                      : "bg-slate-700 text-gray-200"
-                  }`}
-          >
-            {ibtn + 1}
-          </button>
+            setCurrentPage={setCurrentPage}
+          />
         ))}
       </div>
     </div>
