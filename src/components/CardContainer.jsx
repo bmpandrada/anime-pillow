@@ -1,6 +1,8 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 
 const CardContainer = ({ item }) => {
+  const localPath = useLocation();
+  const showEp = localPath.pathname === "/";
   return (
     <Link
       to={`/anime/${item.mal_id}`}
@@ -16,12 +18,14 @@ const CardContainer = ({ item }) => {
           {item.title}
         </h2>
         <div className='flex items-center gap-2 justify-between'>
-          <p className='text-sm font-semibold text-base-300 mt-1'>
-            Episodes:{" "}
-            <span className='text-accent-content opacity-80'>
-              {item.episodes || "?"}
-            </span>
-          </p>
+          {showEp && (
+            <p className='text-sm font-semibold text-base-300 mt-1'>
+              Episodes:{" "}
+              <span className='text-accent-content opacity-80'>
+                {item.episodes || "?"}
+              </span>
+            </p>
+          )}
           <p className='text-sm font-semibold text-base-300 mt-1'>
             Genre:{" "}
             <span className='text-accent-content opacity-80'>

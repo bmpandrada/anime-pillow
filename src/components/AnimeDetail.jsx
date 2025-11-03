@@ -10,13 +10,13 @@ export default function AnimeDetail() {
   useEffect(() => {
     if (!id) return;
 
-    const fetchAnime = async () => {
+    const timer = setTimeout(async () => {
       const res = await fetch(`https://api.jikan.moe/v4/anime/${id}`);
       const data = await res.json();
       setAnime(data.data);
-    };
+    }, 500);
 
-    fetchAnime();
+    return () => clearTimeout(timer);
   }, [id]);
 
   if (!anime) return <SpinnerLoading />;
@@ -32,14 +32,25 @@ export default function AnimeDetail() {
       <div className='grid sm:grid-cols-4 items-center gap-2'>
         <div className='sm:col-span-3'>
           <h1 className='text-3xl font-bold mb-2'>{anime.title}</h1>
-          <p className=' mb-4'>{anime.synopsis}</p>
+          <p className='mb-4 sm:pr-2'>{anime.synopsis}</p>
+          {anime.genres?.length > 0 && (
+            <div className='flex flex-wrap gap-2'>
+              {anime?.genres?.map((genre) => (
+                <div key={genre.mal_id} className='badge badge-accent'>
+                  {genre.name}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         <img
           src={anime.images.webp.large_image_url}
           alt={anime.title}
-          className='w-full max-w-sm mx-auto h-50 sm:h-auto rounded-xl mb-4 object-contain'
+          className='w-full max-w-sm mx-auto h-50 sm:h-auto rounded-xl mb-4 mt-5 sm:mt-0 object-contain'
         />
       </div>
+
+      {/* {console.log(anime)} */}
     </div>
   );
 }

@@ -1,8 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 export const ContextApi = createContext();
+
 export function ContextProvider({ children }) {
-  const [anime, setData] = useState([]);
+  const [anime, setAnime] = useState([]);
+  const [movie, setMovie] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filter, setFilter] = useState("");
@@ -13,66 +15,90 @@ export function ContextProvider({ children }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(
+        const cachedAnime = localStorage.getItem("animeData");
+        const cachedMovie = localStorage.getItem("movieData");
+
+        if (cachedAnime && cachedMovie) {
+          setAnime(JSON.parse(cachedAnime));
+          setMovie(JSON.parse(cachedMovie));
+          setLoading(false);
+          return;
+        }
+
+        const resAnime = await fetch(
           "https://api.jikan.moe/v4/seasons/2025/summer?sfw",
         );
-        if (!res.ok) {
-          throw new Error("Data Fetch Failed!");
-        }
-        const data = await res.json();
-        setData(data.data);
-      } catch (error) {
-        setError(error.message);
+        if (!resAnime.ok) throw new Error("Anime fetch failed");
+        const animeData = await resAnime.json();
+
+        await new Promise((r) => setTimeout(r, 1500));
+
+        const resMovie = await fetch(
+          "https://api.jikan.moe/v4/top/anime?type=movie",
+        );
+        if (!resMovie.ok) throw new Error("Movie fetch failed");
+        const movieData = await resMovie.json();
+
+        setAnime(animeData.data);
+        setMovie(movieData.data);
+
+        localStorage.setItem("animeData", JSON.stringify(animeData.data));
+        localStorage.setItem("movieData", JSON.stringify(movieData.data));
+      } catch (err) {
+        setError(err.message);
       } finally {
         setLoading(false);
       }
     };
+
     fetchData();
   }, []);
 
-  const filteredAnime = anime
-    .filter((data) => {
-      const matchTitle = data.title
-        .toLowerCase()
-        .includes(filter.toLowerCase());
-      const matchCategory =
-        !selectedCategory ||
-        data.genres?.some((genre) => genre.name === selectedCategory);
-      return matchTitle && matchCategory;
-    })
-    .slice()
-    .sort((a, b) => {
-      if (sortBy === "latest") return b.year - a.year;
-      if (sortBy === "oldest") return a.year - b.year;
-      return 0;
-    });
-
   useEffect(() => {
-    const allCategory = anime.flatMap(
-      (item) => item.genres?.map((genre) => genre.name) || [],
-    );
+    const allGenres = [
+      ...anime.flatMap((a) => a.genres?.map((g) => g.name) || []),
+      ...movie.flatMap((m) => m.genres?.map((g) => g.name) || []),
+    ];
+    setCategories([...new Set(allGenres)]);
+  }, [anime, movie]);
 
-    const uniqueCategories = [...new Set(allCategory)];
+  const filterAndSort = (list) => {
+    return list
+      .filter((item) => {
+        const matchTitle = item.title
+          .toLowerCase()
+          .includes(filter.toLowerCase());
+        const matchCategory =
+          !selectedCategory ||
+          item.genres?.some((g) => g.name === selectedCategory);
+        return matchTitle && matchCategory;
+      })
+      .sort((a, b) => {
+        if (sortBy === "latest") return (b.year || 0) - (a.year || 0);
+        if (sortBy === "oldest") return (a.year || 0) - (b.year || 0);
+        return 0;
+      });
+  };
 
-    setCategories(uniqueCategories);
-  }, [anime]);
-
-  // console.log(categories);
+  const filteredAnime = filterAndSort(anime);
+  const filteredMovie = filterAndSort(movie);
 
   return (
     <ContextApi.Provider
       value={{
         anime,
+        movie,
+        filteredAnime,
+        filteredMovie,
         loading,
         error,
-        filteredAnime,
         filter,
         sortBy,
         setFilter,
         setSortby,
         categories,
-        setSelectedCategory,
         selectedCategory,
+        setSelectedCategory,
       }}
     >
       {children}
