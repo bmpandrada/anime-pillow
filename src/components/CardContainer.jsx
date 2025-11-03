@@ -12,17 +12,17 @@ const CardContainer = ({ item }) => {
         className='w-full h-60 object-cover transform transition-transform duration-300 hover:scale-105'
       />
       <div className='p-4'>
-        <h2 className='text-lg font-semibold text-base-900 truncate'>
+        <h2 className='sm:text-lg font-semibold text-base-900 truncate'>
           {item.title}
         </h2>
-        <div className='flex items-center justify-between'>
-          <p className='text-sm font-semibold text-base-300 mt-1'>
+        <div className='flex items-center gap-2 justify-between'>
+          <p className='sm:text-sm text-xs font-semibold text-base-300 mt-1'>
             Episodes:{" "}
             <span className='text-accent-content opacity-80'>
               {item.episodes || "?"}
             </span>
           </p>
-          <p className='text-sm font-semibold text-base-300 mt-1'>
+          <p className='sm:text-sm text-xs font-semibold text-base-300 mt-1'>
             Genre:{" "}
             <span className='text-accent-content opacity-80'>
               {item.genres[0].name || "?"}
@@ -32,7 +32,7 @@ const CardContainer = ({ item }) => {
         {/* <p className='text-sm text-base-500 mt-1'>
           Genre: {item.genres.types || "?"}
         </p> */}
-        <p className='text-yellow-500 font-bold mt-2'>
+        <p className='text-yellow-500 font-bold mt-2 sm:text-sm text-xs'>
           ⭐ {item.score.toFixed(1) || "N/A"}
         </p>
       </div>
