@@ -57,7 +57,7 @@ export function ContextProvider({ children }) {
     setCategories(uniqueCategories);
   }, [anime]);
 
-  console.log(categories);
+  // console.log(categories);
 
   return (
     <ContextApi.Provider
