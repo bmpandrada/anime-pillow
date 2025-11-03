@@ -16,13 +16,13 @@ const CardContainer = ({ item }) => {
           {item.title}
         </h2>
         <div className='flex items-center gap-2 justify-between'>
-          <p className='sm:text-sm text-xs font-semibold text-base-300 mt-1'>
+          <p className='text-sm font-semibold text-base-300 mt-1'>
             Episodes:{" "}
             <span className='text-accent-content opacity-80'>
               {item.episodes || "?"}
             </span>
           </p>
-          <p className='sm:text-sm text-xs font-semibold text-base-300 mt-1'>
+          <p className='text-sm font-semibold text-base-300 mt-1'>
             Genre:{" "}
             <span className='text-accent-content opacity-80'>
               {item.genres[0].name || "?"}
