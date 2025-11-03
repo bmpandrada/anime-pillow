@@ -8,7 +8,7 @@ const Footer = () => {
       <div className='text-center p-5 bg-base-200 text-base-400'>
         <p className='text-sm'>Created By: BMPA {new Date().getFullYear()}</p>
       </div>
-      <div className='dock dock-xs sm:hidden  bg-neutral text-neutral-content'>
+      <div className='dock dock-xs sm:hidden  bg-base-200 text-base-400'>
         <NavLink
           to={"/"}
           className={({ isActive }) => (isActive ? "dock-active" : "")}
