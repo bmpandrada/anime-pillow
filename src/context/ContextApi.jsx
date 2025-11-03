@@ -7,6 +7,8 @@ export function ContextProvider({ children }) {
   const [error, setError] = useState(null);
   const [filter, setFilter] = useState("");
   const [sortBy, setSortby] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +32,13 @@ export function ContextProvider({ children }) {
 
   const filteredAnime = anime
     .filter((data) => {
-      return data.title.toLowerCase().includes(filter.toLowerCase());
+      const matchTitle = data.title
+        .toLowerCase()
+        .includes(filter.toLowerCase());
+      const matchCategory =
+        !selectedCategory ||
+        data.genres?.some((genre) => genre.name === selectedCategory);
+      return matchTitle && matchCategory;
     })
     .slice()
     .sort((a, b) => {
@@ -38,6 +46,18 @@ export function ContextProvider({ children }) {
       if (sortBy === "oldest") return a.year - b.year;
       return 0;
     });
+
+  useEffect(() => {
+    const allCategory = anime.flatMap(
+      (item) => item.genres?.map((genre) => genre.name) || [],
+    );
+
+    const uniqueCategories = [...new Set(allCategory)];
+
+    setCategories(uniqueCategories);
+  }, [anime]);
+
+  console.log(categories);
 
   return (
     <ContextApi.Provider
@@ -50,6 +70,9 @@ export function ContextProvider({ children }) {
         sortBy,
         setFilter,
         setSortby,
+        categories,
+        setSelectedCategory,
+        selectedCategory,
       }}
     >
       {children}

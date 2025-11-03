@@ -15,9 +15,20 @@ const CardContainer = ({ item }) => {
         <h2 className='text-lg font-semibold text-base-900 truncate'>
           {item.title}
         </h2>
-        <p className='text-sm font-semibold text-base-500 mt-1'>
-          Episodes: {item.episodes || "?"}
-        </p>
+        <div className='flex items-center justify-between'>
+          <p className='text-sm font-semibold text-base-300 mt-1'>
+            Episodes:{" "}
+            <span className='text-accent-content opacity-80'>
+              {item.episodes || "?"}
+            </span>
+          </p>
+          <p className='text-sm font-semibold text-base-300 mt-1'>
+            Genre:{" "}
+            <span className='text-accent-content opacity-80'>
+              {item.genres[0].name || "?"}
+            </span>
+          </p>
+        </div>
         {/* <p className='text-sm text-base-500 mt-1'>
           Genre: {item.genres.types || "?"}
         </p> */}

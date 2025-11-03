@@ -38,15 +38,20 @@ const HomePage = () => {
           </>
         )}
       </div>
+
       <div className='flex justify-center gap-2 mt-8'>
-        {Array.from({ length: totalPage }, (_, ibtn) => (
-          <Pagination
-            totalPage={totalPage}
-            ibtn={ibtn}
-            key={ibtn + 1}
-            setCurrentPage={setCurrentPage}
-          />
-        ))}
+        {totalPage > 1 && (
+          <>
+            {Array.from({ length: totalPage }, (_, ibtn) => (
+              <Pagination
+                totalPage={totalPage}
+                ibtn={ibtn}
+                key={ibtn + 1}
+                setCurrentPage={setCurrentPage}
+              />
+            ))}
+          </>
+        )}
       </div>
     </div>
   );

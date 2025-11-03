@@ -5,7 +5,15 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 const Layout = ({ children }) => {
-  const { sortBy, setSortby, filter, setFilter } = useAnime();
+  const {
+    sortBy,
+    setSortby,
+    filter,
+    setFilter,
+    categories,
+    selectedCategory,
+    setSelectedCategory,
+  } = useAnime();
 
   return (
     <div className='flex flex-col min-h-screen'>
@@ -16,6 +24,9 @@ const Layout = ({ children }) => {
           setSortby={setSortby}
           filter={filter}
           setFilter={setFilter}
+          categories={categories}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
         />
         {children}
       </div>

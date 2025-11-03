@@ -1,26 +1,39 @@
-import { Link, useLocation } from "react-router";
+import { NavLink, useLocation } from "react-router";
 import SortOutout from "./SortOutput";
 import FilterInput from "./FilterInput";
+import SelectOption from "./SelectOption";
+import NavHead from "./NavLinks";
 
-const Nav = ({ sortBy, setSortby, filter, setFilter }) => {
+const Nav = ({
+  sortBy,
+  setSortby,
+  filter,
+  setFilter,
+  categories,
+  selectedCategory,
+  setSelectedCategory,
+}) => {
   const localPath = useLocation();
   const showNav = localPath.pathname === "/";
 
   return (
-    <div className='flex justify-between sm:flex-row flex-col px-5 sm:px-10'>
-      <div className='flex flex-row justify-end gap-5 px-5'>
-        <Link to={"/"} className='text-base-700 font-semibold'>
-          Home
-        </Link>
-        <Link to={"/about"} className='text-base-700 font-semibold'>
-          About
-        </Link>
-      </div>
-
+    <div className='w-full px-5 sm:px-10 sm:flex sm:justify-between sm:items-center'>
+      <NavHead />
       {showNav && (
-        <div className='flex gap-3'>
-          <SortOutout sortBy={sortBy} setSortby={setSortby} />
-          <FilterInput filter={filter} onFilterChange={setFilter} />
+        <div className='grid grid-cols-6 gap-2 items-center w-fit'>
+          <div className='col-span-6 sm:col-span-3'>
+            <FilterInput filter={filter} onFilterChange={setFilter} />
+          </div>
+          <div className='col-span-2 sm:col-span-1'>
+            <SortOutout sortBy={sortBy} setSortby={setSortby} />
+          </div>
+          <div className='col-span-3 sm:col-span-2'>
+            <SelectOption
+              selectedCategory={selectedCategory}
+              categories={categories}
+              setSelectedCategory={setSelectedCategory}
+            />
+          </div>
         </div>
       )}
     </div>
