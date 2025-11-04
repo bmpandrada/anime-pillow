@@ -6,34 +6,30 @@ import SkeletonCard from "../components/SkeletonCard";
 import AlphabetPagination from "../components/AlphabetPagination";
 
 const MoviePage = () => {
-  const { filteredMovie, loading } = useAnime();
+  const {
+    filteredByLetter,
+    selectedLetter,
+    setSelectedLetter,
+    filteredMovie,
+    loading,
+  } = useAnime();
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedLetter, setSelectedLetter] = useState("");
   const perPage = 12;
 
-  const filteredByLetter = selectedLetter
-    ? filteredMovie.filter((item) => {
-        const title = item.title_english || item.title || "";
-        return title.charAt(0).toUpperCase() === selectedLetter;
-      })
-    : filteredMovie;
+  const currentMovie = filteredByLetter(filteredMovie);
 
-  const totalPage = Math.ceil(filteredByLetter.length / perPage);
+  const totalPage = Math.ceil(currentMovie.length / perPage);
 
   const lastIndex = currentPage * perPage;
   const firstIndex = lastIndex - perPage;
-  const currentAnime = filteredByLetter.slice(firstIndex, lastIndex);
-
-  const handleLetterClick = (letter) => {
-    setSelectedLetter(letter);
-    setCurrentPage(1);
-  };
+  const pagedMovies = currentMovie.slice(firstIndex, lastIndex);
 
   return (
     <div className='px-5 sm:px-10'>
       <AlphabetPagination
-        handleLetterClick={handleLetterClick}
         selectedLetter={selectedLetter}
+        setSelectedLetter={setSelectedLetter}
+        setCurrentPage={setCurrentPage}
       />
       <div className='grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-5'>
         {loading ? (
@@ -42,14 +38,14 @@ const MoviePage = () => {
           ))
         ) : (
           <>
-            {filteredMovie.length === 0 ? (
+            {currentMovie.length === 0 ? (
               <div className='flex justify-center items-center min-h-[60vh] col-span-full'>
                 <p className='text-center font-bold text-4xl text-gray-600'>
                   Not Found
                 </p>
               </div>
             ) : (
-              currentAnime.map((item) => (
+              pagedMovies.map((item) => (
                 <CardContainer key={item.mal_id} item={item} />
               ))
             )}

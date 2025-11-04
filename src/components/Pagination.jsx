@@ -1,7 +1,10 @@
 const Pagination = ({ ibtn, currentPage, setCurrentPage }) => {
   return (
     <button
-      onClick={() => setCurrentPage(ibtn + 1)}
+      onClick={() => {
+        setCurrentPage(ibtn + 1);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }}
       className={`px-3 py-1  cursor-pointer rounded mb-10 
                   ${
                     currentPage === ibtn + 1

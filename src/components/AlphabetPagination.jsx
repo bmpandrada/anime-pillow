@@ -1,4 +1,13 @@
-const AlphabetPagination = ({ handleLetterClick, selectedLetter }) => {
+const AlphabetPagination = ({
+  selectedLetter,
+  setSelectedLetter,
+  setCurrentPage,
+}) => {
+  const handleLetterClick = (letter) => {
+    setSelectedLetter(letter);
+    setCurrentPage(1);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <div className='flex flex-wrap justify-center gap-1 sm:gap-2 mt-5 mb-4'>
       {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => (

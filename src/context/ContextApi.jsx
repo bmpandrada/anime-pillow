@@ -11,6 +11,7 @@ export function ContextProvider({ children }) {
   const [sortBy, setSortby] = useState("");
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedLetter, setSelectedLetter] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -91,6 +92,15 @@ export function ContextProvider({ children }) {
   const filteredAnime = filterAndSort(anime);
   const filteredMovie = filterAndSort(movie);
 
+  const filteredByLetter = (data) => {
+    return selectedLetter
+      ? data.filter((item) => {
+          const title = item.title_english || item.title || "";
+          return title.charAt(0).toUpperCase() === selectedLetter;
+        })
+      : data;
+  };
+
   return (
     <ContextApi.Provider
       value={{
@@ -98,6 +108,9 @@ export function ContextProvider({ children }) {
         movie,
         filteredAnime,
         filteredMovie,
+        filteredByLetter,
+        selectedLetter,
+        setSelectedLetter,
         loading,
         error,
         filter,
