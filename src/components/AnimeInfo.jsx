@@ -2,7 +2,7 @@ const AnimeInfo = ({ anime }) => {
   return (
     <div className='flex flex-wrap gap-2 items-center mt-2'>
       <p className='text-accent font-semibold'>Info:</p>
-      <div className='flex flex-wrap gap-2'>
+      <div className='flex flex-wrap gap-2 space-y-0.5'>
         <p className='badge badge-accent font-semibold'>
           <span className='text-base-200'>Aired:</span>{" "}
           {new Date(anime.aired.from).toDateString()}

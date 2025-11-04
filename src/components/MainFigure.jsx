@@ -19,7 +19,7 @@ const MainFigure = ({ anime }) => {
       </div>
       <TrailerPlayer
         trailer={anime.trailer.embed_url}
-        className={"col-span-2"}
+        className={"col-span-2 mt-5"}
       />
     </div>
   );
