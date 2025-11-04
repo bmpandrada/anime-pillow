@@ -11,7 +11,9 @@ const SelectOption = ({
       onChange={(e) => setSelectedCategory(e.target.value)}
       className='select'
     >
-      <option disabled={true}>Categories</option>
+      <option value='' disabled={true}>
+        Categories
+      </option>
       <option value=''>All Categories</option>
       {categories?.map((item) => (
         <option key={item} value={item}>

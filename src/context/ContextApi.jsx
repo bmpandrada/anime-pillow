@@ -8,7 +8,7 @@ export function ContextProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filter, setFilter] = useState("");
-  const [sortBy, setSortby] = useState(null);
+  const [sortBy, setSortby] = useState("");
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -74,8 +74,16 @@ export function ContextProvider({ children }) {
         return matchTitle && matchCategory;
       })
       .sort((a, b) => {
-        if (sortBy === "latest") return (b.year || 0) - (a.year || 0);
-        if (sortBy === "oldest") return (a.year || 0) - (b.year || 0);
+        if (list === anime) {
+          if (sortBy === "latest") return (b.year || 0) - (a.year || 0);
+          if (sortBy === "oldest") return (a.year || 0) - (b.year || 0);
+        } else {
+          const dateA = new Date(a.aired?.from || 0);
+          const dateB = new Date(b.aired?.from || 0);
+
+          if (sortBy === "latest") return dateB - dateA;
+          if (sortBy === "oldest") return dateA - dateB;
+        }
         return 0;
       });
   };
