@@ -11,7 +11,7 @@ const AsideFigure = ({ anime }) => {
         <span>🎬{anime.episodes || "?"} episodes</span>
         <span>📅{anime.year || "Unknown"}</span>
       </figcaption>
-      <figcaption className='flex gap-2 items-center text-sm mb-5 mx-auto md:mx-0'>
+      <figcaption className='flex flex-wrap gap-2 items-center text-sm mb-5 mx-auto md:mx-0'>
         <span className='badge badge-success font-semibold'>
           Rank #{anime.rank}
         </span>
