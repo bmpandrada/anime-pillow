@@ -12,8 +12,8 @@ const FeaturedCard = ({ item }) => {
       }/${item.mal_id}`}
       className='flex '
     >
-      <div className='card bg-base-100 w-96 shadow-md mb-10 relative group overflow-hidden'>
-        <figure>
+      <div className='card w-auto h-80 sm:h-auto grid-cols-2 mx-auto bg-base-100 md:w-96 shadow-md mb-10 relative group overflow-hidden'>
+        <figure className='col-span-2'>
           <img
             src={item.images.webp.large_image_url}
             alt={item.title}
