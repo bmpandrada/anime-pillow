@@ -2,6 +2,7 @@ import { NavLink } from "react-router";
 import { FaBookReader } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
 import { BiSolidCameraMovie } from "react-icons/bi";
+import { MdMovieCreation } from "react-icons/md";
 
 const Footer = () => {
   return (
@@ -16,6 +17,14 @@ const Footer = () => {
         >
           <IoHome />
           <span className='dock-label'>Home</span>
+        </NavLink>
+
+        <NavLink
+          to={"/anime"}
+          className={({ isActive }) => (isActive ? "dock-active" : "")}
+        >
+          <MdMovieCreation />
+          <span className='dock-label'>Anime</span>
         </NavLink>
 
         <NavLink

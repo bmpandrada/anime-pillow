@@ -14,7 +14,7 @@ const Nav = ({
   setSelectedCategory,
 }) => {
   const localPath = useLocation();
-  const showNav = ["/", "/movies"].includes(localPath.pathname);
+  const showNav = ["/anime", "/movies"].includes(localPath.pathname);
 
   return (
     <div className='w-full md:flex flex-col md:flex-row space-y-1.5 px-5 sm:px-10 sm:justify-between sm:items-center'>

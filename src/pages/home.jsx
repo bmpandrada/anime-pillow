@@ -1,36 +1,27 @@
 import { useState } from "react";
 import { useAnime } from "../context/ContextApi";
-import CardContainer from "../components/CardContainer";
-import Pagination from "../components/Pagination";
 import SkeletonCard from "../components/SkeletonCard";
-import AlphabetPagination from "../components/AlphabetPagination";
+import HeroAnime from "../components/HeroAnime";
+import FeaturedCard from "../components/FeaturedCard";
 
 const HomePage = () => {
-  const {
-    filteredAnime,
-    filteredByLetter,
-    setSelectedLetter,
-    selectedLetter,
-    loading,
-  } = useAnime();
-  const [currentPage, setCurrentPage] = useState(1);
-  const perPage = 12;
+  const { anime, loading } = useAnime();
+  const [currentPage] = useState(1);
+  const perPage = 4;
 
-  const displayedAnime = filteredByLetter(filteredAnime);
+  const displayedAnime = anime;
 
-  const totalPage = Math.ceil(displayedAnime.length / perPage);
-  const lastIndex = currentPage * perPage;
-  const firstIndex = lastIndex - perPage;
-  const currentAnime = displayedAnime.slice(firstIndex, lastIndex);
+  const featuredAnime = currentPage * perPage;
+  const currentAnime = displayedAnime.slice(0, featuredAnime);
 
   return (
     <div className='px-5 sm:px-10'>
-      <AlphabetPagination
-        selectedLetter={selectedLetter}
-        setSelectedLetter={setSelectedLetter}
-        setCurrentPage={setCurrentPage}
-      />
-
+      <HeroAnime />
+      {displayedAnime.length > 0 && (
+        <h1 className='text-2xl mt-5 text-accent antialiased font-semibold'>
+          Featured Anime
+        </h1>
+      )}
       <div className='grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-5'>
         {loading ? (
           Array.from({ length: perPage }).map((_, i) => (
@@ -46,24 +37,11 @@ const HomePage = () => {
               </div>
             ) : (
               currentAnime.map((item) => (
-                <CardContainer key={item.mal_id} item={item} />
+                <FeaturedCard key={item.mal_id} item={item} />
               ))
             )}
           </>
         )}
-      </div>
-
-      {/* Pagination */}
-      <div className='flex justify-center gap-2 mt-8'>
-        {totalPage > 1 &&
-          Array.from({ length: totalPage }, (_, ibtn) => (
-            <Pagination
-              totalPage={totalPage}
-              ibtn={ibtn}
-              key={ibtn + 1}
-              setCurrentPage={setCurrentPage}
-            />
-          ))}
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ const AsideFigure = ({ anime }) => {
         className='w-full max-w-xs sm:max-w-sm mx-auto rounded-xl object-contain transition duration-300'
       />
       <figcaption className='flex gap-2 items-center text-sm mx-auto md:mx-0'>
-        <span>⭐{anime.score.toFixed(2) || "N/A"}</span>
+        <span>⭐{anime.score.toFixed(1) || "N/A"}</span>
         <span>🎬{anime.episodes || "?"} episodes</span>
         <span>📅{anime.year || "Unknown"}</span>
       </figcaption>

@@ -2,10 +2,14 @@ import { Link, useLocation } from "react-router";
 
 const CardContainer = ({ item }) => {
   const localPath = useLocation();
-  const showEp = localPath.pathname === "/";
+  const showEp = localPath.pathname === "/anime" || "/";
   return (
     <Link
-      to={`${localPath.pathname === "/" ? "/anime" : "/movies"}/${item.mal_id}`}
+      to={`${
+        localPath.pathname === "/anime" || localPath.pathname === "/"
+          ? "/anime"
+          : "/movies"
+      }/${item.mal_id}`}
       className='bg-base-200 rounded-2xl shadow hover:shadow-lg transition overflow-hidden'
     >
       <img
