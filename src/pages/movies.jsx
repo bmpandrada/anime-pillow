@@ -3,20 +3,38 @@ import { useAnime } from "../context/ContextApi";
 import CardContainer from "../components/CardContainer";
 import Pagination from "../components/Pagination";
 import SkeletonCard from "../components/SkeletonCard";
+import AlphabetPagination from "../components/AlphabetPagination";
 
 const MoviePage = () => {
   const { filteredMovie, loading } = useAnime();
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedLetter, setSelectedLetter] = useState("");
   const perPage = 12;
 
-  const totalPage = Math.ceil(filteredMovie.length / perPage);
+  const filteredByLetter = selectedLetter
+    ? filteredMovie.filter((item) => {
+        const title = item.title_english || item.title || "";
+        return title.charAt(0).toUpperCase() === selectedLetter;
+      })
+    : filteredMovie;
+
+  const totalPage = Math.ceil(filteredByLetter.length / perPage);
 
   const lastIndex = currentPage * perPage;
   const firstIndex = lastIndex - perPage;
-  const currentAnime = filteredMovie.slice(firstIndex, lastIndex);
+  const currentAnime = filteredByLetter.slice(firstIndex, lastIndex);
+
+  const handleLetterClick = (letter) => {
+    setSelectedLetter(letter);
+    setCurrentPage(1);
+  };
 
   return (
     <div className='px-5 sm:px-10'>
+      <AlphabetPagination
+        handleLetterClick={handleLetterClick}
+        selectedLetter={selectedLetter}
+      />
       <div className='grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-5'>
         {loading ? (
           Array.from({ length: perPage }).map((_, i) => (
