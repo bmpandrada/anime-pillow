@@ -13,6 +13,7 @@ const App = () => {
         <Route path='/movies' element={<MoviePage />} />
         <Route path='/about' element={<About />} />
         <Route path='/anime/:id' element={<AnimeDetail />} />
+        <Route path='/movies/:id' element={<AnimeDetail />} />
       </Routes>
     </Layout>
   );

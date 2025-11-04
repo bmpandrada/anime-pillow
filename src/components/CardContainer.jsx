@@ -5,7 +5,7 @@ const CardContainer = ({ item }) => {
   const showEp = localPath.pathname === "/";
   return (
     <Link
-      to={`/anime/${item.mal_id}`}
+      to={`${localPath.pathname === "/" ? "/anime" : "/movies"}/${item.mal_id}`}
       className='bg-base-200 rounded-2xl shadow hover:shadow-lg transition overflow-hidden'
     >
       <img
@@ -33,9 +33,6 @@ const CardContainer = ({ item }) => {
             </span>
           </p>
         </div>
-        {/* <p className='text-sm text-base-500 mt-1'>
-          Genre: {item.genres.types || "?"}
-        </p> */}
         <p className='text-yellow-500 font-bold mt-2 sm:text-sm text-xs'>
           ⭐ {item.score.toFixed(1) || "N/A"}
         </p>

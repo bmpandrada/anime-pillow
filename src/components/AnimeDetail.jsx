@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { Link, useLocation, useParams } from "react-router";
 import TrailerPlayer from "./VideoPlayer";
 import SpinnerLoading from "./SpinnerLoader";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 export default function AnimeDetail() {
   const { id } = useParams();
   const [anime, setAnime] = useState(null);
-
+  const localPath = useLocation();
   useEffect(() => {
     if (!id) return;
 
@@ -23,8 +24,14 @@ export default function AnimeDetail() {
 
   return (
     <div className='max-w-3xl mx-auto rounded-2xl sm:shadow p-10 mb-10'>
+      <Link to={localPath.pathname.includes("/anime") ? "/" : "/movies"}>
+        <p className='flex items-center gap-2 text-lg font-semibold text-accent hover:text-base-300 mb-2 transition'>
+          <IoMdArrowRoundBack /> Back to{" "}
+          {localPath.pathname.includes("/anime") ? "Anime" : "Movies"}{" "}
+        </p>
+      </Link>
       <TrailerPlayer trailer={anime.trailer.embed_url} />
-      <div className='flex gap-4 text-sm  mb-5'>
+      <div className='flex gap-4 text-sm  mb-5 mt-2'>
         <span>⭐ {anime.score.toFixed(2) || "N/A"}</span>
         <span>🎬 {anime.episodes || "?"} episodes</span>
         <span>📅 {anime.year || "Unknown"}</span>
