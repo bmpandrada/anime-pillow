@@ -1,17 +1,29 @@
-import { Link } from "react-router";
+import { NavLink } from "react-router";
 
 const NavHead = () => {
+  const base =
+    "text-base-800 font-semibold hover:text-accent transition duration-400";
+  const active = "text-accent font-semibold";
   return (
     <div className='hidden sm:flex flex-row justify-start space-x-5'>
-      <Link to={"/"} className='text-base-700 font-semibold'>
+      <NavLink
+        to={"/"}
+        className={({ isActive }) => (isActive ? active : base)}
+      >
         Home
-      </Link>
-      <Link to={"/movies"} className='text-base-700 font-semibold'>
+      </NavLink>
+      <NavLink
+        to={"/movies"}
+        className={({ isActive }) => (isActive ? active : base)}
+      >
         Movie
-      </Link>
-      <Link to={"/about"} className='text-base-700 font-semibold'>
+      </NavLink>
+      <NavLink
+        to={"/about"}
+        className={({ isActive }) => (isActive ? active : base)}
+      >
         About
-      </Link>
+      </NavLink>
     </div>
   );
 };
