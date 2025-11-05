@@ -1,41 +1,111 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import AsideFigure from "../components/AsideFigure";
+import SpinnerLoading from "../components/SpinnerLoader";
 
 export default function Character() {
   const { id } = useParams();
   const [char, setChar] = useState(null);
+  const [chars, setChars] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`https://api.jikan.moe/v4/characters/${id}`);
-        if (!res.ok) throw new Error("Data fetch failed");
-        const data = await res.json();
-        setChar(data.data);
-        console.log(data.data);
+        const cachedChar = localStorage.getItem(`charData_${id}`);
+        const cachedChars = localStorage.getItem(`charsData_${id}`);
+
+        if (cachedChar && cachedChars) {
+          setChar(JSON.parse(cachedChar));
+          setChars(JSON.parse(cachedChars));
+          setLoading(false);
+          return;
+        }
+
+        const resChar = await fetch(
+          `https://api.jikan.moe/v4/characters/${id}`,
+        );
+        if (!resChar.ok) throw new Error("Character fetch failed");
+        const dataChar = await resChar.json();
+
+        const resChars = await fetch(
+          `https://api.jikan.moe/v4/characters/${id}/anime`,
+        );
+        if (!resChars.ok) throw new Error("Character anime fetch failed");
+        const dataChars = await resChars.json();
+
+        await new Promise((r) => setTimeout(r, 1000));
+
+        setChar(dataChar.data);
+        setChars(dataChars.data);
+
+        localStorage.setItem(`charData_${id}`, JSON.stringify(dataChar.data));
+        localStorage.setItem(`charsData_${id}`, JSON.stringify(dataChars.data));
       } catch (error) {
-        console.log(error.message);
+        console.error("Fetch error:", error.message);
+      } finally {
+        setLoading(false);
       }
     };
+
     fetchData();
   }, [id]);
 
+  if (loading) {
+    return <SpinnerLoading />;
+  }
+
   return (
     <div className='max-w-7xl mx-auto rounded-2xl sm:shadow p-5 sm:pt-10 pt-0 mb-10 transition duration-300'>
-      <div className='grid sm:grid-cols-4'>
+      <div className='grid sm:grid-cols-4 gap-4'>
         <div className='col-span-1'>
           <AsideFigure anime={char} />
         </div>
         <div className='rounded px-5 sm:col-span-3'>
-          {char?.about?.length === 0 ? (
-            <h1 className='text-2xl font-semibold flex justify-center items-center bg-black'>
-              {" "}
-              Unknown
-            </h1>
+          <h2 className='text-base-400 text-2xl font-extrabold mb-2'>
+            Name: <span className='text-warning'>{char.name}</span>
+          </h2>
+          <p className='font-bold text-base-300'>
+            Role: <span className='text-warning'>{chars[0].role}</span>
+          </p>
+          <h2 className='font-bold text-base-300'>
+            Title: <span className='text-warning'>{chars[0].anime.title}</span>
+          </h2>
+          {char?.about ? (
+            <h1>{char.about}</h1>
           ) : (
-            <h1>{char?.about}</h1>
+            <div className='h-full flex justify-center items-center'>
+              <h1 className='text-2xl font-semibold text-error bg-black w-full text-center p-5'>
+                Unknown
+              </h1>
+            </div>
           )}
+
+          <h2 className='text-base-400 text-2xl font-extrabold mb-2 mt-10'>
+            Anime
+          </h2>
+          <div className='max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mt-5 mb-10'>
+            {chars.map((item) => (
+              <Link
+                className='card bg-base-200 w-full shadow-sm'
+                to={`/anime/${item.anime.mal_id}`}
+              >
+                <figure>
+                  <img
+                    src={item.anime.images.webp.large_image_url}
+                    alt={item.anime.title}
+                    className='w-full h-sm sm:h-auto object-cover transform transition-transform duration-300 hover:scale-105'
+                  />
+                </figure>
+                <div className='card-body'>
+                  <h2 className='card-title text-xs flex flex-wrap justify-between items-center'>
+                    {item.anime.title}
+                    {/* <div className='badge badge-warning text-xs'>{item.role}</div> */}
+                  </h2>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </div>

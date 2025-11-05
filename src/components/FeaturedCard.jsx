@@ -75,23 +75,29 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
         ref={carouselRef}
         className='carousel carousel-center bg-black rounded-box w-full space-x-4 p-4 overflow-x-auto scroll-smooth snap-x snap-mandatory'
       >
-        {items.map((item) => (
-          <Link
-            key={item.mal_id}
-            to={`${custom_link}/${item.mal_id}`}
-            className='carousel-item sm:w-1/4 md:w-1/5 w-1/3 h-50 sm:h-90 snap-center flex-shrink-0'
-          >
-            <img
-              src={
-                item?.images.webp?.large_image_url ||
-                item?.images.webp?.image_url ||
-                item?.images.webp?.small_image_url
-              }
-              alt={item.title}
-              className='w-full h-full object-cover rounded-box'
-            />
-          </Link>
-        ))}
+        {Array.isArray(items) && items.length > 0 ? (
+          items.map((item) => (
+            <Link
+              key={item.mal_id}
+              to={`${custom_link}/${item.mal_id}`}
+              className='carousel-item sm:w-1/4 md:w-1/5 w-1/3 h-50 sm:h-90 snap-center flex-shrink-0'
+            >
+              <img
+                src={
+                  item?.images?.webp?.large_image_url ||
+                  item?.images?.webp?.image_url ||
+                  item?.images?.webp?.small_image_url
+                }
+                alt={item.title}
+                className='w-full h-full object-cover rounded-box'
+              />
+            </Link>
+          ))
+        ) : (
+          <div className='text-center text-gray-400 p-5 w-full'>
+            No featured items available.
+          </div>
+        )}
       </div>
     </div>
   );
