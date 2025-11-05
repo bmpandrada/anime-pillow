@@ -15,8 +15,8 @@ const CharacterCards = ({ char = [] }) => {
                 className='w-full h-60 object-cover transform transition-transform duration-300 hover:scale-105'
               />
             </figure>
-            <div className='card-body'>
-              <h2 className='card-title text-sm'>
+            <div className='card-body '>
+              <h2 className='card-title text-xs flex flex-wrap justify-between items-center'>
                 {char.character.name}
                 <div className='badge badge-warning text-xs'>{char.role}</div>
               </h2>
