@@ -46,6 +46,7 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
     if (carousel && carousel.children[i]) {
       carousel.children[i].scrollIntoView({
         behavior: "smooth",
+        block: "nearest",
         inline: "center",
       });
     }

@@ -1,12 +1,12 @@
 import { Link } from "react-router";
 
-const HeroAnime = () => {
+const HeroAnime = ({ image }) => {
   return (
     <div className='hero bg-base-200 rounded-2xl mt-5 shadow-sm'>
       <div className='hero-content flex-col lg:flex-row'>
         <img
-          src='https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp'
-          className='max-w-sm rounded-lg shadow-2xl'
+          src={image}
+          className='max-w-sm rounded-lg shadow-2xl  object-contain'
         />
         <div>
           <h1 className='text-5xl font-bold text-success'>Anime Pillow!</h1>
