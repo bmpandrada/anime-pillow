@@ -1,20 +1,33 @@
 import { Link } from "react-router";
 
-const HeroAnime = ({ image }) => {
+const HeroAnime = ({ displayedAnime }) => {
+  const randomIndex = Math.floor(Math.random() * displayedAnime.length);
+  const titleHeader =
+    displayedAnime[randomIndex]?.background ||
+    displayedAnime[randomIndex]?.title;
+  const broadCast = displayedAnime[randomIndex]?.broadcast;
+  const banner = displayedAnime[randomIndex]?.images.webp.image_url;
+  const link_page = displayedAnime[randomIndex]?.mal_id;
+
   return (
-    <div className='hero bg-base-200 rounded-2xl mt-5 shadow-sm'>
+    <div className='hero bg-base-200 shadow-sm'>
       <div className='hero-content flex-col lg:flex-row'>
         <img
-          src={image}
+          src={banner}
           className='max-w-sm rounded-lg shadow-2xl  object-contain'
         />
-        <div>
-          <h1 className='text-5xl font-bold text-success'>Anime Pillow!</h1>
-          <p className='py-6 text-lg'>
-            Because the best stories are worth dreaming about.
-          </p>
+        <div className='space-y-2'>
+          <h1 className='text-5xl font-bold text-accent'>Anime Pillow!</h1>
 
-          <Link className='btn btn-primary' to={"/anime"}>
+          <p className='text-xl sm:text-xl font-semibold  md:text-2xl text-warning'>
+            {titleHeader}
+          </p>
+          <p className='text-md'>
+            {broadCast?.day}, {broadCast?.string}
+            <br />
+            <span>Timezone: {broadCast?.timezone}</span>
+          </p>
+          <Link className='btn btn-primary' to={`/anime/${link_page}`}>
             Discover
           </Link>
         </div>

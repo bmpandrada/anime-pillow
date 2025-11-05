@@ -19,7 +19,7 @@ const MainFigure = ({ anime }) => {
         </div>
         {anime?.trailer?.embed_url !== null && (
           <>
-            <TitleDivider title={"Featured Anime"} />
+            <TitleDivider title={"Trailer"} />
             <TrailerPlayer
               trailer={anime?.trailer?.embed_url}
               className={"col-span-1 mt-5"}

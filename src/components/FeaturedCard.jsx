@@ -43,11 +43,12 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
 
   const scrollToItem = (i) => {
     const carousel = carouselRef.current;
-    if (carousel && carousel.children[i]) {
-      carousel.children[i].scrollIntoView({
+    if (carousel) {
+      const childWidth = carousel.children[0]?.offsetWidth || 0;
+      const scrollAmount = i * (childWidth + 12);
+      carousel.scrollTo({
+        left: scrollAmount,
         behavior: "smooth",
-        block: "nearest",
-        inline: "center",
       });
     }
   };

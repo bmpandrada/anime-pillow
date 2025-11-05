@@ -12,15 +12,11 @@ const HomePage = () => {
 
   const displayedAnime = anime;
 
-  const randomIndex = Math.floor(Math.random() * displayedAnime.length);
-  const banner = displayedAnime[randomIndex]?.images.webp.image_url;
-
   const featuredAnime = currentPage * perPage;
   const currentAnime = displayedAnime.slice(0, featuredAnime);
 
   return (
     <div className='px-5 sm:px-10'>
-      <HeroAnime image={banner} />
       {displayedAnime.length > 0 && <TitleDivider title={"Featured Anime"} />}
       <div className='mt-5'>
         {loading ? (

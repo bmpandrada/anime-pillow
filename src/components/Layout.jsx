@@ -1,6 +1,5 @@
 import { useAnime } from "../context/ContextApi";
 import Nav from "./Nav";
-import ThemeToggle from "./Toogle";
 import Header from "./Header";
 import Footer from "./Footer";
 
