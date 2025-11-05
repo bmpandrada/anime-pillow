@@ -11,7 +11,7 @@ const HeroAnime = ({ displayedAnime }) => {
   const link_page = displayedAnime[randomIndex]?.mal_id;
 
   return (
-    <div className='hero bg-base-200  bg-gradient-to-r from-base-100 to-blue-700 shadow-sm pb-5'>
+    <div className='hero bg-base-200  bg-gradient-to-r from-black to-cyan-900 shadow-sm pb-5'>
       <div className='hero-content flex-col lg:flex-row'>
         <img
           src={banner}
