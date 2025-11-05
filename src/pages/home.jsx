@@ -57,6 +57,7 @@ const HomePage = () => {
         key={character.mal_id}
         items={character}
         custom_link={"/characters"}
+        pause={true}
       />
       <div className='mb-20'></div>
     </div>

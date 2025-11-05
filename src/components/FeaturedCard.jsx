@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router";
+import { Link } from "react-router";
 
-const FeaturedCard = ({ items, custom_link }) => {
+const FeaturedCard = ({ items, custom_link, pause }) => {
   const carouselRef = useRef(null);
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const [paused, setPaused] = useState(pause ? pause : false);
   const [step, setStep] = useState(5);
-  const localPath = useLocation();
 
   useEffect(() => {
     const updateStep = () => {
