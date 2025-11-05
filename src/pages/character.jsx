@@ -74,8 +74,8 @@ export default function Character() {
           {char?.about ? (
             <h1>{char.about}</h1>
           ) : (
-            <div className='h-full flex justify-center items-center'>
-              <h1 className='text-2xl font-semibold text-error bg-black w-full text-center p-5'>
+            <div className='flex justify-center items-center'>
+              <h1 className='mt-5 text-2xl font-semibold text-error bg-black w-full text-center p-5'>
                 Unknown
               </h1>
             </div>
@@ -87,14 +87,14 @@ export default function Character() {
           <div className='max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mt-5 mb-10'>
             {chars.map((item) => (
               <Link
-                className='card bg-base-200 w-full shadow-sm'
+                className='card bg-base-200 w-full shadow-sm h-50'
                 to={`/anime/${item.anime.mal_id}`}
               >
                 <figure>
                   <img
                     src={item.anime.images.webp.large_image_url}
                     alt={item.anime.title}
-                    className='w-full h-sm sm:h-auto object-cover transform transition-transform duration-300 hover:scale-105'
+                    className='w-full object-cover transform transition-transform duration-300 hover:scale-105'
                   />
                 </figure>
                 <div className='card-body'>
