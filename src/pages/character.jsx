@@ -81,31 +81,39 @@ export default function Character() {
             </div>
           )}
 
-          <h2 className='text-base-400 text-2xl font-extrabold mb-2 mt-10'>
-            Anime
-          </h2>
-          <div className='max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mt-5 mb-10'>
-            {chars.map((item) => (
-              <Link
-                className='card bg-base-200 w-full shadow-sm h-50'
-                to={`/anime/${item.anime.mal_id}`}
-              >
-                <figure>
-                  <img
-                    src={item.anime.images.webp.large_image_url}
-                    alt={item.anime.title}
-                    className='w-full object-cover transform transition-transform duration-300 hover:scale-105'
-                  />
-                </figure>
-                <div className='card-body'>
-                  <h2 className='card-title text-xs flex flex-wrap justify-between items-center'>
-                    {item.anime.title}
-                    {/* <div className='badge badge-warning text-xs'>{item.role}</div> */}
-                  </h2>
-                </div>
-              </Link>
-            ))}
-          </div>
+          {chars.length > 0 ? (
+            <>
+              <div className='divider divider-neutral'>
+                <h1 className='text-2xl  text-accent antialiased font-semibold'>
+                  Anime
+                </h1>
+              </div>
+              <div className='max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mt-5 mb-10'>
+                {chars.map((item) => (
+                  <Link
+                    className='card bg-base-200 w-full shadow-sm h-50'
+                    to={`/anime/${item.anime.mal_id}`}
+                  >
+                    <figure>
+                      <img
+                        src={item.anime.images.webp.large_image_url}
+                        alt={item.anime.title}
+                        className='w-full object-cover transform transition-transform duration-300 hover:scale-105'
+                      />
+                    </figure>
+                    <div className='card-body'>
+                      <h2 className='card-title text-xs flex flex-wrap justify-between items-center'>
+                        {item.anime.title}
+                        {/* <div className='badge badge-warning text-xs'>{item.role}</div> */}
+                      </h2>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </>
+          ) : (
+            " "
+          )}
         </div>
       </div>
     </div>

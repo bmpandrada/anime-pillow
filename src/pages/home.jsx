@@ -18,9 +18,11 @@ const HomePage = () => {
     <div className='px-5 sm:px-10'>
       <HeroAnime />
       {displayedAnime.length > 0 && (
-        <h1 className='text-2xl mt-5 text-accent antialiased font-semibold'>
-          Featured Anime
-        </h1>
+        <div className='divider divider-neutral'>
+          <h1 className='text-2xl  text-accent antialiased font-semibold'>
+            Featured Anime
+          </h1>
+        </div>
       )}
       <div className='mt-5'>
         {loading ? (
@@ -46,9 +48,11 @@ const HomePage = () => {
         )}
       </div>
       {character.length > 0 && (
-        <h1 className='text-2xl mt-5 text-accent antialiased font-semibold'>
-          Featured Characters
-        </h1>
+        <div className='divider divider-neutral'>
+          <h1 className='text-2xl  text-accent antialiased font-semibold'>
+            Featured Characters
+          </h1>
+        </div>
       )}
       <div className='mt-5'></div>
       <FeaturedCard
