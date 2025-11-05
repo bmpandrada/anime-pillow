@@ -57,10 +57,11 @@
   prefersdark: false; /* hindi dark theme */
 
   /* 🎨 Base colors – bright background, dark text */
-  --color-base-100: oklch(1 0 0);
-  --color-base-200: oklch(0.97 0.03 209.42);
-  --color-base-300: oklch(0.45 0.02 203.35);
-  --color-base-content: oklch(0.32 0 0);
+  --color-base-100: oklch(0.2 0.02 209.41);
+  --color-base-200: black;
+  --color-base-300: oklch(0.9459 0.0784 193.34);
+  --text-base-900: white;
+  --color-base-content: oklch(0.8694 0.2832 173.22);
 
   /* 🌈 Primary colors – vibrant but not harsh */
   --color-primary: oklch(55% 0.3 240);
@@ -70,7 +71,7 @@
   --color-secondary-content: oklch(98% 0.01 180);
 
   --color-accent: oklch(70% 0.22 90);
-  --color-accent-content: oklch(15% 0.03 90);
+  --color-accent-content: oklch(0.8694 0.1771 184.87);
 
   --color-neutral: oklch(35% 0.05 250);
   --color-neutral-content: oklch(98% 0.01 240);

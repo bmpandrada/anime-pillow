@@ -74,7 +74,7 @@ const FeaturedCard = ({ items }) => {
       </div>
       <div
         ref={carouselRef}
-        className='carousel carousel-center bg-success rounded-box w-full space-x-4 p-4 overflow-x-auto scroll-smooth snap-x snap-mandatory'
+        className='carousel carousel-center bg-black rounded-box w-full space-x-4 p-4 overflow-x-auto scroll-smooth snap-x snap-mandatory'
       >
         {items.map((item) => (
           <Link
