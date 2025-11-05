@@ -84,7 +84,7 @@ const FeaturedCard = ({ items }) => {
                 ? "/anime"
                 : "/movies"
             }/${item.mal_id}`}
-            className='carousel-item sm:w-1/4 md:w-1/5 w-1/3 h-80 snap-center flex-shrink-0'
+            className='carousel-item sm:w-1/4 md:w-1/5 w-1/3 h-50 sm:h-90 snap-center flex-shrink-0'
           >
             <img
               src={item.images.webp.large_image_url}
