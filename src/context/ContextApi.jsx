@@ -5,6 +5,7 @@ export const ContextApi = createContext();
 export function ContextProvider({ children }) {
   const [anime, setAnime] = useState([]);
   const [movie, setMovie] = useState([]);
+  const [character, setCharacter] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filter, setFilter] = useState("");
@@ -18,10 +19,12 @@ export function ContextProvider({ children }) {
       try {
         const cachedAnime = localStorage.getItem("animeData");
         const cachedMovie = localStorage.getItem("movieData");
+        const cachedCharacter = localStorage.getItem("charData");
 
-        if (cachedAnime && cachedMovie) {
+        if (cachedAnime && cachedMovie && cachedCharacter) {
           setAnime(JSON.parse(cachedAnime));
           setMovie(JSON.parse(cachedMovie));
+          setCharacter(JSON.parse(cachedCharacter));
           setLoading(false);
           return;
         }
@@ -40,11 +43,19 @@ export function ContextProvider({ children }) {
         if (!resMovie.ok) throw new Error("Movie fetch failed");
         const movieData = await resMovie.json();
 
+        // await new Promise((r) => setTimeout(r, 1500));
+
+        const resChar = await fetch("https://api.jikan.moe/v4/characters");
+        if (!resChar.ok) throw new Error("Movie fetch failed");
+        const charData = await resChar.json();
+
         setAnime(animeData.data);
         setMovie(movieData.data);
+        setCharacter(charData.data);
 
         localStorage.setItem("animeData", JSON.stringify(animeData.data));
         localStorage.setItem("movieData", JSON.stringify(movieData.data));
+        localStorage.setItem("charData", JSON.stringify(charData.data));
       } catch (err) {
         setError(err.message);
       } finally {
@@ -91,6 +102,7 @@ export function ContextProvider({ children }) {
 
   const filteredAnime = filterAndSort(anime);
   const filteredMovie = filterAndSort(movie);
+  // const filteredChar = filterAndSort(character);
 
   const filteredByLetter = (data) => {
     return selectedLetter
@@ -106,8 +118,10 @@ export function ContextProvider({ children }) {
       value={{
         anime,
         movie,
+        character,
         filteredAnime,
         filteredMovie,
+        // filteredChar,
         filteredByLetter,
         selectedLetter,
         setSelectedLetter,

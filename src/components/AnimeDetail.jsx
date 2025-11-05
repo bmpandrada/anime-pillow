@@ -4,18 +4,37 @@ import SpinnerLoading from "./SpinnerLoader";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import AsideFigure from "./AsideFigure";
 import MainFigure from "./MainFigure";
+import CharacterCards from "./CharacterCards";
 
 export default function AnimeDetail() {
   const { id } = useParams();
   const [anime, setAnime] = useState(null);
+  const [char, setChar] = useState(null);
   const localPath = useLocation();
   useEffect(() => {
     if (!id) return;
-
+    const controller = new AbortController();
     const timer = setTimeout(async () => {
-      const res = await fetch(`https://api.jikan.moe/v4/anime/${id}`);
-      const data = await res.json();
-      setAnime(data.data);
+      const [resDetail, resChar] = await Promise.all([
+        fetch(`https://api.jikan.moe/v4/anime/${id}`, {
+          signal: controller.signal,
+        }),
+        fetch(`https://api.jikan.moe/v4/anime/${id}/characters`, {
+          signal: controller.signal,
+        }),
+      ]);
+
+      if (!resDetail.ok || !resChar.ok) {
+        throw new Error("Failed to fetch anime or character data");
+      }
+
+      const [dataDetail, dataChar] = await Promise.all([
+        resDetail.json(),
+        resChar.json(),
+      ]);
+
+      setAnime(dataDetail.data);
+      setChar(dataChar.data);
     }, 500);
 
     return () => clearTimeout(timer);
@@ -35,8 +54,7 @@ export default function AnimeDetail() {
         <AsideFigure anime={anime} />
         <MainFigure anime={anime} />
       </div>
-
-      {/* {console.log(anime)} */}
+      <CharacterCards char={char} />
     </div>
   );
 }
