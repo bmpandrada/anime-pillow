@@ -1,5 +1,6 @@
 import AnimeGenre from "./AnimeGenre";
 import AnimeInfo from "./AnimeInfo";
+import TitleDivider from "./TitleDivider";
 import TrailerPlayer from "./VideoPlayer";
 
 const MainFigure = ({ anime }) => {
@@ -16,13 +17,16 @@ const MainFigure = ({ anime }) => {
           {anime?.genres?.length > 0 && <AnimeGenre anime={anime} />}
           <AnimeInfo anime={anime} />
         </div>
+        {anime?.trailer?.embed_url !== null && (
+          <>
+            <TitleDivider title={"Featured Anime"} />
+            <TrailerPlayer
+              trailer={anime?.trailer?.embed_url}
+              className={"col-span-1 mt-5"}
+            />
+          </>
+        )}
       </div>
-      {anime?.trailer?.embed_url !== null && (
-        <TrailerPlayer
-          trailer={anime?.trailer?.embed_url}
-          className={"col-span-2 mt-5"}
-        />
-      )}
     </div>
   );
 };

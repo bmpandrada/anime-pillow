@@ -1,5 +1,5 @@
 export default function TrailerPlayer({ trailer, className }) {
-  const embedUrl = `${trailer}=1&mute=1`;
+  const embedUrl = `${trailer}=1`;
 
   return (
     <div

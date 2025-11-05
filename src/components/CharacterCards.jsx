@@ -1,12 +1,11 @@
 import { Link } from "react-router";
+import TitleDivider from "./TitleDivider";
 
 const CharacterCards = ({ char = [] }) => {
   if (!char.length < 0) return;
   return (
     <>
-      <h1 className='mt-10 text-lg sm:text-2xl font-semibold text-success'>
-        Characters
-      </h1>
+      <TitleDivider title={"Featured Character"} />
       <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mt-5 mb-10'>
         {char.map((char) => (
           <Link

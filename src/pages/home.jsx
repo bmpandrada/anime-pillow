@@ -3,6 +3,7 @@ import { useAnime } from "../context/ContextApi";
 import SkeletonCard from "../components/SkeletonCard";
 import HeroAnime from "../components/HeroAnime";
 import FeaturedCard from "../components/FeaturedCard";
+import TitleDivider from "../components/TitleDivider";
 
 const HomePage = () => {
   const { anime, character, loading } = useAnime();
@@ -17,13 +18,7 @@ const HomePage = () => {
   return (
     <div className='px-5 sm:px-10'>
       <HeroAnime />
-      {displayedAnime.length > 0 && (
-        <div className='divider divider-neutral'>
-          <h1 className='text-2xl  text-accent antialiased font-semibold'>
-            Featured Anime
-          </h1>
-        </div>
-      )}
+      {displayedAnime.length > 0 && <TitleDivider title={"Featured Anime"} />}
       <div className='mt-5'>
         {loading ? (
           Array.from({ length: perPage }).map((_, i) => (
@@ -47,13 +42,7 @@ const HomePage = () => {
           </>
         )}
       </div>
-      {character.length > 0 && (
-        <div className='divider divider-neutral'>
-          <h1 className='text-2xl  text-accent antialiased font-semibold'>
-            Featured Characters
-          </h1>
-        </div>
-      )}
+      {character.length > 0 && <TitleDivider title={"Featured Character"} />}
       <div className='mt-5'></div>
       <FeaturedCard
         key={character.mal_id}
