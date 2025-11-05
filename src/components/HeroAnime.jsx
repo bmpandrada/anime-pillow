@@ -1,3 +1,4 @@
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router";
 
 const HeroAnime = ({ displayedAnime }) => {
@@ -10,24 +11,37 @@ const HeroAnime = ({ displayedAnime }) => {
   const link_page = displayedAnime[randomIndex]?.mal_id;
 
   return (
-    <div className='hero bg-base-200 shadow-sm'>
+    <div className='hero bg-base-200 shadow-sm pb-5'>
       <div className='hero-content flex-col lg:flex-row'>
         <img
           src={banner}
           className='max-w-sm rounded-lg shadow-2xl  object-contain'
         />
+
         <div className='space-y-2'>
-          <h1 className='text-5xl font-bold text-accent'>Anime Pillow!</h1>
+          <div className='text-5xl font-bold text-accent flex items-center gap-2'>
+            <span>Anime Pillow!</span>
+          </div>
 
           <p className='text-xl sm:text-xl font-semibold  md:text-2xl text-warning'>
             {titleHeader}
           </p>
           <p className='text-md'>
-            {broadCast?.day}, {broadCast?.string}
+            {broadCast?.day} {broadCast?.string}
             <br />
-            <span>Timezone: {broadCast?.timezone}</span>
+            {broadCast?.timezone && (
+              <span>Timezone: {broadCast?.timezone}</span>
+            )}
+            <div className='flex items-center gap-2 text-warning'>
+              <a href={`${import.meta.env.VITE_LINK_LINKEDIN}`} target='_blank'>
+                <FaLinkedin className='text-2xl hover:text-blue-400 transition' />
+              </a>
+              <a href={`${import.meta.env.VITE_LINK_GITHUB}`} target='_blank'>
+                <FaGithub className='text-2xl hover:text-blue-400 transition' />
+              </a>
+            </div>
           </p>
-          <Link className='btn btn-primary' to={`/anime/${link_page}`}>
+          <Link className='btn btn-accent' to={`/anime/${link_page}`}>
             Discover
           </Link>
         </div>
