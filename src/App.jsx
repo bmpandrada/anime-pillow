@@ -5,6 +5,7 @@ import About from "./pages/about";
 import AnimeDetail from "./components/AnimeDetail";
 import MoviePage from "./pages/movies";
 import AnimePage from "./pages/anime";
+import Character from "./pages/character";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path='/about' element={<About />} />
         <Route path='/anime/:id' element={<AnimeDetail />} />
         <Route path='/movies/:id' element={<AnimeDetail />} />
+        <Route path='/characters/:id' element={<Character />} />
       </Routes>
     </Layout>
   );

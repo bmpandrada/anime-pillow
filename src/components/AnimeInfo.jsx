@@ -5,26 +5,26 @@ const AnimeInfo = ({ anime }) => {
       <div className='flex flex-wrap gap-2 space-y-0.5'>
         <p className='badge badge-accent font-semibold'>
           <span className='text-base-200'>Aired:</span>{" "}
-          {new Date(anime.aired.from).toDateString()}
+          {new Date(anime?.aired?.from).toDateString()}
         </p>
         <p className='badge badge-accent font-semibold'>
-          <span className='text-base-200'>Source:</span> {anime.source}
+          <span className='text-base-200'>Source:</span> {anime?.source}
         </p>
         <p className='badge badge-accent font-semibold'>
-          <span className='text-base-200'>Status:</span> {anime.status}
+          <span className='text-base-200'>Status:</span> {anime?.status}
         </p>
         <p className='badge badge-accent font-semibold'>
-          <span className='text-base-200'>Rating:</span> {anime.rating}
+          <span className='text-base-200'>Rating:</span> {anime?.rating}
         </p>
-        {anime.season && (
+        {anime?.season && (
           <p className='badge badge-accent font-semibold'>
-            <span className='text-base-200'>Season:</span> {anime.season}
+            <span className='text-base-200'>Season:</span> {anime?.season}
           </p>
         )}
-        {anime.studios && (
+        {anime?.studios && (
           <p className='badge badge-accent font-semibold'>
             <span className='text-base-200'>Studios:</span>{" "}
-            {anime.studios.map((a) => a.name)}
+            {anime?.studios?.map((a) => a.name)}
           </p>
         )}
       </div>

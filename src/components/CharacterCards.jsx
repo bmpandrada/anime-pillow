@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const CharacterCards = ({ char = [] }) => {
   if (!char.length < 0) return;
   return (
@@ -7,7 +9,10 @@ const CharacterCards = ({ char = [] }) => {
       </h1>
       <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mt-5 mb-10'>
         {char.map((char) => (
-          <div className='card bg-base-200 w-full shadow-sm'>
+          <Link
+            className='card bg-base-200 w-full shadow-sm'
+            to={`/characters/${char.character.mal_id}`}
+          >
             <figure>
               <img
                 src={char.character.images.webp.image_url}
@@ -21,7 +26,7 @@ const CharacterCards = ({ char = [] }) => {
                 <div className='badge badge-warning text-xs'>{char.role}</div>
               </h2>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </>

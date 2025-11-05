@@ -8,19 +8,21 @@ const MainFigure = ({ anime }) => {
       <div className='sm:col-span-3'>
         <div className=''>
           <h1 className='text-xl sm:text-2xl md:text-3xl font-bold mb-2'>
-            {anime.title}
+            {anime?.title?.length < 0 ? "" : anime?.title}
           </h1>
           <p className='mb-4 sm:pr-2 antialiased figcaption'>
-            {anime.synopsis}
+            {anime?.synopsis}
           </p>
-          {anime.genres?.length > 0 && <AnimeGenre anime={anime} />}
+          {anime?.genres?.length > 0 && <AnimeGenre anime={anime} />}
           <AnimeInfo anime={anime} />
         </div>
       </div>
-      <TrailerPlayer
-        trailer={anime.trailer.embed_url}
-        className={"col-span-2 mt-5"}
-      />
+      {anime?.trailer?.embed_url !== null && (
+        <TrailerPlayer
+          trailer={anime?.trailer?.embed_url}
+          className={"col-span-2 mt-5"}
+        />
+      )}
     </div>
   );
 };

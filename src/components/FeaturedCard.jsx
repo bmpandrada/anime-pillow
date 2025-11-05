@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
 
-const FeaturedCard = ({ items }) => {
+const FeaturedCard = ({ items, custom_link }) => {
   const carouselRef = useRef(null);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -79,15 +79,15 @@ const FeaturedCard = ({ items }) => {
         {items.map((item) => (
           <Link
             key={item.mal_id}
-            to={`${
-              ["/", "/anime"].includes(localPath.pathname)
-                ? "/anime"
-                : "/movies"
-            }/${item.mal_id}`}
+            to={`${custom_link}/${item.mal_id}`}
             className='carousel-item sm:w-1/4 md:w-1/5 w-1/3 h-50 sm:h-90 snap-center flex-shrink-0'
           >
             <img
-              src={item.images.webp.large_image_url}
+              src={
+                item?.images.webp?.large_image_url ||
+                item?.images.webp?.image_url ||
+                item?.images.webp?.small_image_url
+              }
               alt={item.title}
               className='w-full h-full object-cover rounded-box'
             />

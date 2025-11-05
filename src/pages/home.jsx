@@ -3,9 +3,11 @@ import { useAnime } from "../context/ContextApi";
 import SkeletonCard from "../components/SkeletonCard";
 import HeroAnime from "../components/HeroAnime";
 import FeaturedCard from "../components/FeaturedCard";
+import CharacterCards from "../components/CharacterCards";
+import CardContainer from "../components/CardContainer";
 
 const HomePage = () => {
-  const { anime, loading } = useAnime();
+  const { anime, character, loading } = useAnime();
   const [currentPage] = useState(1);
   const perPage = 20;
 
@@ -36,11 +38,27 @@ const HomePage = () => {
                 </p>
               </div>
             ) : (
-              <FeaturedCard key={anime.mal_id} items={currentAnime} />
+              <FeaturedCard
+                key={anime.mal_id}
+                items={currentAnime}
+                custom_link={"/anime"}
+              />
             )}
           </>
         )}
       </div>
+      {character.length > 0 && (
+        <h1 className='text-2xl mt-5 text-accent antialiased font-semibold'>
+          Featured Characters
+        </h1>
+      )}
+      <div className='mt-5'></div>
+      <FeaturedCard
+        key={character.mal_id}
+        items={character}
+        custom_link={"/characters"}
+      />
+      <div className='mb-20'></div>
     </div>
   );
 };
