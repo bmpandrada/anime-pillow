@@ -11,7 +11,7 @@ const HeroAnime = ({ displayedAnime }) => {
   const link_page = displayedAnime[randomIndex]?.mal_id;
 
   return (
-    <div className='hero bg-base-200  bg-gradient-to-r from-black to-cyan-900 shadow-sm pb-5'>
+    <div className='hero bg-base-200  bg-gradient-to-r from-black to-cyan-900 shadow-sm sm:pb-5'>
       <div className='hero-content flex-col lg:flex-row'>
         <img
           src={banner}
@@ -19,14 +19,14 @@ const HeroAnime = ({ displayedAnime }) => {
         />
 
         <div className='space-y-2'>
-          <div className='text-5xl font-bold text-accent flex items-center gap-2'>
+          <div className='text-3xl sm:text-5xl font-bold text-accent flex items-center gap-2'>
             <span>Anime Pillow!</span>
           </div>
 
-          <p className='text-xl sm:text-xl font-semibold  md:text-2xl text-warning'>
+          <p className='text-md sm:text-xl font-semibold  md:text-2xl text-warning'>
             {titleHeader}
           </p>
-          <div className='text-md'>
+          <div className='text-sm sm:text-md'>
             {broadCast?.day} {broadCast?.string}
             <br />
             {broadCast?.timezone && (
