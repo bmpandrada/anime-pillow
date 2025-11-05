@@ -11,7 +11,7 @@ const HeroAnime = ({ displayedAnime }) => {
   const link_page = displayedAnime[randomIndex]?.mal_id;
 
   return (
-    <div className='hero bg-base-200 shadow-sm pb-5'>
+    <div className='hero bg-base-200  bg-gradient-to-r from-base-100 to-blue-700 shadow-sm pb-5'>
       <div className='hero-content flex-col lg:flex-row'>
         <img
           src={banner}
@@ -26,7 +26,7 @@ const HeroAnime = ({ displayedAnime }) => {
           <p className='text-xl sm:text-xl font-semibold  md:text-2xl text-warning'>
             {titleHeader}
           </p>
-          <p className='text-md'>
+          <div className='text-md'>
             {broadCast?.day} {broadCast?.string}
             <br />
             {broadCast?.timezone && (
@@ -40,7 +40,7 @@ const HeroAnime = ({ displayedAnime }) => {
                 <FaGithub className='text-2xl hover:text-blue-400 transition' />
               </a>
             </div>
-          </p>
+          </div>
           <Link className='btn btn-accent' to={`/anime/${link_page}`}>
             Discover
           </Link>
