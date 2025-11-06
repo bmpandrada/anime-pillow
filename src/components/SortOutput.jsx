@@ -1,8 +1,15 @@
+import { useEffect } from "react";
 import { useLocation } from "react-router";
 
 const SortOutout = ({ sortBy, setSortby }) => {
   const localPath = useLocation();
   const upcoming = localPath.pathname === "/movies";
+
+  useEffect(() => {
+    if (localPath.pathname === "/movies" && sortBy === "upcoming") {
+      setSortby("latest");
+    }
+  }, [localPath.pathname, setSortby, sortBy]);
 
   return (
     <select
