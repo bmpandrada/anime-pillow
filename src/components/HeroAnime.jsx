@@ -33,13 +33,22 @@ const HeroAnime = ({ displayedAnime }) => {
             {titleHeader}
           </p>
           <div className='text-sm sm:text-md'>
-            <p>
-              {broadCast?.day} {broadCast?.string}
-              <br />
-              {broadCast?.timezone && (
-                <span>Timezone: {broadCast?.timezone}</span>
-              )}
-            </p>
+            {!broadCast?.day ||
+            !broadCast?.string ||
+            broadCast?.day.includes("unknown") ||
+            broadCast?.string.includes("unknown") ? (
+              <p className='text-lg sm:text-3xl font-bold'>Upcoming</p>
+            ) : (
+              <>
+                <p>
+                  {broadCast?.day} {broadCast?.string}
+                  <br />
+                  {broadCast?.timezone && (
+                    <span>Timezone: {broadCast?.timezone}</span>
+                  )}
+                </p>
+              </>
+            )}
             <br /> <br />
             <div className='flex items-center gap-2 text-warning'>
               <a href={`${import.meta.env.VITE_LINK_LINKEDIN}`} target='_blank'>

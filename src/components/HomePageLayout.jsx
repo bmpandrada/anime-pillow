@@ -5,18 +5,9 @@ import HeroAnime from "./HeroAnime";
 import Nav from "./Nav";
 
 const Layout = ({ children }) => {
-  const {
-    anime,
-    sortBy,
-    setSortby,
-    filter,
-    setFilter,
-    categories,
-    selectedCategory,
-    setSelectedCategory,
-  } = useAnime();
+  const { upcomming } = useAnime();
 
-  const displayedAnime = anime;
+  const displayedAnime = upcomming;
 
   return (
     <div className='flex flex-col min-h-screen'>
@@ -24,15 +15,7 @@ const Layout = ({ children }) => {
       <HeroAnime displayedAnime={displayedAnime} />
       <div className='flex-1 max-w-7xl w-full mx-auto'>
         <div className='mt-5 text-center w-full mx-auto'>
-          <Nav
-            sortBy={sortBy}
-            setSortby={setSortby}
-            filter={filter}
-            setFilter={setFilter}
-            categories={categories}
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-          />
+          <Nav />
         </div>
         {children}
       </div>
