@@ -33,7 +33,6 @@ const HomePage = () => {
             ) : (
               <>
                 <FeaturedCard
-                  key={upcomming.mal_id}
                   items={upcomming}
                   custom_link={"/anime"}
                   pause={true}
@@ -43,11 +42,7 @@ const HomePage = () => {
                     <TitleDivider title={"Featured Anime"} />
                   )}
 
-                  <FeaturedCard
-                    key={anime.mal_id}
-                    items={currentAnime}
-                    custom_link={"/anime"}
-                  />
+                  <FeaturedCard items={currentAnime} custom_link={"/anime"} />
                 </>
                 <>
                   {character.length > 0 && (
@@ -55,7 +50,6 @@ const HomePage = () => {
                   )}
                   <div className='mt-5'></div>
                   <FeaturedCard
-                    key={character.mal_id}
                     items={character}
                     custom_link={"/characters"}
                     pause={true}

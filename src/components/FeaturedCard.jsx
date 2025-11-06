@@ -78,9 +78,9 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
         className='carousel carousel-center bg-black rounded-box w-full space-x-4 p-4 overflow-x-auto scroll-smooth snap-x snap-mandatory'
       >
         {Array.isArray(items) && items.length > 0 ? (
-          items.map((item) => (
+          items.map((item, index) => (
             <Link
-              key={item.mal_id}
+              key={`${item.mal_id}-${index}`}
               to={`${custom_link}/${item.mal_id}`}
               className='carousel-item sm:w-1/4 md:w-1/5 w-1/3 h-50 sm:h-90 snap-center rounded-box flex-shrink-0 overflow-hidden'
             >

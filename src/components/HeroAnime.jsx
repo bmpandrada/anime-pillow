@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { href, Link } from "react-router";
+import { Link } from "react-router";
 import { useEffect } from "react";
 import { animateTitle } from "../Utils/animateTitle";
 
