@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { Link } from "react-router";
+import { href, Link } from "react-router";
 import { useEffect } from "react";
 import { animateTitle } from "../Utils/animateTitle";
 
@@ -17,7 +17,17 @@ const HeroAnime = ({ displayedAnime }) => {
   }, []);
 
   return (
-    <div className='hero bg-base-200  bg-gradient-to-r from-black to-cyan-900 shadow-sm sm:pb-5'>
+    <div
+      className='hero bg-base-200 relative shadow-sm sm:pb-5'
+      style={{
+        backgroundImage: `url(${banner})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className='absolute inset-0 bg-gradient-to-r from-black/80 to-cyan-900/95'>
+        {" "}
+      </div>
       <div className='hero-content flex-col lg:flex-row'>
         <img
           src={banner}
