@@ -7,6 +7,7 @@ import AnimeDetail from "./common/components/AnimeDetail";
 import MoviePage from "./pages/movies";
 import AnimePage from "./pages/anime";
 import Character from "./pages/character";
+import NotFoundPage from "./pages/notFound";
 
 const App = () => {
   return (
@@ -67,6 +68,7 @@ const App = () => {
           </Layout>
         }
       />
+      <Route path='*' element={<NotFoundPage />} />
     </Routes>
   );
 };
