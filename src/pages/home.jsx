@@ -40,7 +40,11 @@ const HomePage = () => {
                     <TitleDivider title={"Featured Anime"} />
                   )}
 
-                  <FeaturedCard items={currentAnime} custom_link={"/anime"} />
+                  <FeaturedCard
+                    pause={false}
+                    items={currentAnime}
+                    custom_link={"/anime"}
+                  />
                 </>
                 <>
                   {character.length > 0 && (
