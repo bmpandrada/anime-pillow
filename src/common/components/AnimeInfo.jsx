@@ -21,7 +21,7 @@ const AnimeInfo = ({ anime }) => {
             <span className='text-base-200'>Season:</span> {anime?.season}
           </p>
         )}
-        {anime?.studios && (
+        {anime?.studios.length > 0 && (
           <p className='badge badge-accent font-semibold'>
             <span className='text-base-200'>Studios:</span>{" "}
             {anime?.studios?.map((a) => a.name)}
