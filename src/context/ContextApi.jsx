@@ -15,9 +15,18 @@ export function ContextProvider({ children }) {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedLetter, setSelectedLetter] = useState("");
 
+  const CACHE_VERSION = "v2";
+
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const cachedVersion = localStorage.getItem("cacheVersion");
+
+        if (cachedVersion !== CACHE_VERSION) {
+          localStorage.clear();
+          localStorage.setItem("cacheVersion", CACHE_VERSION);
+        }
+
         const cachedAnime = localStorage.getItem("animeData");
         const cachedMovie = localStorage.getItem("movieData");
         const cachedCharacter = localStorage.getItem("charData");
@@ -67,6 +76,7 @@ export function ContextProvider({ children }) {
         localStorage.setItem("movieData", JSON.stringify(movieData.data));
         localStorage.setItem("charData", JSON.stringify(charData.data));
         localStorage.setItem("upcommingData", JSON.stringify(animeUpData.data));
+        localStorage.setItem("cacheVersion", CACHE_VERSION);
       } catch (err) {
         setError(err.message);
       } finally {
