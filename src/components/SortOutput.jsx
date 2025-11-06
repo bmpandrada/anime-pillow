@@ -1,4 +1,9 @@
+import { useLocation } from "react-router";
+
 const SortOutout = ({ sortBy, setSortby }) => {
+  const localPath = useLocation();
+  const upcoming = localPath.pathname === "/movies";
+
   return (
     <select
       name='sort'
@@ -10,7 +15,7 @@ const SortOutout = ({ sortBy, setSortby }) => {
       <option disabled={true}>Sort By</option>
       <option value={"latest"}> Latest</option>
       <option value={"oldest"}> Previous</option>
-      <option value={"upcoming"}> Upcomming</option>
+      {!upcoming && <option value={"upcoming"}> Upcomming</option>}
     </select>
   );
 };
