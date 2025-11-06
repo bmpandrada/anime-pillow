@@ -1,7 +1,7 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router";
 import { useEffect } from "react";
-import { animateTitle } from "../Utils/animateTitle";
+import { animateTitle } from "../hooks/animateTitle";
 
 const HeroAnime = ({ displayedAnime }) => {
   const randomIndex = Math.floor(Math.random() * displayedAnime.length);

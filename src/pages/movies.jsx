@@ -1,22 +1,22 @@
 import { useState } from "react";
-import { useAnime } from "../context/ContextApi";
-import CardContainer from "../components/CardContainer";
-import Pagination from "../components/Pagination";
-import SkeletonCard from "../components/SkeletonCard";
-import AlphabetPagination from "../components/AlphabetPagination";
+import { useAnime } from "../common/context/ContextApi";
+import CardContainer from "../common/components/CardContainer";
+import Pagination from "../common/components/Pagination";
+import SkeletonCard from "../common/components/SkeletonCard";
+import AlphabetPagination from "../common/components/AlphabetPagination";
 
 const MoviePage = () => {
   const {
     filteredByLetter,
     selectedLetter,
     setSelectedLetter,
-    filteredMovie,
+    filteredMovieByLetter,
     loading,
   } = useAnime();
   const [currentPage, setCurrentPage] = useState(1);
   const perPage = 12;
 
-  const currentMovie = filteredByLetter(filteredMovie);
+  const currentMovie = filteredByLetter(filteredMovieByLetter);
 
   const totalPage = Math.ceil(currentMovie.length / perPage);
 

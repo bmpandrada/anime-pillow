@@ -1,8 +1,8 @@
-import { useAnime } from "../context/ContextApi";
-import Header from "./Header";
-import Footer from "./Footer";
-import HeroAnime from "./HeroAnime";
-import Nav from "./Nav";
+import { useAnime } from "../../context/ContextApi";
+import Header from "../Header";
+import Footer from "../Footer";
+import HeroAnime from "../HeroAnime";
+import Nav from "../Nav";
 
 const Layout = ({ children }) => {
   const { upcomming } = useAnime();

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useAnime } from "../context/ContextApi";
-import SkeletonCard from "../components/SkeletonCard";
-import FeaturedCard from "../components/FeaturedCard";
-import TitleDivider from "../components/TitleDivider";
+import { useAnime } from "../common/context/ContextApi";
+import SkeletonCard from "../common/components/SkeletonCard";
+import FeaturedCard from "../common/components/FeaturedCard";
+import TitleDivider from "../common/components/TitleDivider";
 
 const HomePage = () => {
   const { anime, character, upcomming, loading } = useAnime();

@@ -3,7 +3,7 @@ import AnimeGenre from "./AnimeGenre";
 import AnimeInfo from "./AnimeInfo";
 import TitleDivider from "./TitleDivider";
 import TrailerPlayer from "./VideoPlayer";
-import { animateTitle } from "../Utils/animateTitle";
+import { animateTitle } from "../hooks/animateTitle";
 
 const MainFigure = ({ anime }) => {
   const trailerExist = anime?.trailer?.embed_url !== null ? true : false;

@@ -1,4 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { filterAndSort } from "../utils/filterAndSort";
+import { filteredByLetter } from "../utils/filterByLetter";
 
 export const ContextApi = createContext();
 
@@ -96,55 +98,34 @@ export function ContextProvider({ children }) {
     setCategories([...new Set(allGenres)]);
   }, [anime, movie, upcomming]);
 
-  const filterAndSort = (list) => {
-    return list
-      .filter((item) => {
-        const matchTitle = item.title
-          .toLowerCase()
-          .includes(filter.toLowerCase());
-        const matchCategory =
-          !selectedCategory ||
-          item.genres?.some((g) => g.name === selectedCategory);
+  const filteredAnime = filterAndSort(anime, {
+    filter,
+    selectedCategory,
+    sortBy,
+    upcomming,
+    anime,
+  });
+  const filteredMovie = filterAndSort(movie, {
+    filter,
+    selectedCategory,
+    sortBy,
+    upcomming,
+    anime,
+  });
+  const filteredUpcomming = filterAndSort(upcomming, {
+    filter,
+    selectedCategory,
+    sortBy,
+    upcomming,
+    anime,
+  });
 
-        if (sortBy === "upcoming") {
-          const dateA = new Date(item.aired?.from || 0);
-          return (
-            matchTitle && matchCategory && (isNaN(dateA) || dateA > new Date())
-          );
-        }
-
-        return matchTitle && matchCategory;
-      })
-      .slice()
-      .sort((a, b) => {
-        if (list === anime && upcomming) {
-          if (sortBy === "latest") return (b.year || 0) - (a.year || 0);
-          if (sortBy === "oldest") return (a.year || 0) - (b.year || 0);
-        } else {
-          const dateA = new Date(a.aired?.from || 0);
-          const dateB = new Date(b.aired?.from || 0);
-
-          if (sortBy === "latest") return dateB - dateA;
-          if (sortBy === "oldest") return dateA - dateB;
-          if (sortBy === "upcoming") return dateA - dateB;
-        }
-        return 0;
-      });
-  };
-
-  const filteredAnime = filterAndSort(anime);
-  const filteredMovie = filterAndSort(movie);
-  const filteredUpcomming = filterAndSort(upcomming);
-  // const filteredChar = filterAndSort(character);
-
-  const filteredByLetter = (data) => {
-    return selectedLetter
-      ? data.filter((item) => {
-          const title = item.title_english || item.title || "";
-          return title.charAt(0).toUpperCase() === selectedLetter;
-        })
-      : data;
-  };
+  const filteredAnimeByLetter = filteredByLetter(filteredAnime, selectedLetter);
+  const filteredMovieByLetter = filteredByLetter(filteredMovie, selectedLetter);
+  const filteredUpcomingByLetter = filteredByLetter(
+    filteredUpcomming,
+    selectedLetter,
+  );
 
   return (
     <ContextApi.Provider
@@ -153,7 +134,9 @@ export function ContextProvider({ children }) {
         movie,
         character,
         upcomming,
-        filteredAnime,
+        filteredAnimeByLetter,
+        filteredMovieByLetter,
+        filteredUpcomingByLetter,
         filteredMovie,
         filteredUpcomming,
         // filteredChar,

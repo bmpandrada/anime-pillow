@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import AsideFigure from "../components/AsideFigure";
-import SpinnerLoading from "../components/SpinnerLoader";
-import { animateTitle } from "../Utils/animateTitle";
+import AsideFigure from "../common/components/AsideFigure";
+import SpinnerLoading from "../common/components/SpinnerLoader";
+import { animateTitle } from "../common/hooks/animateTitle";
 
 export default function Character() {
   const { id } = useParams();

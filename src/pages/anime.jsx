@@ -1,23 +1,26 @@
 import { useState } from "react";
-import { useAnime } from "../context/ContextApi";
-import CardContainer from "../components/CardContainer";
-import Pagination from "../components/Pagination";
-import SkeletonCard from "../components/SkeletonCard";
-import AlphabetPagination from "../components/AlphabetPagination";
+import { useAnime } from "../common/context/ContextApi";
+import CardContainer from "../common/components/CardContainer";
+import Pagination from "../common/components/Pagination";
+import SkeletonCard from "../common/components/SkeletonCard";
+import AlphabetPagination from "../common/components/AlphabetPagination";
 
 const AnimePage = () => {
   const {
-    filteredAnime,
+    filteredAnimeByLetter,
+    filteredUpcomingByLetter,
     filteredByLetter,
     setSelectedLetter,
     selectedLetter,
-    filteredUpcomming,
     loading,
   } = useAnime();
   const [currentPage, setCurrentPage] = useState(1);
   const perPage = 12;
 
-  const combinedAnime = [...filteredAnime, ...filteredUpcomming].filter(
+  const combinedAnime = [
+    ...filteredAnimeByLetter,
+    ...filteredUpcomingByLetter,
+  ].filter(
     (item, index, self) =>
       index === self.findIndex((a) => a.mal_id === item.mal_id),
   );
