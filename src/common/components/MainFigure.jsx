@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import AnimeGenre from "./AnimeGenre";
-import AnimeInfo from "./AnimeInfo";
+import AnimeGenre from "./AnimeDetail/AnimeGenre";
+import AnimeInfo from "./AnimeDetail/AnimeInfo";
 import TitleDivider from "./TitleDivider";
 import TrailerPlayer from "./VideoPlayer";
 import { animateTitle } from "../hooks/animateTitle";

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAnime } from "../common/context/ContextApi";
-import SkeletonCard from "../common/components/SkeletonCard";
-import FeaturedCard from "../common/components/FeaturedCard";
+import SkeletonCard from "../common/components/Loaders/SkeletonCard";
+import FeaturedCard from "../common/components/AnimeCard/FeaturedCard";
 import TitleDivider from "../common/components/TitleDivider";
 
 const HomePage = () => {

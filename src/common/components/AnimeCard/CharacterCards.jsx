@@ -1,6 +1,6 @@
 import { Link } from "react-router";
-import TitleDivider from "./TitleDivider";
-import SkeletonCard from "./SkeletonCard";
+import TitleDivider from "../TitleDivider";
+import SkeletonCard from "../Loaders/SkeletonCard";
 
 const CharacterCards = ({ char = [], loading }) => {
   if (!char || char.length === 0) return null;

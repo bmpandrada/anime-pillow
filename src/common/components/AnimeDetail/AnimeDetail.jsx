@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router";
-import SpinnerLoading from "./SpinnerLoader";
+import SpinnerLoading from "../Loaders/SpinnerLoader";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import AsideFigure from "./AsideFigure";
-import MainFigure from "./MainFigure";
-import CharacterCards from "./CharacterCards";
-import SkeletonCard from "./SkeletonCard";
+import AsideFigure from "../AsideFigure";
+import MainFigure from "../MainFigure";
+import CharacterCards from "../AnimeCard/CharacterCards";
+import SkeletonCard from "../Loaders/SkeletonCard";
 
 export default function AnimeDetail() {
   const { id } = useParams();

@@ -86,7 +86,7 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
             <Link
               key={`${item.mal_id}-${index}`}
               to={`${custom_link}/${item.mal_id}`}
-              className='carousel-item sm:w-1/4 md:w-1/5 w-1/3 h-50 sm:h-90 snap-center rounded-box flex-shrink-0 overflow-hidden'
+              className='carousel-item sm:w-1/4 md:w-1/5 w-1/3 h-50 sm:h-90 snap-center rounded-box flex-shrink-0 overflow-hidden relative group'
             >
               <img
                 src={
@@ -95,8 +95,15 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
                   item?.images?.webp?.small_image_url
                 }
                 alt={item.title}
-                className='w-full h-full object-cover rounded-box transform hover:scale-120 transition-transform duration-300'
+                className='w-full h-full object-cover rounded-box transform group-hover:scale-120 transition-transform duration-300'
               />
+
+              {/* Overlay */}
+              <div className='absolute inset-0 bg-black/0 group-hover:bg-black/70 flex items-center justify-center transition-all duration-300'>
+                <h1 className='text-green-300 opacity-0 group-hover:opacity-100 text-center text-lg font-bold transition-opacity duration-300'>
+                  {item.title || item.name}
+                </h1>
+              </div>
             </Link>
           ))
         ) : (

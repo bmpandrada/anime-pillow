@@ -3,7 +3,7 @@ import Layout from "./common/components/layouts/Layout";
 import HomePageLayout from "./common/components/layouts/HomePageLayout";
 import { Route, Routes } from "react-router";
 import About from "./pages/about";
-import AnimeDetail from "./common/components/AnimeDetail";
+import AnimeDetail from "./common/components/AnimeDetail/AnimeDetail";
 import MoviePage from "./pages/movies";
 import AnimePage from "./pages/anime";
 import Character from "./pages/character";
