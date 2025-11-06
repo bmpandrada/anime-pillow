@@ -1,7 +1,25 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router";
+import { animate, splitText, stagger } from "animejs";
 
 const HeroAnime = ({ displayedAnime }) => {
+  const { chars } = splitText("span", { words: false, chars: true });
+  animate(chars, {
+    // Property keyframes
+    y: [
+      { to: "-2.75rem", ease: "outExpo", duration: 600 },
+      { to: 0, ease: "outBounce", duration: 800, delay: 100 },
+    ],
+    // Property specific parameters
+    rotate: {
+      from: "-1turn",
+      delay: 0,
+    },
+    delay: stagger(50),
+    ease: "inOutCirc",
+    loopDelay: 700,
+    loop: false,
+  });
   const randomIndex = Math.floor(Math.random() * displayedAnime.length);
   const titleHeader =
     displayedAnime[randomIndex]?.background ||
@@ -32,6 +50,7 @@ const HeroAnime = ({ displayedAnime }) => {
             {broadCast?.timezone && (
               <span>Timezone: {broadCast?.timezone}</span>
             )}
+            <br /> <br />
             <div className='flex items-center gap-2 text-warning'>
               <a href={`${import.meta.env.VITE_LINK_LINKEDIN}`} target='_blank'>
                 <FaLinkedin className='text-2xl hover:text-blue-400 transition' />
