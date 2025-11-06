@@ -56,8 +56,12 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
   return (
     <div
       className='relative'
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      onMouseEnter={() =>
+        paused === pause ? setPaused(true) : setPaused(false)
+      }
+      onMouseLeave={() =>
+        paused === pause ? setPaused(true) : setPaused(false)
+      }
     >
       <div className='absolute -top-6 right-0 flex gap-2 z-10'>
         <button
