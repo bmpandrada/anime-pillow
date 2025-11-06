@@ -3,7 +3,6 @@ import TitleDivider from "./TitleDivider";
 
 const CharacterCards = ({ char = [] }) => {
   if (char.length === 0) return;
-  console.log(char);
 
   return (
     <>

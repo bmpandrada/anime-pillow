@@ -23,7 +23,7 @@ export function ContextProvider({ children }) {
         const cachedCharacter = localStorage.getItem("charData");
         const cachedUpcomming = localStorage.getItem("upcommingData");
 
-        if (cachedAnime && cachedMovie && cachedCharacter) {
+        if (cachedAnime && cachedMovie && cachedCharacter && cachedUpcomming) {
           setAnime(JSON.parse(cachedAnime));
           setMovie(JSON.parse(cachedMovie));
           setCharacter(JSON.parse(cachedCharacter));

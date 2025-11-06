@@ -1,6 +1,8 @@
 export default function TrailerPlayer({ trailer, className }) {
   const embedUrl = `${trailer}=1`;
 
+  if (!embedUrl) return;
+
   return (
     <div
       style={{
