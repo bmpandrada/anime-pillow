@@ -1,25 +1,9 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router";
-import { animate, splitText, stagger } from "animejs";
+import { useEffect } from "react";
+import { animateTitle } from "../Utils/animateTitle";
 
 const HeroAnime = ({ displayedAnime }) => {
-  const { chars } = splitText("span", { words: false, chars: true });
-  animate(chars, {
-    // Property keyframes
-    y: [
-      { to: "-2.75rem", ease: "outExpo", duration: 600 },
-      { to: 0, ease: "outBounce", duration: 800, delay: 100 },
-    ],
-    // Property specific parameters
-    rotate: {
-      from: "-1turn",
-      delay: 0,
-    },
-    delay: stagger(50),
-    ease: "inOutCirc",
-    loopDelay: 700,
-    loop: false,
-  });
   const randomIndex = Math.floor(Math.random() * displayedAnime.length);
   const titleHeader =
     displayedAnime[randomIndex]?.background ||
@@ -27,6 +11,10 @@ const HeroAnime = ({ displayedAnime }) => {
   const broadCast = displayedAnime[randomIndex]?.broadcast;
   const banner = displayedAnime[randomIndex]?.images.webp.image_url;
   const link_page = displayedAnime[randomIndex]?.mal_id;
+
+  useEffect(() => {
+    animateTitle(".pillow");
+  }, []);
 
   return (
     <div className='hero bg-base-200  bg-gradient-to-r from-black to-cyan-900 shadow-sm sm:pb-5'>
@@ -38,18 +26,20 @@ const HeroAnime = ({ displayedAnime }) => {
 
         <div className='space-y-2'>
           <div className='text-3xl sm:text-5xl font-bold text-accent flex items-center gap-2'>
-            <span>Anime Pillow!</span>
+            <span className='pillow'>Anime Pillow!</span>
           </div>
 
           <p className='text-md sm:text-xl font-semibold  md:text-2xl text-warning'>
             {titleHeader}
           </p>
           <div className='text-sm sm:text-md'>
-            {broadCast?.day} {broadCast?.string}
-            <br />
-            {broadCast?.timezone && (
-              <span>Timezone: {broadCast?.timezone}</span>
-            )}
+            <p>
+              {broadCast?.day} {broadCast?.string}
+              <br />
+              {broadCast?.timezone && (
+                <span>Timezone: {broadCast?.timezone}</span>
+              )}
+            </p>
             <br /> <br />
             <div className='flex items-center gap-2 text-warning'>
               <a href={`${import.meta.env.VITE_LINK_LINKEDIN}`} target='_blank'>

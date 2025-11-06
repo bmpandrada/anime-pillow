@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import AsideFigure from "../components/AsideFigure";
 import SpinnerLoading from "../components/SpinnerLoader";
+import { animateTitle } from "../Utils/animateTitle";
 
 export default function Character() {
   const { id } = useParams();
@@ -51,6 +52,10 @@ export default function Character() {
     fetchData();
   }, [id]);
 
+  useEffect(() => {
+    animateTitle(".pillow");
+  }, []);
+
   if (loading) {
     return <SpinnerLoading />;
   }
@@ -63,7 +68,7 @@ export default function Character() {
         </div>
         <div className='rounded px-5 sm:col-span-3'>
           <h2 className='text-base-400 text-2xl font-extrabold mb-2'>
-            Name: <span className='text-warning'>{char.name}</span>
+            Name: <span className='pillow text-warning'>{char.name}</span>
           </h2>
           <p className='font-bold text-base-300'>
             Role: <span className='text-warning'>{chars[0].role}</span>
