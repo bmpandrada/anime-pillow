@@ -5,7 +5,7 @@ import FeaturedCard from "../components/FeaturedCard";
 import TitleDivider from "../components/TitleDivider";
 
 const HomePage = () => {
-  const { anime, character, loading } = useAnime();
+  const { anime, character, upcomming, loading } = useAnime();
   const [currentPage] = useState(1);
   const perPage = 20;
 
@@ -16,7 +16,7 @@ const HomePage = () => {
 
   return (
     <div className='px-5 sm:px-10'>
-      {displayedAnime.length > 0 && <TitleDivider title={"Featured Anime"} />}
+      {character.length > 0 && <TitleDivider title={"Upcomming"} />}
       <div className='mt-5'>
         {loading ? (
           Array.from({ length: perPage }).map((_, i) => (
@@ -31,23 +31,42 @@ const HomePage = () => {
                 </p>
               </div>
             ) : (
-              <FeaturedCard
-                key={anime.mal_id}
-                items={currentAnime}
-                custom_link={"/anime"}
-              />
+              <>
+                <FeaturedCard
+                  key={upcomming.mal_id}
+                  items={upcomming}
+                  custom_link={"/anime"}
+                  pause={true}
+                />
+                <>
+                  {displayedAnime.length > 0 && (
+                    <TitleDivider title={"Featured Anime"} />
+                  )}
+
+                  <FeaturedCard
+                    key={anime.mal_id}
+                    items={currentAnime}
+                    custom_link={"/anime"}
+                  />
+                </>
+                <>
+                  {character.length > 0 && (
+                    <TitleDivider title={"Featured Character"} />
+                  )}
+                  <div className='mt-5'></div>
+                  <FeaturedCard
+                    key={character.mal_id}
+                    items={character}
+                    custom_link={"/characters"}
+                    pause={true}
+                  />
+                </>
+              </>
             )}
           </>
         )}
       </div>
-      {character.length > 0 && <TitleDivider title={"Featured Character"} />}
-      <div className='mt-5'></div>
-      <FeaturedCard
-        key={character.mal_id}
-        items={character}
-        custom_link={"/characters"}
-        pause={true}
-      />
+
       <div className='mb-20'></div>
     </div>
   );

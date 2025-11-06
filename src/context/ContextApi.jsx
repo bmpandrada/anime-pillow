@@ -5,6 +5,7 @@ export const ContextApi = createContext();
 export function ContextProvider({ children }) {
   const [anime, setAnime] = useState([]);
   const [movie, setMovie] = useState([]);
+  const [upcomming, setUpcomming] = useState([]);
   const [character, setCharacter] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,14 +21,22 @@ export function ContextProvider({ children }) {
         const cachedAnime = localStorage.getItem("animeData");
         const cachedMovie = localStorage.getItem("movieData");
         const cachedCharacter = localStorage.getItem("charData");
+        const cachedUpcomming = localStorage.getItem("upcommingData");
 
         if (cachedAnime && cachedMovie && cachedCharacter) {
           setAnime(JSON.parse(cachedAnime));
           setMovie(JSON.parse(cachedMovie));
           setCharacter(JSON.parse(cachedCharacter));
+          setUpcomming(JSON.parse(cachedUpcomming));
           setLoading(false);
           return;
         }
+
+        const resUpAnime = await fetch(
+          "https://api.jikan.moe/v4/seasons/upcoming",
+        );
+        if (!resUpAnime.ok) throw new Error("Anime fetch failed");
+        const animeUpData = await resUpAnime.json();
 
         const resAnime = await fetch(
           "https://api.jikan.moe/v4/seasons/2025/summer?sfw",
@@ -52,10 +61,12 @@ export function ContextProvider({ children }) {
         setAnime(animeData.data);
         setMovie(movieData.data);
         setCharacter(charData.data);
+        setUpcomming(animeUpData.data);
 
         localStorage.setItem("animeData", JSON.stringify(animeData.data));
         localStorage.setItem("movieData", JSON.stringify(movieData.data));
         localStorage.setItem("charData", JSON.stringify(charData.data));
+        localStorage.setItem("upcommingData", JSON.stringify(animeUpData.data));
       } catch (err) {
         setError(err.message);
       } finally {
@@ -70,9 +81,10 @@ export function ContextProvider({ children }) {
     const allGenres = [
       ...anime.flatMap((a) => a.genres?.map((g) => g.name) || []),
       ...movie.flatMap((m) => m.genres?.map((g) => g.name) || []),
+      ...upcomming.flatMap((m) => m.genres?.map((g) => g.name) || []),
     ];
     setCategories([...new Set(allGenres)]);
-  }, [anime, movie]);
+  }, [anime, movie, upcomming]);
 
   const filterAndSort = (list) => {
     return list
@@ -102,6 +114,7 @@ export function ContextProvider({ children }) {
 
   const filteredAnime = filterAndSort(anime);
   const filteredMovie = filterAndSort(movie);
+  const filteredUpcomming = filterAndSort(upcomming);
   // const filteredChar = filterAndSort(character);
 
   const filteredByLetter = (data) => {
@@ -119,8 +132,10 @@ export function ContextProvider({ children }) {
         anime,
         movie,
         character,
+        upcomming,
         filteredAnime,
         filteredMovie,
+        filteredUpcomming,
         // filteredChar,
         filteredByLetter,
         selectedLetter,
