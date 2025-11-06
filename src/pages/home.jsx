@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useAnime } from "../context/ContextApi";
 import SkeletonCard from "../components/SkeletonCard";
-import HeroAnime from "../components/HeroAnime";
 import FeaturedCard from "../components/FeaturedCard";
 import TitleDivider from "../components/TitleDivider";
 
