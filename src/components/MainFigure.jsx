@@ -34,8 +34,8 @@ const MainFigure = ({ anime }) => {
             />
           </>
         ) : (
-          <div className='h-10 sm:h-100'>
-            <TitleDivider title={"No Trailer"} />
+          <div className='mt-15 sm:mt-25 mb-25 sm:mb-50'>
+            <TitleDivider title={"No trailer found"} />
           </div>
         )}
       </div>
