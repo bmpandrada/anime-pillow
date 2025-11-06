@@ -5,42 +5,48 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import AsideFigure from "./AsideFigure";
 import MainFigure from "./MainFigure";
 import CharacterCards from "./CharacterCards";
+import SkeletonCard from "./SkeletonCard";
 
 export default function AnimeDetail() {
   const { id } = useParams();
   const [anime, setAnime] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [char, setChar] = useState(null);
   const localPath = useLocation();
   useEffect(() => {
-    if (!id) return;
-    const controller = new AbortController();
-    const timer = setTimeout(async () => {
-      const [resDetail, resChar] = await Promise.all([
-        fetch(`https://api.jikan.moe/v4/anime/${id}`, {
-          signal: controller.signal,
-        }),
-        fetch(`https://api.jikan.moe/v4/anime/${id}/characters`, {
-          signal: controller.signal,
-        }),
-      ]);
+    let isMounted = true;
+    const fetchData = async () => {
+      try {
+        const [resDetail, resChar] = await Promise.all([
+          fetch(`https://api.jikan.moe/v4/anime/${id}`),
+          fetch(`https://api.jikan.moe/v4/anime/${id}/characters`),
+        ]);
 
-      if (!resDetail.ok || !resChar.ok) {
-        throw new Error("Failed to fetch anime or character data");
+        if (!resDetail.ok || !resChar.ok) {
+          throw new Error("Failed to fetch anime or character data");
+        }
+
+        const [dataDetail, dataChar] = await Promise.all([
+          resDetail.json(),
+          resChar.json(),
+        ]);
+        if (isMounted) {
+          setAnime(dataDetail?.data);
+          setChar(dataChar?.data);
+        }
+      } catch (error) {
+        console.log(error.message);
+      } finally {
+        setLoading(false);
       }
+    };
 
-      const [dataDetail, dataChar] = await Promise.all([
-        resDetail.json(),
-        resChar.json(),
-      ]);
+    fetchData();
 
-      setAnime(dataDetail?.data);
-      setChar(dataChar?.data);
-    }, 500);
-
-    return () => clearTimeout(timer);
+    return () => {
+      isMounted = false;
+    };
   }, [id]);
-
-  if (!anime) return <SpinnerLoading />;
 
   return (
     <div className='max-w-7xl mx-auto rounded-2xl sm:shadow p-5 sm:pt-10 pt-0 mb-10 transition duration-300'>
@@ -51,10 +57,11 @@ export default function AnimeDetail() {
         </p>
       </Link>
       <div className='grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-4 relative'>
-        <AsideFigure anime={anime} />
-        <MainFigure anime={anime} />
+        {loading ? <SkeletonCard /> : <AsideFigure anime={anime} />}
+
+        {loading ? <SkeletonCard /> : <MainFigure anime={anime} />}
       </div>
-      <CharacterCards char={char} />
+      <CharacterCards char={char} loading={loading} />
     </div>
   );
 }

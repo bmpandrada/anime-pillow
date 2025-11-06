@@ -94,10 +94,11 @@ export default function Character() {
                 </h1>
               </div>
               <div className='max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mt-5 mb-10'>
-                {chars.map((item) => (
+                {chars.map((item, index) => (
                   <Link
                     className='card bg-base-200 w-full shadow-sm h-50'
                     to={`/anime/${item.anime.mal_id}`}
+                    key={`${item.mal_id}-${item.anime?.mal_id || index}`}
                   >
                     <figure>
                       <img

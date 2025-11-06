@@ -19,9 +19,7 @@ const HomePage = () => {
       {character.length > 0 && <TitleDivider title={"Upcomming"} />}
       <div className='mt-5'>
         {loading ? (
-          Array.from({ length: perPage }).map((_, i) => (
-            <SkeletonCard key={i} />
-          ))
+          Array.from({ length: 3 }).map((_, i) => <SkeletonCard key={i} />)
         ) : (
           <>
             {displayedAnime.length === 0 ? (

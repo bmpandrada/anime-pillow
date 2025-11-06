@@ -7,7 +7,6 @@ import { animateTitle } from "../hooks/animateTitle";
 
 const MainFigure = ({ anime }) => {
   const trailerExist = anime?.trailer?.embed_url !== null ? true : false;
-  console.log(trailerExist);
 
   useEffect(() => {
     animateTitle(".pillow");
