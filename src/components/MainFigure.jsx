@@ -6,7 +6,8 @@ import TrailerPlayer from "./VideoPlayer";
 import { animateTitle } from "../Utils/animateTitle";
 
 const MainFigure = ({ anime }) => {
-  const trailerExist = anime?.trailer?.embed_url.length === 0 ? false : true;
+  const trailerExist = anime?.trailer?.embed_url !== null ? true : false;
+  console.log(trailerExist);
 
   useEffect(() => {
     animateTitle(".pillow");
@@ -24,7 +25,7 @@ const MainFigure = ({ anime }) => {
           {anime?.genres?.length > 0 && <AnimeGenre anime={anime} />}
           <AnimeInfo anime={anime} />
         </div>
-        {trailerExist && (
+        {trailerExist ? (
           <>
             <TitleDivider title={"Trailer"} />
             <TrailerPlayer
@@ -32,6 +33,10 @@ const MainFigure = ({ anime }) => {
               className={"col-span-1 mt-5"}
             />
           </>
+        ) : (
+          <div className='h-10 sm:h-100'>
+            <TitleDivider title={"No Trailer"} />
+          </div>
         )}
       </div>
     </div>

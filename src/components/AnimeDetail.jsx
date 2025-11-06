@@ -33,8 +33,8 @@ export default function AnimeDetail() {
         resChar.json(),
       ]);
 
-      setAnime(dataDetail.data);
-      setChar(dataChar.data);
+      setAnime(dataDetail?.data);
+      setChar(dataChar?.data);
     }, 500);
 
     return () => clearTimeout(timer);
