@@ -105,10 +105,19 @@ export function ContextProvider({ children }) {
         const matchCategory =
           !selectedCategory ||
           item.genres?.some((g) => g.name === selectedCategory);
+
+        if (sortBy === "upcoming") {
+          const dateA = new Date(item.aired?.from || 0);
+          return (
+            matchTitle && matchCategory && (isNaN(dateA) || dateA > new Date())
+          );
+        }
+
         return matchTitle && matchCategory;
       })
+      .slice()
       .sort((a, b) => {
-        if (list === anime) {
+        if (list === anime && upcomming) {
           if (sortBy === "latest") return (b.year || 0) - (a.year || 0);
           if (sortBy === "oldest") return (a.year || 0) - (b.year || 0);
         } else {
@@ -117,6 +126,7 @@ export function ContextProvider({ children }) {
 
           if (sortBy === "latest") return dateB - dateA;
           if (sortBy === "oldest") return dateA - dateB;
+          if (sortBy === "upcoming") return dateA - dateB;
         }
         return 0;
       });

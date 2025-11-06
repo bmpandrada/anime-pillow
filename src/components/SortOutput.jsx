@@ -10,6 +10,7 @@ const SortOutout = ({ sortBy, setSortby }) => {
       <option disabled={true}>Sort By</option>
       <option value={"latest"}> Latest</option>
       <option value={"oldest"}> Previous</option>
+      <option value={"upcoming"}> Upcomming</option>
     </select>
   );
 };

@@ -38,7 +38,7 @@ const CardContainer = ({ item }) => {
           </p>
         </div>
         <p className='text-yellow-500 font-bold mt-2 sm:text-sm text-xs'>
-          ⭐ {item.score.toFixed(1) || "N/A"}
+          ⭐ {item.score?.toFixed(1) || "N/A"}
         </p>
       </div>
     </Link>

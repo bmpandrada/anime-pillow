@@ -11,12 +11,17 @@ const AnimePage = () => {
     filteredByLetter,
     setSelectedLetter,
     selectedLetter,
+    filteredUpcomming,
     loading,
   } = useAnime();
   const [currentPage, setCurrentPage] = useState(1);
   const perPage = 12;
 
-  const displayedAnime = filteredByLetter(filteredAnime);
+  const combinedAnime = [...filteredAnime, ...filteredUpcomming].filter(
+    (item, index, self) =>
+      index === self.findIndex((a) => a.mal_id === item.mal_id),
+  );
+  const displayedAnime = filteredByLetter(combinedAnime);
 
   const totalPage = Math.ceil(displayedAnime.length / perPage);
   const lastIndex = currentPage * perPage;
