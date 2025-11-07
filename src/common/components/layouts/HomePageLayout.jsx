@@ -3,6 +3,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import HeroAnime from "../HeroAnime";
 import Nav from "../Nav";
+import CookieConsent from "../CookieConsent";
 
 const Layout = ({ children }) => {
   const { upcomming } = useAnime();

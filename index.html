@@ -1,12 +1,17 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-     <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="icon" type="image/png" href="/icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>⛩️ Anime Pillow</title>
   </head>
   <body>
+    <script>
+      const theme =
+        document.cookie.match(/theme=([^;]+)/)?.[1] || "mytheme-light";
+      document.documentElement.setAttribute("data-theme", theme);
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
