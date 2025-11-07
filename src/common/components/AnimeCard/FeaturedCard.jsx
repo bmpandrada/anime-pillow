@@ -4,7 +4,7 @@ import { Link } from "react-router";
 const FeaturedCard = ({ items, custom_link, pause }) => {
   const carouselRef = useRef(null);
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(pause ? true : false);
+  const [paused, setPaused] = useState(pause);
   const [step, setStep] = useState(5);
   const [isActiveIndex, setActiveIndex] = useState(false);
 
@@ -54,16 +54,15 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
     }
   };
 
+  const pauseEvents = {
+    onMouseEnter: () => setPaused(true),
+    onMouseLeave: () => setPaused(false),
+    onTouchStart: () => setPaused(true),
+    onTouchEnd: () => setPaused(false),
+  };
+
   return (
-    <div
-      className='relative'
-      onMouseEnter={() =>
-        paused === pause ? setPaused(true) : setPaused(false)
-      }
-      onMouseLeave={() =>
-        paused === pause ? setPaused(true) : setPaused(false)
-      }
-    >
+    <div {...pauseEvents}>
       <div className='pointer-events-none absolute top-0 left-0 h-full w-32 bg-gradient-to-r from-base-100/100 via-base-100/50 to-transparent z-10 rounded-l-box' />
       <div className='pointer-events-none absolute top-0 right-0 h-full w-32 bg-gradient-to-l from-base-100/100 via-base-100/50 to-transparent z-10 rounded-r-box' />
 
