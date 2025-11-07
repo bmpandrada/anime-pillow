@@ -100,7 +100,7 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
 
               {/* Overlay */}
               <div className='absolute inset-0 bg-black/0 group-hover:bg-black/70 flex items-center justify-center transition-all duration-300'>
-                <h1 className='text-green-300 opacity-0 group-hover:opacity-100 text-center text-xs sm:text-sm md:text-md lg:text-lg  font-bold transition-opacity duration-300'>
+                <h1 className='text-green-300 opacity-0 group-hover:opacity-100 text-center text-xs sm:text-sm md:text-md lg:text-lg font-bold transition-opacity duration-300'>
                   {item.title || item.name}
                 </h1>
               </div>

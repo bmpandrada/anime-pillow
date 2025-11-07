@@ -16,8 +16,8 @@ const AlphabetPagination = ({
           onClick={() => handleLetterClick(letter)}
           className={`join-item btn btn-xs sm:btn-sm transition ${
             selectedLetter === letter
-              ? "bg-blue-600 text-white"
-              : "hover:bg-gray-100"
+              ? "bg-blue-600/40 text-white"
+              : "hover:bg-base-300 hover:text-base-100"
           }`}
         >
           {letter}
@@ -26,7 +26,7 @@ const AlphabetPagination = ({
       {selectedLetter && (
         <button
           onClick={() => handleLetterClick("")}
-          className='join-item btn btn-xs sm:btn-sm hover:bg-red-100 text-red-500'
+          className='join-item btn btn-xs sm:btn-sm hover:bg-blue-500 hover:text-white text-red-500'
         >
           Clear
         </button>
