@@ -107,7 +107,7 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
                 alt={item.title}
                 className={`w-full h-full object-cover rounded-box transform transition-transform duration-300 ${
                   isActiveIndex ? "scale-110" : ""
-                } group-hover:scale-110`}
+                } sm:group-hover:scale-110`}
               />
 
               {/* Overlay */}
