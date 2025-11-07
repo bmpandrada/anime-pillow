@@ -95,7 +95,7 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
               onTouchEnd={() =>
                 setTimeout(() => {
                   setActiveIndex(false);
-                }, 800)
+                }, 100)
               }
             >
               <img
