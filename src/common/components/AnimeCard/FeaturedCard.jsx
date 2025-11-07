@@ -63,16 +63,16 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
         paused === pause ? setPaused(true) : setPaused(false)
       }
     >
-      <div className='absolute -top-10 right-0 flex gap-2 z-10 bg-base-100'>
+      <div className='absolute -top-10 right-0 flex gap-2 z-1 bg-base-100'>
         <button
           onClick={handlePrev}
-          className='btn btn-circle bg-base-100 btn-sm'
+          className='btn btn-circle bg-base-100 btn-sm border-0'
         >
           ❮
         </button>
         <button
           onClick={handleNext}
-          className='btn btn-circle bg-base-100 btn-sm'
+          className='btn btn-circle bg-base-100 btn-sm border-0'
         >
           ❯
         </button>
