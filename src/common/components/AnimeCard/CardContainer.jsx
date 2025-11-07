@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Link, useLocation } from "react-router";
 
 const CardContainer = ({ item }) => {
+  const [isActiveIndex, setActiveIndex] = useState(null);
   const localPath = useLocation();
   const showEp = localPath.pathname === "/anime" || "/";
   return (
@@ -11,11 +13,15 @@ const CardContainer = ({ item }) => {
           : "/movies"
       }/${item.mal_id}`}
       className='bg-base-200 rounded-2xl shadow hover:shadow-lg transition overflow-hidden'
+      onTouchStart={() => setActiveIndex(item.mal_id)}
+      onTouchEnd={() => setTimeout(() => setActiveIndex(null), 50)}
     >
       <img
         src={item.images.webp.large_image_url}
         alt={item.title}
-        className='w-full h-60 object-cover transform transition-transform duration-300 hover:scale-105'
+        className={`w-full h-60 object-cover transform transition-transform duration-300 ${
+          isActiveIndex === item.mal_id ? "scale-105" : ""
+        } hover:scale-105`}
       />
       <div className='p-4'>
         <h2 className='sm:text-lg font-semibold text-base-900 truncate'>
