@@ -94,7 +94,7 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
               onTouchStart={() => setActiveIndex(index)}
               onTouchEnd={() =>
                 setTimeout(() => {
-                  setActiveIndex(false);
+                  setActiveIndex(null);
                 }, 100)
               }
             >
@@ -106,24 +106,20 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
                 }
                 alt={item.title}
                 className={`w-full h-full object-cover rounded-box transform transition-transform duration-300 ${
-                  isActiveIndex ? "scale-110" : "group-hover:scale-110"
-                }`}
+                  isActiveIndex ? "scale-110" : ""
+                } group-hover:scale-110`}
               />
 
               {/* Overlay */}
               <div
-                className={`absolute inset-0  flex items-center justify-center transition-all duration-300 ${
-                  isActiveIndex === index
-                    ? "bg-black/70"
-                    : "bg-black/0 group-hover:bg-black/70"
-                }`}
+                className={`absolute inset-0  flex items-center justify-center transition-all duration-300  ${
+                  isActiveIndex === index ? "bg-black/70" : ""
+                } sm:group-hover:bg-black/70`}
               >
                 <h1
                   className={`text-green-300 text-center text-xs sm:text-sm md:text-md lg:text-lg font-bold transition-opacity duration-300 ${
-                    isActiveIndex === index
-                      ? "opacity-100"
-                      : "group-hover:opacity-100 opacity-0"
-                  }`}
+                    isActiveIndex === index ? "opacity-100" : "opacity-0"
+                  } sm:group-hover:opacity-100`}
                 >
                   {item.title || item.name}
                 </h1>
