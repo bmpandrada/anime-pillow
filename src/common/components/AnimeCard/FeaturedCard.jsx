@@ -108,7 +108,7 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
                 }
                 alt={item.title}
                 className={`w-full h-full object-cover rounded-box transform transition-transform duration-300 ${
-                  isActiveIndex ? "scale-100" : "group-hover:scale-120"
+                  isActiveIndex ? "scale-120" : "group-hover:scale-120"
                 }`}
               />
 
