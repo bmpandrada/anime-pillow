@@ -92,11 +92,7 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
               to={`${custom_link}/${item.mal_id}`}
               className='carousel-item sm:w-1/4 md:w-1/5 w-1/3 h-50 sm:h-90 snap-center rounded-box flex-shrink-0 overflow-hidden relative group'
               onTouchStart={() => setActiveIndex(index)}
-              onTouchEnd={() =>
-                setTimeout(() => {
-                  setActiveIndex(null);
-                }, 100)
-              }
+              onTouchEnd={() => setTimeout(() => setActiveIndex(null), 300)}
             >
               <img
                 src={
@@ -105,21 +101,21 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
                   item?.images?.webp?.small_image_url
                 }
                 alt={item.title}
-                className={`w-full h-full object-cover rounded-box transform transition-transform duration-300 ${
-                  isActiveIndex ? "scale-110" : ""
-                } sm:group-hover:scale-110`}
+                className={`w-full h-full object-cover rounded-box transform transition-transform duration-300
+        ${isActiveIndex === index ? "scale-110" : ""} group-hover:scale-110`}
               />
 
-              {/* Overlay */}
               <div
-                className={`absolute inset-0  flex items-center justify-center transition-all duration-300  ${
-                  isActiveIndex === index ? "bg-black/70" : ""
-                } sm:group-hover:bg-black/70`}
+                className={`absolute inset-0 flex items-center justify-center transition-all duration-300
+        ${
+          isActiveIndex === index ? "bg-black/70" : "bg-black/0"
+        } group-hover:bg-black/70`}
               >
                 <h1
-                  className={`text-green-300 text-center text-xs sm:text-sm md:text-md lg:text-lg font-bold transition-opacity duration-300 ${
-                    isActiveIndex === index ? "opacity-100" : "opacity-0"
-                  } sm:group-hover:opacity-100`}
+                  className={`text-green-300 text-center text-xs sm:text-sm md:text-md lg:text-lg font-bold transition-opacity duration-300
+          ${
+            isActiveIndex === index ? "opacity-100" : "opacity-0"
+          } group-hover:opacity-100`}
                 >
                   {item.title || item.name}
                 </h1>
