@@ -63,6 +63,9 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
         paused === pause ? setPaused(true) : setPaused(false)
       }
     >
+      <div className='pointer-events-none absolute top-0 left-0 h-full w-32 bg-gradient-to-r from-base-100/100 via-base-100/50 to-transparent z-10 rounded-l-box' />
+      <div className='pointer-events-none absolute top-0 right-0 h-full w-32 bg-gradient-to-l from-base-100/100 via-base-100/50 to-transparent z-10 rounded-r-box' />
+
       <div className='absolute -top-10 right-0 flex gap-2 z-1 bg-base-100'>
         <button
           onClick={handlePrev}
@@ -79,7 +82,7 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
       </div>
       <div
         ref={carouselRef}
-        className='carousel carousel-center bg-black rounded-box w-full space-x-4 p-4 overflow-x-auto scroll-smooth snap-x snap-mandatory'
+        className='carousel carousel-center bg-base-100 rounded-box w-full space-x-4 p-4 overflow-x-auto scroll-smooth snap-x snap-mandatory'
       >
         {Array.isArray(items) && items.length > 0 ? (
           items.map((item, index) => (

@@ -15,7 +15,7 @@ const HomePage = () => {
   const currentAnime = displayedAnime.slice(0, featuredAnime);
 
   return (
-    <div className='px-5 sm:px-10'>
+    <div className=''>
       {character.length > 0 && <TitleDivider title={"Upcoming"} />}
       <div className='mt-5'>
         {loading ? (
