@@ -6,7 +6,7 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(pause ? true : false);
   const [step, setStep] = useState(5);
-  const [isActiveIndex, setActiveIndex] = useState(null);
+  const [isActiveIndex, setActiveIndex] = useState(false);
 
   useEffect(() => {
     const updateStep = () => {
@@ -92,12 +92,10 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
               to={`${custom_link}/${item.mal_id}`}
               className='carousel-item sm:w-1/4 md:w-1/5 w-1/3 h-50 sm:h-90 snap-center rounded-box flex-shrink-0 overflow-hidden relative group'
               onTouchStart={() => setActiveIndex(index)}
-              onTouchEnd={
-                (() =>
-                  setTimeout(() => {
-                    setActiveIndex(null);
-                  }),
-                800)
+              onTouchEnd={() =>
+                setTimeout(() => {
+                  setActiveIndex(false);
+                }, 800)
               }
             >
               <img
