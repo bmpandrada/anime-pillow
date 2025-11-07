@@ -1,8 +1,10 @@
 import { Link } from "react-router";
 import TitleDivider from "../TitleDivider";
 import SkeletonCard from "../Loaders/SkeletonCard";
+import { useState } from "react";
 
 const CharacterCards = ({ char = [], loading }) => {
+  const [isActiveIndex, setActiveIndex] = useState(null);
   if (!char || char.length === 0) return null;
 
   return (
@@ -18,12 +20,16 @@ const CharacterCards = ({ char = [], loading }) => {
                 key={c.character?.mal_id}
                 className='card bg-base-200 w-full shadow-sm'
                 to={`/characters/${c.character?.mal_id}`}
+                onTouchStart={() => setActiveIndex(c.character?.mal_id)}
+                onTouchEnd={() => setTimeout(() => setActiveIndex(null), 50)}
               >
                 <figure>
                   <img
                     src={c.character?.images?.webp?.image_url}
                     alt={c.character?.name}
-                    className='w-full h-60 object-cover transform transition-transform duration-300 hover:scale-105'
+                    className={`w-full h-60 object-cover transform transition-transform duration-300 ${
+                      isActiveIndex === c.character?.mal_id ? "scale-105" : ""
+                    } hover:scale-105`}
                   />
                 </figure>
                 <div className='card-body '>
