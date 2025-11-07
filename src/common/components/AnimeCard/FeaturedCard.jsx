@@ -54,15 +54,20 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
     }
   };
 
-  const pauseEvents = {
-    onMouseEnter: () => setPaused(true),
-    onMouseLeave: () => setPaused(false),
-    onTouchStart: () => setPaused(true),
-    onTouchEnd: () => setPaused(false),
-  };
-
   return (
-    <div {...pauseEvents}>
+    <div
+      className='relative'
+      onMouseEnter={() =>
+        paused === pause ? setPaused(true) : setPaused(false)
+      }
+      onMouseLeave={() =>
+        paused === pause ? setPaused(true) : setPaused(false)
+      }
+      onTouchStart={() =>
+        paused === pause ? setPaused(true) : setPaused(false)
+      }
+      onTouchEnd={() => (paused === pause ? setPaused(true) : setPaused(false))}
+    >
       <div className='pointer-events-none absolute top-0 left-0 h-full w-32 bg-gradient-to-r from-base-100/100 via-base-100/50 to-transparent z-10 rounded-l-box' />
       <div className='pointer-events-none absolute top-0 right-0 h-full w-32 bg-gradient-to-l from-base-100/100 via-base-100/50 to-transparent z-10 rounded-r-box' />
 
