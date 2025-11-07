@@ -31,7 +31,7 @@ const HeroAnime = ({ displayedAnime }) => {
       <div className='hero-content flex-col lg:flex-row'>
         <img
           src={banner}
-          className='max-w-sm rounded-lg shadow-2xl  object-contain'
+          className='max-w-full rounded-lg shadow-2xl  object-contain'
         />
 
         <div className='space-y-2'>

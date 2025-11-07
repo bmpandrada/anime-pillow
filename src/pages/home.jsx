@@ -16,7 +16,7 @@ const HomePage = () => {
 
   return (
     <div className='px-5 sm:px-10'>
-      {character.length > 0 && <TitleDivider title={"Upcomming"} />}
+      {character.length > 0 && <TitleDivider title={"Upcoming"} />}
       <div className='mt-5'>
         {loading ? (
           Array.from({ length: 3 }).map((_, i) => <SkeletonCard key={i} />)
