@@ -1,6 +1,10 @@
+import { useEffect } from "react";
 import { Link } from "react-router";
 
 const NotFoundPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className='w-full h-screen flex items-center justify-center'>
       <div className='max-w-4xl text-center p-2'>
