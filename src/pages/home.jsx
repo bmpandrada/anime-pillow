@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAnime } from "../common/context/ContextApi";
 import SkeletonCard from "../common/components/Loaders/SkeletonCard";
 import FeaturedCard from "../common/components/AnimeCard/FeaturedCard";
@@ -13,6 +13,9 @@ const HomePage = () => {
 
   const featuredAnime = currentPage * perPage;
   const currentAnime = displayedAnime.slice(0, featuredAnime);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className=''>

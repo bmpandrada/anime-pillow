@@ -11,6 +11,10 @@ export default function Character() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const cachedChar = localStorage.getItem(`charData_${id}`);

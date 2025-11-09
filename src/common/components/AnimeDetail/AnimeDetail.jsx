@@ -48,6 +48,10 @@ export default function AnimeDetail() {
     };
   }, [id]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className='max-w-7xl mx-auto rounded-2xl sm:shadow p-5 sm:pt-10 pt-0 mb-10 transition duration-300'>
       <Link to={localPath.pathname.includes("/anime") ? "/anime" : "/movies"}>

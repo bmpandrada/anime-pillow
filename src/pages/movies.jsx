@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAnime } from "../common/context/ContextApi";
 import CardContainer from "../common/components/AnimeCard/CardContainer";
 import Pagination from "../common/components/Navigation/Pagination";
@@ -23,6 +23,10 @@ const MoviePage = () => {
   const lastIndex = currentPage * perPage;
   const firstIndex = lastIndex - perPage;
   const pagedMovies = currentMovie.slice(firstIndex, lastIndex);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className='px-5 sm:px-10'>
