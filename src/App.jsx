@@ -1,75 +1,82 @@
-import HomePage from "./pages/home";
+import { Route, Routes } from "react-router";
+import { Suspense, lazy } from "react";
+import SpinnerLoading from "./common/components/Loaders/SpinnerLoader";
 import Layout from "./common/components/layouts/Layout";
 import HomePageLayout from "./common/components/layouts/HomePageLayout";
-import { Route, Routes } from "react-router";
-import About from "./pages/about";
-import AnimeDetail from "./common/components/AnimeDetail/AnimeDetail";
-import MoviePage from "./pages/movies";
-import AnimePage from "./pages/anime";
-import Character from "./pages/character";
-import NotFoundPage from "./pages/notFound";
+
+const HomePage = lazy(() => import("./pages/home"));
+const About = lazy(() => import("./pages/about"));
+const AnimeDetail = lazy(() =>
+  import("./common/components/AnimeDetail/AnimeDetail"),
+);
+const MoviePage = lazy(() => import("./pages/movies"));
+const AnimePage = lazy(() => import("./pages/anime"));
+const Character = lazy(() => import("./pages/character"));
+const NotFoundPage = lazy(() => import("./pages/notFound"));
 
 const App = () => {
   return (
-    <Routes>
-      <Route
-        path='/'
-        element={
-          <HomePageLayout>
-            <HomePage />
-          </HomePageLayout>
-        }
-      />
-      <Route
-        path='/anime'
-        element={
-          <Layout>
-            <AnimePage />
-          </Layout>
-        }
-      />
-      <Route
-        path='/movies'
-        element={
-          <Layout>
-            <MoviePage />
-          </Layout>
-        }
-      />
-      <Route
-        path='/about'
-        element={
-          <Layout>
-            <About />
-          </Layout>
-        }
-      />
-      <Route
-        path='/anime/:id'
-        element={
-          <Layout>
-            <AnimeDetail />
-          </Layout>
-        }
-      />
-      <Route
-        path='/movies/:id'
-        element={
-          <Layout>
-            <AnimeDetail />
-          </Layout>
-        }
-      />
-      <Route
-        path='/characters/:id'
-        element={
-          <Layout>
-            <Character />
-          </Layout>
-        }
-      />
-      <Route path='*' element={<NotFoundPage />} />
-    </Routes>
+    <Suspense fallback={<SpinnerLoading />}>
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <HomePageLayout>
+              <HomePage />
+            </HomePageLayout>
+          }
+        />
+        <Route
+          path='/anime'
+          element={
+            <Layout>
+              <AnimePage />
+            </Layout>
+          }
+        />
+        <Route
+          path='/movies'
+          element={
+            <Layout>
+              <MoviePage />
+            </Layout>
+          }
+        />
+        <Route
+          path='/about'
+          element={
+            <Layout>
+              <About />
+            </Layout>
+          }
+        />
+        <Route
+          path='/anime/:id'
+          element={
+            <Layout>
+              <AnimeDetail />
+            </Layout>
+          }
+        />
+        <Route
+          path='/movies/:id'
+          element={
+            <Layout>
+              <AnimeDetail />
+            </Layout>
+          }
+        />
+        <Route
+          path='/characters/:id'
+          element={
+            <Layout>
+              <Character />
+            </Layout>
+          }
+        />
+        <Route path='*' element={<NotFoundPage />} />
+      </Routes>
+    </Suspense>
   );
 };
 

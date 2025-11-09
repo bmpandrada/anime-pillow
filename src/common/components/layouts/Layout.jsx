@@ -1,7 +1,8 @@
 import { useAnime } from "../../context/ContextApi";
-import Nav from "../Nav";
 import Header from "../Header";
-import Footer from "../Footer";
+import Footer from "../Navigation/Footer";
+
+import Nav from "../Navigation/Nav";
 
 const Layout = ({ children }) => {
   const {

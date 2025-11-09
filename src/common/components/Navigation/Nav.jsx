@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from "react-router";
-import SortOutout from "./SortOutput";
-import FilterInput from "./FilterInput";
-import SelectOption from "./SelectOption";
+import SortOutout from "../SortOutput";
+import FilterInput from "../FilterInput";
+import SelectOption from "../SelectOption";
 import NavHead from "./NavLinks";
 
 const Nav = ({

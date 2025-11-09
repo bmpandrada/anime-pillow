@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useAnime } from "../common/context/ContextApi";
 import CardContainer from "../common/components/AnimeCard/CardContainer";
-import Pagination from "../common/components/Pagination";
+import Pagination from "../common/components/Navigation/Pagination";
 import SkeletonCard from "../common/components/Loaders/SkeletonCard";
-import AlphabetPagination from "../common/components/AlphabetPagination";
+import AlphabetPagination from "../common/components/Navigation/AlphabetPagination";
 
 const MoviePage = () => {
   const {
