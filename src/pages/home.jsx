@@ -19,7 +19,7 @@ const HomePage = () => {
 
   return (
     <div className=''>
-      {character.length > 0 && <TitleDivider title={"Upcoming"} />}
+      {character.length > 0 && <TitleDivider title={"Featured Anime"} />}
       <div className='mt-5'>
         {loading ? (
           Array.from({ length: 3 }).map((_, i) => <SkeletonCard key={i} />)
@@ -34,18 +34,18 @@ const HomePage = () => {
             ) : (
               <>
                 <FeaturedCard
-                  items={upcomming}
+                  items={currentAnime}
                   custom_link={"/anime"}
                   pause={true}
                 />
                 <>
                   {displayedAnime.length > 0 && (
-                    <TitleDivider title={"Featured Anime"} />
+                    <TitleDivider title={"Coming Soon"} />
                   )}
 
                   <FeaturedCard
                     pause={false}
-                    items={currentAnime}
+                    items={upcomming}
                     custom_link={"/anime"}
                   />
                 </>
