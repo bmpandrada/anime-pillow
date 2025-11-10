@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
+import { FaStar } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 
 const FeaturedCard = ({ items, custom_link, pause }) => {
   const carouselRef = useRef(null);
@@ -70,7 +72,7 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
     >
       <div className='pointer-events-none absolute top-0 left-0 h-full w-16 sm:w-32 bg-gradient-to-r from-base-100/100 via-base-100/50 to-transparent z-10 rounded-l-box' />
       <div className='pointer-events-none absolute top-0 right-0 h-full w-16 sm:w-32 bg-gradient-to-l from-base-100/100 via-base-100/50 to-transparent z-10 rounded-r-box' />
-
+      {console.log(items)}
       <div className='absolute -top-10 right-0 flex gap-2 z-1 bg-base-100'>
         <button
           onClick={handlePrev}
@@ -98,6 +100,35 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
               onTouchStart={() => setActiveIndex(index)}
               onTouchEnd={() => setTimeout(() => setActiveIndex(null), 50)}
             >
+              <div className='absolute right-0 top-0 bg-gradient-to-l from-base-100/100 via-base-100/40 to-transparent z-10'>
+                {item?.favorites && (
+                  <span
+                    className={`flex flex-wrap items-center gap-2 pl-2 transition duration-500  text-white text-xs sm:text-sm lg:text-md font-bold
+                  ${
+                    isActiveIndex === index ? "hidden" : "block"
+                  } group-hover:hidden   `}
+                  >
+                    <FaHeart />
+                    {item?.favorites >= 1000
+                      ? (item?.favorites / 1000)
+                          .toFixed(1)
+                          .replace(/\.0$/, "") + "K"
+                      : item?.favorites}
+                  </span>
+                )}
+
+                {item?.score && (
+                  <span
+                    className={`flex flex-wrap items-center gap-2 pl-2 transition duration-500  text-white text-xs sm:text-sm lg:text-md font-bold 
+                  ${
+                    isActiveIndex === index ? "hidden" : "block"
+                  } group-hover:hidden   `}
+                  >
+                    <FaStar />
+                    {item?.score}
+                  </span>
+                )}
+              </div>
               <img
                 src={
                   item?.images?.webp?.large_image_url ||
@@ -108,6 +139,15 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
                 className={`w-full h-full object-cover rounded-box transform transition-transform duration-300
         ${isActiveIndex === index ? "scale-110" : ""} group-hover:scale-110`}
               />
+              <p
+                className={`transition duration-500 absolute text-center text-white bottom-0 font-bold text-sm p-2 truncate mx-auto w-full bg-gradient-to-t from-base-100/100 via-base-100/50 to-transparent 
+              ${
+                isActiveIndex === index ? "hidden" : "block"
+              } group-hover:hidden   `}
+              >
+                {item?.title_english || item?.name}
+              </p>
+              {console.log(item?.title)}
 
               <div
                 className={`absolute inset-0 flex items-center justify-center transition-all duration-300
