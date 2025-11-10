@@ -51,7 +51,7 @@ const HomePage = () => {
                 </>
                 <>
                   {character.length > 0 && (
-                    <TitleDivider title={"Featured Characters"} />
+                    <TitleDivider title={"Top Characters"} />
                   )}
                   <div className='mt-5'></div>
                   <FeaturedCard

@@ -114,7 +114,6 @@ export default function Character() {
                     <div className='card-body'>
                       <h2 className='card-title text-xs flex flex-wrap justify-between items-center'>
                         {item.anime.title}
-                        {/* <div className='badge badge-warning text-xs'>{item.role}</div> */}
                       </h2>
                     </div>
                   </Link>

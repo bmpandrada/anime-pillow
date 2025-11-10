@@ -93,7 +93,9 @@ export function ContextProvider({ children }) {
           "https://api.jikan.moe/v4/top/anime?type=movie",
         );
         await delay(100);
-        const charData = await safeFetch("https://api.jikan.moe/v4/characters");
+        const charData = await safeFetch(
+          "https://api.jikan.moe/v4/top/characters",
+        );
         await delay(100);
 
         setAnime(animeData);
