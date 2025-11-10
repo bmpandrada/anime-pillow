@@ -19,7 +19,7 @@ const HomePage = () => {
 
   return (
     <div className=''>
-      {character.length > 0 && <TitleDivider title={"Featured Anime"} />}
+      {character.length > 0 && <TitleDivider title={"Anime Seasons"} />}
       <div className='mt-5'>
         {loading ? (
           Array.from({ length: 3 }).map((_, i) => <SkeletonCard key={i} />)
@@ -51,7 +51,7 @@ const HomePage = () => {
                 </>
                 <>
                   {character.length > 0 && (
-                    <TitleDivider title={"Featured Character"} />
+                    <TitleDivider title={"Featured Characters"} />
                   )}
                   <div className='mt-5'></div>
                   <FeaturedCard

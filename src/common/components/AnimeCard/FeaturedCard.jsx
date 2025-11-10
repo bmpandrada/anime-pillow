@@ -100,7 +100,7 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
               onTouchStart={() => setActiveIndex(index)}
               onTouchEnd={() => setTimeout(() => setActiveIndex(null), 50)}
             >
-              <div className='absolute right-0 top-0 bg-gradient-to-l from-base-100/100 via-base-100/40 to-transparent z-10'>
+              <div className='absolute right-0 top-0 bg-gradient-to-l from-base-100/100 pb-1 pr-2 via-base-100/40 to-transparent z-10'>
                 {item?.favorites && (
                   <span
                     className={`flex flex-wrap items-center gap-2 pl-2 transition duration-500  text-white text-xs sm:text-sm lg:text-md font-bold

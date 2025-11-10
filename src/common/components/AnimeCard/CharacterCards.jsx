@@ -9,7 +9,7 @@ const CharacterCards = ({ char = [], loading }) => {
 
   return (
     <>
-      <TitleDivider title={"Featured Character"} />
+      <TitleDivider title={`Anime Character${char.length > 1 ? "s" : ""}`} />
       <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mt-5 mb-10'>
         {loading ? (
           Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)
