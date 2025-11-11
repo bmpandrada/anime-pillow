@@ -72,7 +72,6 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
     >
       <div className='pointer-events-none absolute top-0 left-0 h-full w-10 sm:w-12 bg-gradient-to-r from-base-100/75 via-base-100/20 to-transparent z-20 rounded-l-box' />
       <div className='pointer-events-none absolute top-0 right-0 h-full w-10 sm:w-12 bg-gradient-to-l from-base-100/75 via-base-100/20 to-transparent z-20 rounded-r-box' />
-      {console.log(items)}
       <div className='absolute -top-10 right-0 flex gap-2 z-1 bg-base-100'>
         <button
           onClick={handlePrev}
@@ -147,7 +146,6 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
               >
                 {item?.title_english || item?.name}
               </p>
-              {console.log(item?.title)}
 
               <div
                 className={`absolute inset-0 flex items-center justify-center transition-all duration-300

@@ -6,11 +6,12 @@ import { animateTitle } from "../hooks/animateTitle";
 const HeroAnime = ({ displayedAnime }) => {
   const randomIndex = Math.floor(Math.random() * displayedAnime.length);
   const titleHeader =
-    displayedAnime[randomIndex]?.background ||
+    displayedAnime[randomIndex]?.title_english ||
     displayedAnime[randomIndex]?.title;
   const broadCast = displayedAnime[randomIndex]?.broadcast;
   const banner = displayedAnime[randomIndex]?.images.webp.image_url;
   const link_page = displayedAnime[randomIndex]?.mal_id;
+  const synopsis = displayedAnime[randomIndex]?.synopsis;
 
   useEffect(() => {
     animateTitle(".pillow");
@@ -27,6 +28,7 @@ const HeroAnime = ({ displayedAnime }) => {
         backgroundPosition: "center",
       }}
     >
+      {console.log(synopsis)}
       <div className='absolute inset-0 bg-gradient-to-r from-black/90 to-accent/70'>
         {" "}
       </div>
@@ -45,6 +47,9 @@ const HeroAnime = ({ displayedAnime }) => {
           <p className='text-md sm:text-xl font-semibold  md:text-2xl text-white'>
             {titleHeader}
           </p>
+          <span className='w-100 truncate overflow-hidden whitespace-nowrap text-white line-clamp-2'>
+            {synopsis}
+          </span>
           <div className='text-sm sm:text-md text-warning'>
             {!broadCast?.day ||
             !broadCast?.string ||
