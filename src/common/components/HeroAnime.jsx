@@ -18,10 +18,10 @@ const HeroAnime = ({ displayedAnime }) => {
 
   return (
     <div
-      className='hero bg-base-200 relative shadow-sm sm:pb-5 h-100'
+      className='hero bg-base-200 relative shadow-sm sm:pb-5'
       style={{
         backgroundImage: `url(${banner})`,
-        backgroundSize: "cover",
+        backgroundSize: "100% 100%",
         backgroundPosition: "center",
       }}
     >
