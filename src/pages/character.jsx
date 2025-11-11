@@ -82,7 +82,9 @@ export default function Character() {
             Title: <span className='text-warning'>{chars[0].anime.title}</span>
           </h2>
           {char?.about ? (
-            <h1 className='font-montserrat font-semibold'>{char.about}</h1>
+            <h1 className='font-montserrat font-semibold opacity-70'>
+              {char.about}
+            </h1>
           ) : (
             <div className='flex justify-center items-center'>
               <h1 className='mt-5 text-2xl font-semibold text-error bg-black w-full text-center p-5'>
