@@ -1,23 +1,26 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router";
-import { useEffect } from "react";
-import { animateTitle } from "../hooks/animateTitle";
+import { useEffect, useState } from "react";
 
 const HeroAnime = ({ displayedAnime }) => {
-  const randomIndex = Math.floor(Math.random() * displayedAnime.length);
-  const titleHeader =
-    displayedAnime[randomIndex]?.title_english ||
-    displayedAnime[randomIndex]?.title;
-  const broadCast = displayedAnime[randomIndex]?.broadcast;
-  const banner = displayedAnime[randomIndex]?.images.webp.image_url;
-  const link_page = displayedAnime[randomIndex]?.mal_id;
-  const synopsis = displayedAnime[randomIndex]?.synopsis;
+  const [titleHeader, setTitleHeader] = useState("");
+  const [broadCast, setBroadCast] = useState(null);
+  const [banner, setBanner] = useState("");
+  const [linkPage, setLinkPage] = useState(null);
+  const [synopsis, setSynopsis] = useState("");
 
   useEffect(() => {
-    animateTitle(".pillow");
-  }, []);
+    if (displayedAnime.length === 0) return;
 
-  if (!displayedAnime || displayedAnime.length === 0) return null;
+    const randomIndex = Math.floor(Math.random() * displayedAnime.length);
+    const anime = displayedAnime[randomIndex];
+
+    setTitleHeader(anime?.title_english || anime?.title);
+    setBroadCast(anime?.broadcast);
+    setBanner(anime?.images?.webp?.image_url);
+    setLinkPage(anime?.mal_id);
+    setSynopsis(anime?.synopsis);
+  }, []);
 
   return (
     <div
@@ -36,7 +39,7 @@ const HeroAnime = ({ displayedAnime }) => {
         <img
           src={banner}
           className='max-w-full rounded-lg shadow-2xl  object-contain'
-          alt={displayedAnime[randomIndex]?.title || "Anime Banner"}
+          alt={titleHeader || "Anime Banner"}
         />
 
         <div className='space-y-2'>
@@ -82,7 +85,7 @@ const HeroAnime = ({ displayedAnime }) => {
           </div>
           <Link
             className='btn btn-accent text-white hover:scale-105 transition-transform duration-300'
-            to={`/anime/${link_page}`}
+            to={`/anime/${linkPage}`}
           >
             Read More
           </Link>
