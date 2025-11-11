@@ -18,7 +18,7 @@ const CharacterCards = ({ char = [], loading }) => {
             {char.map((c) => (
               <Link
                 key={c.character?.mal_id}
-                className='card bg-base-200 w-full shadow-sm'
+                className='card card-side  bg-base-200 w-full shadow-sm group h-30'
                 to={`/characters/${c.character?.mal_id}`}
                 onTouchStart={() => setActiveIndex(c.character?.mal_id)}
                 onTouchEnd={() => setTimeout(() => setActiveIndex(null), 50)}
@@ -27,16 +27,27 @@ const CharacterCards = ({ char = [], loading }) => {
                   <img
                     src={c.character?.images?.webp?.image_url}
                     alt={c.character?.name}
-                    className={`w-full h-60 object-cover transform transition-transform duration-300 ${
-                      isActiveIndex === c.character?.mal_id ? "scale-105" : ""
-                    } hover:scale-105`}
+                    className={`w-50 object-cover transform transition-transform duration-300 ${
+                      isActiveIndex === c.character?.mal_id ? "scale-110" : ""
+                    } group-hover:scale-110`}
                   />
                 </figure>
-                <div className='card-body '>
-                  <h2 className='card-title text-xs flex flex-wrap justify-between items-center'>
+                <div className='card-body'>
+                  <h2
+                    className='card-title text-xs justify-between items-center'
+                    style={{
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
                     {c.character?.name}
-                    <div className='badge badge-warning text-xs'>{c?.role}</div>
                   </h2>
+                  <span className='badge badge-warning text-xs text-white'>
+                    {c?.role}
+                  </span>
                 </div>
               </Link>
             ))}

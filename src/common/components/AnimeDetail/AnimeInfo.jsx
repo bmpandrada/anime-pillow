@@ -3,27 +3,27 @@ const AnimeInfo = ({ anime }) => {
     <div className='flex flex-wrap gap-2 items-center mt-2'>
       <p className='text-accent font-semibold'>Info:</p>
       <div className='flex flex-wrap gap-2 space-y-0.5'>
-        <p className='badge badge-neutral font-semibold'>
-          <span className='text-base-300'>Aired:</span>{" "}
+        <p className='badge badge-info font-semibold'>
+          <span className='text-base-200'>Aired:</span>{" "}
           {new Date(anime?.aired?.from).toDateString()}
         </p>
-        <p className='badge badge-neutral font-semibold'>
-          <span className='text-base-300'>Source:</span> {anime?.source}
+        <p className='badge badge-info font-semibold'>
+          <span className='text-base-200'>Source:</span> {anime?.source}
         </p>
-        <p className='badge badge-neutral font-semibold'>
-          <span className='text-base-300'>Status:</span> {anime?.status}
+        <p className='badge badge-info font-semibold'>
+          <span className='text-base-200'>Status:</span> {anime?.status}
         </p>
-        <p className='badge badge-neutral font-semibold'>
-          <span className='text-base-300'>Rating:</span> {anime?.rating}
+        <p className='badge badge-info font-semibold'>
+          <span className='text-base-200'>Rating:</span> {anime?.rating}
         </p>
         {anime?.season && (
-          <p className='badge badge-neutral font-semibold'>
-            <span className='text-base-300'>Season:</span> {anime?.season}
+          <p className='badge badge-info font-semibold'>
+            <span className='text-base-200'>Season:</span> {anime?.season}
           </p>
         )}
         {anime?.studios.length > 0 && (
-          <p className='badge badge-neutral font-semibold'>
-            <span className='text-base-300'>Studios:</span>{" "}
+          <p className='badge badge-info font-semibold'>
+            <span className='text-base-200'>Studios:</span>{" "}
             {anime?.studios?.map((a) => a.name)}
           </p>
         )}

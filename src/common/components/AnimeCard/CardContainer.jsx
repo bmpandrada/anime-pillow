@@ -30,17 +30,11 @@ const CardContainer = ({ item }) => {
         <div className='flex items-center gap-2 justify-between'>
           {showEp && (
             <p className='text-sm font-semibold text-base-300 mt-1'>
-              Episodes:{" "}
-              <span className='text-accent-content opacity-80'>
-                {item.episodes || "?"}
-              </span>
+              Episodes: <span className=''>{item.episodes || "?"}</span>
             </p>
           )}
           <p className='text-sm font-semibold text-base-300 mt-1'>
-            Genre:{" "}
-            <span className='text-accent-content opacity-80'>
-              {item.genres[0].name || "?"}
-            </span>
+            Genre: <span className=''>{item.genres[0].name || "?"}</span>
           </p>
         </div>
         <p className='text-yellow-500 font-bold mt-2 sm:text-sm text-xs'>

@@ -35,14 +35,14 @@ const HeroAnime = ({ displayedAnime }) => {
         />
 
         <div className='space-y-2'>
-          <div className='text-3xl sm:text-5xl font-bold text-accent flex items-center gap-2'>
+          <div className='text-3xl sm:text-5xl font-bold text-warning flex items-center gap-2'>
             <span className='pillow'>Anime Pillow!</span>
           </div>
 
-          <p className='text-md sm:text-xl font-semibold  md:text-2xl text-warning'>
+          <p className='text-md sm:text-xl font-semibold  md:text-2xl text-white'>
             {titleHeader}
           </p>
-          <div className='text-sm sm:text-md'>
+          <div className='text-sm sm:text-md text-warning'>
             {!broadCast?.day ||
             !broadCast?.string ||
             broadCast?.day.includes("unknown") ||

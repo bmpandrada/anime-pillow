@@ -100,10 +100,10 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
               onTouchStart={() => setActiveIndex(index)}
               onTouchEnd={() => setTimeout(() => setActiveIndex(null), 50)}
             >
-              <div className='absolute right-0 top-0 bg-gradient-to-l from-base-100/100 pb-1 pr-2 via-base-100/40 to-transparent z-10'>
+              <div className='absolute right-0 top-0 bg-gradient-to-l from-black/100 pb-1 pr-2 via-black/40 to-transparent z-10'>
                 {item?.favorites && (
                   <span
-                    className={`flex flex-wrap items-center gap-2 pl-2 transition duration-500  text-white text-xs sm:text-sm lg:text-md font-bold
+                    className={`flex flex-wrap items-center gap-2 pl-2 text-white transition duration-500  text-xs sm:text-sm lg:text-md font-bold
                   ${
                     isActiveIndex === index ? "hidden" : "block"
                   } group-hover:hidden   `}
@@ -119,7 +119,7 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
 
                 {item?.score && (
                   <span
-                    className={`flex flex-wrap items-center gap-2 pl-2 transition duration-500  text-white text-xs sm:text-sm lg:text-md font-bold 
+                    className={`flex flex-wrap items-center gap-2 pl-2 text-white transition duration-500  text-xs sm:text-sm lg:text-md font-bold 
                   ${
                     isActiveIndex === index ? "hidden" : "block"
                   } group-hover:hidden   `}
@@ -140,7 +140,7 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
         ${isActiveIndex === index ? "scale-110" : ""} group-hover:scale-110`}
               />
               <p
-                className={`transition duration-500 absolute text-center text-white bottom-0 font-bold text-sm p-2 truncate mx-auto w-full bg-gradient-to-t from-base-100/100 via-base-100/50 to-transparent 
+                className={`transition duration-500 absolute text-white text-center bottom-0 font-bold text-sm p-2 truncate mx-auto w-full bg-gradient-to-t from-black/100 via-black/50 to-transparent 
               ${
                 isActiveIndex === index ? "hidden" : "block"
               } group-hover:hidden   `}
@@ -156,7 +156,7 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
         } group-hover:bg-black/70`}
               >
                 <h1
-                  className={`text-green-300 text-center text-xs sm:text-sm md:text-md lg:text-lg font-bold transition-opacity duration-300
+                  className={`text-green-400 text-center text-xs sm:text-sm md:text-md lg:text-lg font-bold transition-opacity duration-300
           ${
             isActiveIndex === index ? "opacity-100" : "opacity-0"
           } group-hover:opacity-100`}

@@ -22,7 +22,7 @@ const AsideFigure = ({ anime }) => {
           </span>
         )}
         {anime?.popularity > 0 && (
-          <span className='badge badge-warning font-semibold'>
+          <span className='badge badge-warning font-semibold text-white'>
             Popularity #{anime?.popularity}
           </span>
         )}
