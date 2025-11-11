@@ -18,14 +18,14 @@ const HeroAnime = ({ displayedAnime }) => {
 
   return (
     <div
-      className='hero bg-base-200 relative shadow-sm sm:pb-5'
+      className='hero bg-base-200 relative shadow-sm sm:pb-5 h-100'
       style={{
         backgroundImage: `url(${banner})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className='absolute inset-0 bg-gradient-to-r from-black/80 to-cyan-900/95'>
+      <div className='absolute inset-0 bg-gradient-to-r from-black/100 to-accent/90'>
         {" "}
       </div>
       <div className='hero-content flex-col lg:flex-row'>
