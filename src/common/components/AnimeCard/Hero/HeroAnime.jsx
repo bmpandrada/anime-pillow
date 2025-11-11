@@ -1,11 +1,11 @@
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { Link } from "react-router";
 import { useEffect, useState } from "react";
+import HeroBtn from "./HeroBtn";
+import HeroBroadCast from "./HeroBroadCast";
 
 const HeroAnime = ({ displayedAnime }) => {
   const [titleHeader, setTitleHeader] = useState("");
   const [broadCast, setBroadCast] = useState(null);
-  const [banner, setBanner] = useState("");
+  const [banner, setBanner] = useState(" ");
   const [linkPage, setLinkPage] = useState(null);
   const [synopsis, setSynopsis] = useState("");
 
@@ -31,7 +31,6 @@ const HeroAnime = ({ displayedAnime }) => {
         backgroundPosition: "center",
       }}
     >
-      {console.log(synopsis)}
       <div className='absolute inset-0 bg-gradient-to-r from-black/90 to-accent/70'>
         {" "}
       </div>
@@ -56,42 +55,8 @@ const HeroAnime = ({ displayedAnime }) => {
           <span className='w-100 truncate overflow-hidden whitespace-nowrap text-white line-clamp-2'>
             {synopsis}
           </span>
-          <div className='text-sm sm:text-md text-warning'>
-            {!broadCast?.day ||
-            !broadCast?.string ||
-            broadCast?.day.includes("unknown") ||
-            broadCast?.string.includes("unknown") ? (
-              <p className='text-lg sm:text-3xl font-bold'>Upcoming</p>
-            ) : (
-              <>
-                <p>
-                  {broadCast?.day} {broadCast?.string}
-                  <br />
-                  {broadCast?.timezone && (
-                    <span>Timezone: {broadCast?.timezone}</span>
-                  )}
-                </p>
-              </>
-            )}
-            <br /> <br />
-            <div className='flex items-center gap-2 text-warning'>
-              <a
-                href={`https://www.linkedin.com/in/bruce-michael-andrada-565b561a4/`}
-                target='_blank'
-              >
-                <FaLinkedin className='text-2xl hover:text-blue-400 transition' />
-              </a>
-              <a href={`https://github.com/bmpandrada`} target='_blank'>
-                <FaGithub className='text-2xl hover:text-blue-400 transition' />
-              </a>
-            </div>
-          </div>
-          <Link
-            className='btn btn-accent text-white hover:scale-105 transition-transform duration-300'
-            to={`/anime/${linkPage}`}
-          >
-            Read More
-          </Link>
+          <HeroBroadCast broadCast={broadCast} />
+          <HeroBtn linkPage={linkPage} />
         </div>
       </div>
     </div>
