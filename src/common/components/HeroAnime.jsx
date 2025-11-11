@@ -38,7 +38,7 @@ const HeroAnime = ({ displayedAnime }) => {
           <div className='text-3xl sm:text-5xl font-bold text-warning flex items-center gap-2'>
             <span className='pillow'>Anime Pillow!</span>
           </div>
-
+          <div className='w-[180px] h-[2px] bg-gradient-to-r from-base-300 to-transparent mt-2'></div>
           <p className='text-md sm:text-xl font-semibold  md:text-2xl text-white'>
             {titleHeader}
           </p>
