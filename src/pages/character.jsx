@@ -9,6 +9,7 @@ export default function Character() {
   const [char, setChar] = useState(null);
   const [chars, setChars] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isActiveIndex, setActiveIndex] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -103,12 +104,19 @@ export default function Character() {
                     className='card bg-base-200 w-full shadow-sm group'
                     to={`/anime/${item.anime.mal_id}`}
                     key={`${item.mal_id}-${item.anime?.mal_id || index}`}
+                    onTouchStart={() => setActiveIndex(index)}
+                    onTouchEnd={() =>
+                      setTimeout(() => setActiveIndex(null), 50)
+                    }
                   >
                     <figure className='h-20'>
                       <img
                         src={item.anime.images.webp.large_image_url}
                         alt={item.anime.title}
-                        className='w-full object-cover transform transition-transform duration-300 group-hover:scale-105'
+                        className={`w-full object-cover transform transition-transform duration-300 
+                           ${
+                             isActiveIndex === index ? "scale-110" : ""
+                           } group-hover:scale-105`}
                       />
                     </figure>
                     <div className='card-body'>
