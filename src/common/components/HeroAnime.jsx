@@ -16,22 +16,25 @@ const HeroAnime = ({ displayedAnime }) => {
     animateTitle(".pillow");
   }, []);
 
+  if (!displayedAnime || displayedAnime.length === 0) return null;
+
   return (
     <div
       className='hero bg-base-200 relative shadow-sm sm:pb-5'
       style={{
         backgroundImage: `url(${banner})`,
-        backgroundSize: "100% 100%",
+        backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className='absolute inset-0 bg-gradient-to-r from-black/100 to-accent/90'>
+      <div className='absolute inset-0 bg-gradient-to-r from-black/90 to-accent/70'>
         {" "}
       </div>
       <div className='hero-content flex-col lg:flex-row'>
         <img
           src={banner}
           className='max-w-full rounded-lg shadow-2xl  object-contain'
+          alt={displayedAnime[randomIndex]?.title || "Anime Banner"}
         />
 
         <div className='space-y-2'>
@@ -72,8 +75,11 @@ const HeroAnime = ({ displayedAnime }) => {
               </a>
             </div>
           </div>
-          <Link className='btn btn-accent' to={`/anime/${link_page}`}>
-            Discover
+          <Link
+            className='btn btn-accent text-white hover:scale-105 transition-transform duration-300'
+            to={`/anime/${link_page}`}
+          >
+            Read More
           </Link>
         </div>
       </div>
