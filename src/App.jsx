@@ -3,6 +3,7 @@ import { Suspense, lazy } from "react";
 import SpinnerLoading from "./common/components/Loaders/SpinnerLoader";
 import Layout from "./common/components/layouts/Layout";
 import HomePageLayout from "./common/components/layouts/HomePageLayout";
+import TesterPage from "./pages/TesterPage";
 
 const HomePage = lazy(() => import("./pages/home"));
 const About = lazy(() => import("./pages/about"));
@@ -75,6 +76,7 @@ const App = () => {
           }
         />
         <Route path='*' element={<NotFoundPage />} />
+        <Route path='/tester' element={<TesterPage />} />
       </Routes>
     </Suspense>
   );
