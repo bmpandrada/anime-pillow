@@ -12,7 +12,7 @@ const CardContainer = ({ item }) => {
           ? "/anime"
           : "/movies"
       }/${item.mal_id}`}
-      className='bg-base-200 rounded-2xl shadow hover:shadow-lg transition overflow-hidden'
+      className='bg-base-200 rounded-2xl shadow hover:shadow-lg transition overflow-hidden group'
       onTouchStart={() => setActiveIndex(item.mal_id)}
       onTouchEnd={() => setTimeout(() => setActiveIndex(null), 50)}
     >
@@ -21,7 +21,7 @@ const CardContainer = ({ item }) => {
         alt={item.title}
         className={`w-full h-60 object-cover transform transition-transform duration-300 ${
           isActiveIndex === item.mal_id ? "scale-105" : ""
-        } hover:scale-105`}
+        } group-hover:scale-105`}
       />
       <div className='p-4'>
         <h2 className='sm:text-lg font-semibold text-base-900 truncate'>
