@@ -29,11 +29,11 @@ const CardContainer = ({ item }) => {
         </h2>
         <div className='flex items-center gap-2 justify-between'>
           {showEp && (
-            <p className='text-sm font-semibold text-base-300 mt-1'>
+            <p className='text-sm font-semibold text-base-300 mt-1 w-50'>
               Episodes: <span className=''>{item.episodes || "?"}</span>
             </p>
           )}
-          <p className='text-sm font-semibold text-base-300 mt-1'>
+          <p className='text-sm font-semibold text-base-300 mt-1 truncate w-50'>
             Genre: <span className=''>{item.genres[0].name || "?"}</span>
           </p>
         </div>
