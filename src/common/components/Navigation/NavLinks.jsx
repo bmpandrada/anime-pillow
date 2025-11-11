@@ -5,7 +5,7 @@ const NavHead = () => {
     "text-base-800 font-semibold  hover:text-accent transition duration-400";
   const active = "text-accent font-semibold";
   return (
-    <div className='hidden sm:flex flex-row justify-start space-x-5 mr-2'>
+    <div className='hidden sm:flex flex-row justify-start space-x-5 mr-2 font-montserrat'>
       <NavLink
         to={"/"}
         className={({ isActive }) => (isActive ? active : base)}

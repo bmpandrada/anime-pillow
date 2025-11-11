@@ -43,8 +43,11 @@ const HeroAnime = ({ displayedAnime }) => {
         />
 
         <div className='space-y-2'>
-          <div className='text-3xl sm:text-5xl font-bold text-warning flex items-center gap-2'>
-            <span className='pillow'>Anime Pillow!</span>
+          <div className='text-lg sm:text-xl font-bold text-warning flex items-center gap-2'>
+            <p className='pillow font-momo-signature'>
+              AnimePillow{" "}
+              <span className='text-white text-sm sm:text-lg'>presenting</span>
+            </p>
           </div>
           <div className='w-[180px] h-[2px] bg-gradient-to-r from-base-300 to-transparent mt-2'></div>
           <p className='text-md sm:text-xl font-semibold  md:text-2xl text-white'>

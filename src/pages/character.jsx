@@ -82,7 +82,7 @@ export default function Character() {
             Title: <span className='text-warning'>{chars[0].anime.title}</span>
           </h2>
           {char?.about ? (
-            <h1 className=''>{char.about}</h1>
+            <h1 className='font-montserrat font-semibold'>{char.about}</h1>
           ) : (
             <div className='flex justify-center items-center'>
               <h1 className='mt-5 text-2xl font-semibold text-error bg-black w-full text-center p-5'>
@@ -94,7 +94,7 @@ export default function Character() {
           {chars.length > 0 ? (
             <>
               <div className='divider divider-neutral'>
-                <h1 className='text-2xl  text-accent antialiased font-semibold'>
+                <h1 className='text-2xl  text-accent antialiased font-semibold font-momo-signature'>
                   Anime
                 </h1>
               </div>
