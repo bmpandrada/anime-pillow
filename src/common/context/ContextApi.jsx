@@ -3,10 +3,12 @@ import { filterAndSort } from "../utils/filterAndSort";
 import { filteredByLetter } from "../utils/filterByLetter";
 import Cookies from "js-cookie";
 import { getInitialTheme } from "../utils/getInitialTheme";
+import { useLocation } from "react-router";
 
 export const ContextApi = createContext();
 
 export function ContextProvider({ children }) {
+  const localPath = useLocation();
   const [theme, setTheme] = useState(getInitialTheme);
   const [anime, setAnime] = useState([]);
   const [movie, setMovie] = useState([]);
@@ -19,6 +21,27 @@ export function ContextProvider({ children }) {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedLetter, setSelectedLetter] = useState("");
+
+  useEffect(() => {
+    const clearCacheData = () => {
+      [
+        "animeData",
+        "movieData",
+        "charData",
+        "upcommingData",
+        "lastFetch",
+      ].forEach((key) => localStorage.removeItem(key));
+      console.log("🧹 Cache cleared!");
+    };
+
+    if (localPath.pathname === "/clear") {
+      clearCacheData();
+      window.location.href = "/"; // redirect sa home pagkatapos mag-clear
+      return;
+    }
+
+    // dito na yung normal fetch / cache logic mo
+  }, [localPath.pathname]);
 
   const CACHE_VERSION = "v2";
 

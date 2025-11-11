@@ -4,6 +4,7 @@ import SpinnerLoading from "./common/components/Loaders/SpinnerLoader";
 import Layout from "./common/components/layouts/Layout";
 import HomePageLayout from "./common/components/layouts/HomePageLayout";
 import TesterPage from "./pages/TesterPage";
+import ClearCachePage from "./pages/clearCachePage";
 
 const HomePage = lazy(() => import("./pages/home"));
 const About = lazy(() => import("./pages/about"));
@@ -77,6 +78,7 @@ const App = () => {
         />
         <Route path='*' element={<NotFoundPage />} />
         <Route path='/tester' element={<TesterPage />} />
+        <Route path='/clear' element={<ClearCachePage />} />
       </Routes>
     </Suspense>
   );

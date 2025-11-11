@@ -9,11 +9,11 @@ import CookieConsent from "./common/components/CookieConsent.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ContextProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <ContextProvider>
         <App />
         <CookieConsent />
-      </BrowserRouter>
-    </ContextProvider>
+      </ContextProvider>
+    </BrowserRouter>
   </StrictMode>,
 );
