@@ -65,7 +65,7 @@ export default function Character() {
   }
 
   return (
-    <div className='max-w-7xl mx-auto rounded-2xl sm:shadow p-5 sm:pt-10 pt-0 mb-10 transition duration-300'>
+    <div className='max-w-7xl mx-auto rounded-2xl sm:shadow sm:p-5 sm:pt-10 pt-0 mb-10 transition duration-300'>
       <div className='grid sm:grid-cols-4 gap-4'>
         <div className='col-span-1'>
           <AsideFigure anime={char} />
@@ -81,7 +81,7 @@ export default function Character() {
             Title: <span className='text-warning'>{chars[0].anime.title}</span>
           </h2>
           {char?.about ? (
-            <h1>{char.about}</h1>
+            <h1 className='text-white/90'>{char.about}</h1>
           ) : (
             <div className='flex justify-center items-center'>
               <h1 className='mt-5 text-2xl font-semibold text-error bg-black w-full text-center p-5'>
@@ -97,22 +97,31 @@ export default function Character() {
                   Anime
                 </h1>
               </div>
-              <div className='max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mt-5 mb-10'>
+              <div className='max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mt-5 mb-10'>
                 {chars.map((item, index) => (
                   <Link
-                    className='card bg-base-200 w-full shadow-sm h-50'
+                    className='card bg-base-200 w-full shadow-sm group'
                     to={`/anime/${item.anime.mal_id}`}
                     key={`${item.mal_id}-${item.anime?.mal_id || index}`}
                   >
-                    <figure>
+                    <figure className='h-20'>
                       <img
                         src={item.anime.images.webp.large_image_url}
                         alt={item.anime.title}
-                        className='w-full object-cover transform transition-transform duration-300 hover:scale-105'
+                        className='w-full object-cover transform transition-transform duration-300 group-hover:scale-105'
                       />
                     </figure>
                     <div className='card-body'>
-                      <h2 className='card-title text-xs flex flex-wrap justify-between items-center'>
+                      <h2
+                        className='card-title text-xs flex flex-wrap justify-between items-center text-white/80'
+                        style={{
+                          display: "-webkit-box",
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: "vertical",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
                         {item.anime.title}
                       </h2>
                     </div>
