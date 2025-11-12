@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router";
-import SpinnerLoading from "../Loaders/SpinnerLoader";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import AsideFigure from "../AsideFigure";
 import MainFigure from "../MainFigure";
@@ -10,11 +9,14 @@ import SkeletonCard from "../Loaders/SkeletonCard";
 export default function AnimeDetail() {
   const { id } = useParams();
   const [anime, setAnime] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [char, setChar] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false); // track fetch failure
   const localPath = useLocation();
+
   useEffect(() => {
     let isMounted = true;
+
     const fetchData = async () => {
       try {
         const [resDetail, resChar] = await Promise.all([
@@ -30,14 +32,16 @@ export default function AnimeDetail() {
           resDetail.json(),
           resChar.json(),
         ]);
+
         if (isMounted) {
-          setAnime(dataDetail?.data);
-          setChar(dataChar?.data);
+          setAnime(dataDetail?.data || null);
+          setChar(dataChar?.data || []);
         }
-      } catch (error) {
-        console.log(error.message);
+      } catch (err) {
+        console.log(err.message);
+        if (isMounted) setError(true);
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
 
@@ -50,40 +54,37 @@ export default function AnimeDetail() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [id]);
+
+  const showAside = anime ? <AsideFigure anime={anime} /> : <SkeletonCard />;
+  const showMain = anime ? <MainFigure anime={anime} /> : <SkeletonCard />;
+  const showCharacters = char?.length ? (
+    <CharacterCards char={char} loading={loading} />
+  ) : (
+    <SkeletonCard />
+  );
 
   return (
     <div className='max-w-7xl mx-auto rounded-2xl sm:shadow p-5 sm:pt-10 pt-0 mb-10 transition duration-300'>
       <Link to={localPath.pathname.includes("/anime") ? "/anime" : "/movies"}>
         <p className='flex items-center gap-2 text-lg font-semibold text-accent hover:text-base-300 transition mb-5 md:mb-2'>
           <IoMdArrowRoundBack /> Back to{" "}
-          {localPath.pathname.includes("/anime") ? "Anime" : "Movies"}{" "}
+          {localPath.pathname.includes("/anime") ? "Anime" : "Movies"}
         </p>
       </Link>
-      <div className='grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-4 relative'>
-        {loading ? (
-          <div className='col-span-1'>
-            <SkeletonCard />
-          </div>
-        ) : (
-          <AsideFigure anime={anime} />
-        )}
 
-        {loading ? (
-          <div className='sm:col-span-2'>
-            <SkeletonCard />
-          </div>
-        ) : (
-          <MainFigure anime={anime} />
-        )}
-      </div>
-      {loading ? (
-        <div className='mt-5 col-span-1'>
-          <SkeletonCard />
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-4 relative'>
+        <div className='col-span-1'>
+          {loading || error ? <SkeletonCard /> : showAside}
         </div>
-      ) : (
-        <CharacterCards char={char} loading={loading} />
-      )}
+        <div className='sm:col-span-2'>
+          {loading || error ? <SkeletonCard /> : showMain}
+        </div>
+      </div>
+
+      <div className='mt-5'>
+        {loading || error ? <SkeletonCard /> : showCharacters}
+      </div>
     </div>
   );
 }
