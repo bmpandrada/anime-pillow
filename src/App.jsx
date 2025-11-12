@@ -15,7 +15,6 @@ const AnimeDetail = lazy(() =>
 const MoviePage = lazy(() => import("./pages/movies"));
 const AnimePage = lazy(() => import("./pages/anime"));
 const Character = lazy(() => import("./pages/character"));
-// const NotFoundPage = lazy(() => import("./pages/notFound"));
 
 const App = () => {
   return (
