@@ -58,11 +58,6 @@ export default function AnimeDetail() {
 
   const showAside = anime ? <AsideFigure anime={anime} /> : <SkeletonCard />;
   const showMain = anime ? <MainFigure anime={anime} /> : <SkeletonCard />;
-  const showCharacters = char?.length ? (
-    <CharacterCards char={char} loading={loading} />
-  ) : (
-    <SkeletonCard />
-  );
 
   return (
     <div className='max-w-7xl mx-auto rounded-2xl sm:shadow p-5 sm:pt-10 pt-0 mb-10 transition duration-300'>
@@ -83,7 +78,12 @@ export default function AnimeDetail() {
       </div>
 
       <div className='mt-5'>
-        {loading || error ? <SkeletonCard /> : showCharacters}
+        {!loading && !error && char?.length > 0 && (
+          <div className='mt-5'>
+            <CharacterCards char={char} loading={loading} />
+          </div>
+        )}
+        {loading && error && <SkeletonCard />}
       </div>
     </div>
   );
