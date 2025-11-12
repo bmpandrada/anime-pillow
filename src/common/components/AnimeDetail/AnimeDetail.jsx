@@ -60,6 +60,9 @@ export default function AnimeDetail() {
     ? "Anime"
     : "Movies";
 
+  const showAside = anime ? <AsideFigure anime={anime} /> : <SkeletonCard />;
+  const showMain = anime ? <MainFigure anime={anime} /> : <SkeletonCard />;
+
   return (
     <div className='max-w-7xl mx-auto rounded-2xl sm:shadow p-5 sm:pt-10 pt-0 mb-10 transition duration-300'>
       <Link to={localPath.pathname.includes("/anime") ? "/anime" : "/movies"}>
@@ -70,10 +73,10 @@ export default function AnimeDetail() {
 
       <div className='grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-4 relative'>
         <div className='col-span-1'>
-          {loading && !error ? <SkeletonCard /> : <AsideFigure anime={anime} />}
+          {loading && !error ? <SkeletonCard /> : showAside}
         </div>
         <div className='sm:col-span-2'>
-          {loading && !error ? <SkeletonCard /> : <MainFigure anime={anime} />}
+          {loading && !error ? <SkeletonCard /> : showMain}
         </div>
       </div>
 
