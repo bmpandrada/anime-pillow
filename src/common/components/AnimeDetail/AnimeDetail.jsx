@@ -73,10 +73,10 @@ export default function AnimeDetail() {
 
       <div className='grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-4 relative'>
         <div className='col-span-1'>
-          {loading && !error ? <SkeletonCard /> : showAside}
+          {loading && error ? <SkeletonCard /> : showAside}
         </div>
         <div className='sm:col-span-2'>
-          {loading && !error ? <SkeletonCard /> : showMain}
+          {loading && error ? <SkeletonCard /> : showMain}
         </div>
       </div>
 
