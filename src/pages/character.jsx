@@ -73,40 +73,41 @@ export default function Character() {
       <div className='grid sm:grid-cols-4 gap-4'>
         <div className='col-span-1'>{showAsideFigure}</div>
         <div className='rounded px-5 sm:col-span-3'>
-          <h2 className='text-base-400 text-2xl font-extrabold mb-2'>
-            Name:{" "}
-            <span className='pillow text-warning'>
-              {char?.name || "Unknown"}
-            </span>
-          </h2>
-          <p className='font-bold text-base-300'>
-            Role:{" "}
-            <span className='text-warning'>
-              {chars?.[0]?.role || "Unknown"}
-            </span>
-          </p>
-          <h2 className='font-bold text-base-300'>
-            Title:{" "}
-            <span className='text-warning'>
-              {chars?.[0]?.anime?.title || "Unknown"}
-            </span>
-          </h2>
-
+          {char?.name && (
+            <h2 className='text-base-400 text-2xl font-extrabold mb-2'>
+              Name:{" "}
+              <span className='pillow text-warning'>
+                {char?.name || "Unknown"}
+              </span>
+            </h2>
+          )}
+          {chars?.[0]?.role && (
+            <p className='font-bold text-base-300'>
+              Role:{" "}
+              <span className='text-warning'>
+                {chars?.[0]?.role || "Unknown"}
+              </span>
+            </p>
+          )}
+          {chars?.[0]?.anime?.title && (
+            <h2 className='font-bold text-base-300'>
+              Title:{" "}
+              <span className='text-warning'>
+                {chars?.[0]?.anime?.title || "Unknown"}
+              </span>
+            </h2>
+          )}
           {char?.about ? (
             <h1 className='font-montserrat font-semibold opacity-70'>
               {char.about}
             </h1>
           ) : loading ? (
-            <div className='flex justify-center items-center'>
-              <h1 className='mt-5 text-2xl font-semibold text-error bg-black w-full text-center p-5'>
-                Unknown
-              </h1>
-            </div>
-          ) : (
             <SkeletonCard />
+          ) : (
+            " "
           )}
 
-          {Array.isArray(chars) && chars.length > 0 ? (
+          {Array.isArray(chars) && chars.length > 0 && (
             <>
               <div className='divider divider-neutral'>
                 <h1 className='text-2xl text-accent antialiased font-semibold font-momo-signature'>
@@ -151,10 +152,6 @@ export default function Character() {
                 ))}
               </div>
             </>
-          ) : (
-            <p className='text-center text-error mt-5'>
-              No anime data available
-            </p>
           )}
         </div>
       </div>
