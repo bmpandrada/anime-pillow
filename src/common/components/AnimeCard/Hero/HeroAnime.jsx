@@ -35,11 +35,13 @@ const HeroAnime = ({ displayedAnime }) => {
         {" "}
       </div>
       <div className='hero-content flex-col lg:flex-row'>
-        <img
-          src={banner}
-          className='max-w-full rounded-lg shadow-2xl  object-contain'
-          alt={titleHeader || "Anime Banner"}
-        />
+        {banner && (
+          <img
+            src={banner}
+            className='max-w-full rounded-lg shadow-2xl  object-contain'
+            alt={titleHeader || "Anime Banner"}
+          />
+        )}
 
         <div className='space-y-2'>
           <div className='text-lg sm:text-xl font-bold text-warning flex items-center gap-2'>

@@ -17,8 +17,8 @@ const CardContainer = ({ item }) => {
       onTouchEnd={() => setTimeout(() => setActiveIndex(null), 50)}
     >
       <img
-        src={item.images.webp.large_image_url}
-        alt={item.title}
+        src={item.images.webp.large_image_url || "/background.webp"}
+        alt={item.title || "Anime Title"}
         className={`w-full h-60 object-cover transform transition-transform duration-300 ${
           isActiveIndex === item.mal_id ? "scale-105" : ""
         } group-hover:scale-105`}

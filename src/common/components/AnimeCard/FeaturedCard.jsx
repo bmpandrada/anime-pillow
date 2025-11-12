@@ -132,7 +132,8 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
                 src={
                   item?.images?.webp?.large_image_url ||
                   item?.images?.webp?.image_url ||
-                  item?.images?.webp?.small_image_url
+                  item?.images?.webp?.small_image_url ||
+                  "/background.webp"
                 }
                 alt={item.title}
                 className={`w-full h-full object-cover rounded-box transform transition-transform duration-300
