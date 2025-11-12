@@ -61,7 +61,7 @@ export default function AnimeDetail() {
         </p>
       </Link>
       <div className='grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-4 relative'>
-        {loading && anime ? (
+        {loading ? (
           <div className='col-span-1'>
             <SkeletonCard />
           </div>
@@ -69,7 +69,7 @@ export default function AnimeDetail() {
           <AsideFigure anime={anime} />
         )}
 
-        {loading && anime ? (
+        {loading ? (
           <div className='sm:col-span-2'>
             <SkeletonCard />
           </div>
@@ -77,7 +77,7 @@ export default function AnimeDetail() {
           <MainFigure anime={anime} />
         )}
       </div>
-      {loading && char ? (
+      {loading ? (
         <div className='mt-5 col-span-1'>
           <SkeletonCard />
         </div>
