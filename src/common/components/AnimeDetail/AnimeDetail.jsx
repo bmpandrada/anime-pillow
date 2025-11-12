@@ -60,7 +60,6 @@ export default function AnimeDetail() {
     ? "Anime"
     : "Movies";
 
-  const showAside = anime ? <AsideFigure anime={anime} /> : <SkeletonCard />;
   const showMain = anime ? <MainFigure anime={anime} /> : <SkeletonCard />;
 
   return (
@@ -73,10 +72,12 @@ export default function AnimeDetail() {
 
       <div className='grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-4 relative'>
         <div className='col-span-1'>
-          {loading && !error ? <SkeletonCard /> : showAside}
+          {loading && !error && <SkeletonCard />}
+          {!loading && !error && <AsideFigure anime={anime} />}
         </div>
         <div className='sm:col-span-2'>
-          {loading && !error ? <SkeletonCard /> : showMain}
+          {loading && !error && <SkeletonCard />}
+          {!loading && !error && <MainFigure anime={anime} />}
         </div>
       </div>
 
