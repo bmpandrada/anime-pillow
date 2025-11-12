@@ -28,6 +28,8 @@ const App = () => {
             </HomePageLayout>
           }
         />
+
+        {/* All other pages wrapped in Layout */}
         <Route
           path='/anime'
           element={
@@ -76,9 +78,30 @@ const App = () => {
             </Layout>
           }
         />
-        <Route path='*' element={<NotFoundPage />} />
-        <Route path='/tester' element={<TesterPage />} />
-        <Route path='/clear' element={<ClearCachePage />} />
+        <Route
+          path='/tester'
+          element={
+            <Layout>
+              <TesterPage />
+            </Layout>
+          }
+        />
+        <Route
+          path='/clear'
+          element={
+            <Layout>
+              <ClearCachePage />
+            </Layout>
+          }
+        />
+        <Route
+          path='*'
+          element={
+            <Layout>
+              <NotFoundPage />
+            </Layout>
+          }
+        />
       </Routes>
     </Suspense>
   );
