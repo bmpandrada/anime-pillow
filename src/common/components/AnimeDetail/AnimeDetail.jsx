@@ -82,7 +82,7 @@ export default function AnimeDetail() {
           <CharacterCards char={char} />
         </div>
       )}
-      {loading && !error && (
+      {loading && !error && !char?.length > 0 && (
         <div className='mt-5'>
           <SkeletonCard />
         </div>
