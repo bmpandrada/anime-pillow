@@ -96,12 +96,14 @@ export default function Character() {
             <h1 className='font-montserrat font-semibold opacity-70'>
               {char.about}
             </h1>
-          ) : (
+          ) : loading ? (
             <div className='flex justify-center items-center'>
               <h1 className='mt-5 text-2xl font-semibold text-error bg-black w-full text-center p-5'>
                 Unknown
               </h1>
             </div>
+          ) : (
+            <SkeletonCard />
           )}
 
           {Array.isArray(chars) && chars.length > 0 ? (
