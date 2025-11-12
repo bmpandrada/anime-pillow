@@ -7,7 +7,7 @@ const NotFoundPage = () => {
   }, []);
   return (
     <div className='w-full h-screen flex items-center justify-center'>
-      <div className='max-w-4xl text-center p-2 mb-50'>
+      <div className='max-w-4xl text-center p-2 mb-52'>
         <h1 className='capitalize text-4xl font-bold text-cyan-600 mb-4'>
           Sorry
         </h1>
