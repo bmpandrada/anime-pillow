@@ -5,7 +5,7 @@ import HeroBroadCast from "./HeroBroadCast";
 const HeroAnime = ({ displayedAnime }) => {
   const [titleHeader, setTitleHeader] = useState("");
   const [broadCast, setBroadCast] = useState(null);
-  const [banner, setBanner] = useState(" ");
+  const [banner, setBanner] = useState(null);
   const [linkPage, setLinkPage] = useState(null);
   const [synopsis, setSynopsis] = useState("");
 
@@ -17,7 +17,7 @@ const HeroAnime = ({ displayedAnime }) => {
 
     setTitleHeader(anime?.title_english || anime?.title);
     setBroadCast(anime?.broadcast);
-    setBanner(anime?.images?.webp?.image_url);
+    setBanner(anime?.images?.webp?.image_url || null);
     setLinkPage(anime?.mal_id);
     setSynopsis(anime?.synopsis);
   }, []);
@@ -35,10 +35,10 @@ const HeroAnime = ({ displayedAnime }) => {
         {" "}
       </div>
       <div className='hero-content flex-col lg:flex-row'>
-        {banner.length > 0 && (
+        {banner && (
           <img
             src={banner}
-            className='max-w-full rounded-lg shadow-2xl  object-contain'
+            className='max-w-full rounded-lg shadow-2xl object-contain'
             alt={titleHeader || "Anime Banner"}
           />
         )}
