@@ -29,79 +29,17 @@ const App = () => {
           }
         />
 
-        {/* All other pages wrapped in Layout */}
-        <Route
-          path='/anime'
-          element={
-            <Layout>
-              <AnimePage />
-            </Layout>
-          }
-        />
-        <Route
-          path='/movies'
-          element={
-            <Layout>
-              <MoviePage />
-            </Layout>
-          }
-        />
-        <Route
-          path='/about'
-          element={
-            <Layout>
-              <About />
-            </Layout>
-          }
-        />
-        <Route
-          path='/anime/:id'
-          element={
-            <Layout>
-              <AnimeDetail />
-            </Layout>
-          }
-        />
-        <Route
-          path='/movies/:id'
-          element={
-            <Layout>
-              <AnimeDetail />
-            </Layout>
-          }
-        />
-        <Route
-          path='/characters/:id'
-          element={
-            <Layout>
-              <Character />
-            </Layout>
-          }
-        />
-        <Route
-          path='/tester'
-          element={
-            <Layout>
-              <TesterPage />
-            </Layout>
-          }
-        />
-        <Route
-          path='/clear'
-          element={
-            <Layout>
-              <ClearCachePage />
-            </Layout>
-          }
-        />
-        <Route
-          path='*'
-          element={
-            <Layout>
-              <NotFoundPage />
-            </Layout>
-          }
-        />
+        <Route element={<Layout />}>
+          <Route path='/anime' element={<AnimePage />} />
+          <Route path='/anime/:id' element={<AnimeDetail />} />
+          <Route path='/movies' element={<MoviePage />} />
+          <Route path='/movies/:id' element={<AnimeDetail />} />
+          <Route path='/characters/:id' element={<Character />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/tester' element={<TesterPage />} />
+          <Route path='/clear' element={<ClearCachePage />} />
+          <Route path='*' element={<NotFoundPage />} />
+        </Route>
       </Routes>
     </Suspense>
   );

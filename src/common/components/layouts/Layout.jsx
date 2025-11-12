@@ -1,10 +1,10 @@
 import { useAnime } from "../../context/ContextApi";
 import Header from "../Header";
 import Footer from "../Navigation/Footer";
-
 import Nav from "../Navigation/Nav";
+import { Outlet } from "react-router";
 
-const Layout = ({ children }) => {
+const Layout = () => {
   const {
     sortBy,
     setSortby,
@@ -28,7 +28,7 @@ const Layout = ({ children }) => {
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
         />
-        {children}
+        <Outlet />
       </div>
       <Footer />
     </div>
