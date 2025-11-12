@@ -38,7 +38,7 @@ const HeroAnime = ({ displayedAnime }) => {
         {banner && banner.trim().length > 0 && (
           <img
             src={banner}
-            className='max-w-full rounded-lg shadow-2xl object-contain'
+            className='max-w-full rounded-lg shadow-2xl object-cover'
             alt={titleHeader || "Anime Banner"}
           />
         )}
@@ -54,7 +54,7 @@ const HeroAnime = ({ displayedAnime }) => {
           <p className='text-md sm:text-xl font-semibold  md:text-2xl text-white'>
             {titleHeader}
           </p>
-          <span className='w-100 truncate overflow-hidden whitespace-nowrap text-white line-clamp-2'>
+          <span className='w-50 sm:w-100 truncate overflow-hidden whitespace-nowrap text-white line-clamp-2'>
             {synopsis}
           </span>
           <HeroBroadCast broadCast={broadCast} />
