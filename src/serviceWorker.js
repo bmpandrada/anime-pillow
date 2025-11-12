@@ -1,19 +1,17 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from "vite-plugin-pwa";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss(),
     VitePWA({
-      registerType: "autoUpdate",
-      injectRegister: "auto",
+      registerType: "autoUpdate", // automatically updates SW
+      workbox: {
+        clientsClaim: true,
+        skipWaiting: true,
+      },
       manifest: {
         name: "Anime Pillow",
-        short_name: "AnimePillow",
+        short_name: "animePillowApp",
         start_url: "/",
         display: "standalone",
         background_color: "#ffffff",
@@ -30,15 +28,6 @@ export default defineConfig({
             type: "image/png",
           },
         ],
-      },
-      devOptions: {
-        enabled: true, // allows PWA preview in dev
-        type: "module",
-        navigateFallback: "/",
-        sdm: {
-          screenshot: true,
-          form_factor: "wide", // desktop
-        },
       },
     }),
   ],
