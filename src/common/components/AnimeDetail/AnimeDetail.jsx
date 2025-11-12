@@ -56,24 +56,24 @@ export default function AnimeDetail() {
     window.scrollTo(0, 0);
   }, [id]);
 
-  const showAside = anime ? <AsideFigure anime={anime} /> : <SkeletonCard />;
-  const showMain = anime ? <MainFigure anime={anime} /> : <SkeletonCard />;
+  const backToLabel = localPath.pathname.includes("/anime")
+    ? "Anime"
+    : "Movies";
 
   return (
     <div className='max-w-7xl mx-auto rounded-2xl sm:shadow p-5 sm:pt-10 pt-0 mb-10 transition duration-300'>
       <Link to={localPath.pathname.includes("/anime") ? "/anime" : "/movies"}>
         <p className='flex items-center gap-2 text-lg font-semibold text-accent hover:text-base-300 transition mb-5 md:mb-2'>
-          <IoMdArrowRoundBack /> Back to{" "}
-          {localPath.pathname.includes("/anime") ? "Anime" : "Movies"}
+          <IoMdArrowRoundBack /> Back to {backToLabel}
         </p>
       </Link>
 
       <div className='grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-4 relative'>
         <div className='col-span-1'>
-          {loading && !error ? <SkeletonCard /> : showAside}
+          {loading && !error ? <SkeletonCard /> : <AsideFigure anime={anime} />}
         </div>
         <div className='sm:col-span-2'>
-          {loading && !error ? <SkeletonCard /> : showMain}
+          {loading && !error ? <SkeletonCard /> : <MainFigure anime={anime} />}
         </div>
       </div>
 
