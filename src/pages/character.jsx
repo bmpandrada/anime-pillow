@@ -1,22 +1,30 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import AsideFigure from "../common/components/AsideFigure";
-import SpinnerLoading from "../common/components/Loaders/SpinnerLoader";
 import { animateTitle } from "../common/hooks/animateTitle";
+import SkeletonCard from "../common/components/Loaders/SkeletonCard";
 
 export default function Character() {
   const { id } = useParams();
   const [char, setChar] = useState(null);
-  const [chars, setChars] = useState(null);
+  const [chars, setChars] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isActiveIndex, setActiveIndex] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
+    animateTitle(".pillow");
+  }, []);
+
+  useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
+      setError(false);
+
       try {
         const cachedChar = localStorage.getItem(`charData_${id}`);
         const cachedChars = localStorage.getItem(`charsData_${id}`);
@@ -27,7 +35,6 @@ export default function Character() {
           setLoading(false);
           return;
         }
-
         const resChar = await fetch(
           `https://api.jikan.moe/v4/characters/${id}`,
         );
@@ -47,8 +54,9 @@ export default function Character() {
 
         localStorage.setItem(`charData_${id}`, JSON.stringify(dataChar.data));
         localStorage.setItem(`charsData_${id}`, JSON.stringify(dataChars.data));
-      } catch (error) {
-        console.error("Fetch error:", error.message);
+      } catch (err) {
+        console.error("Fetch error:", err.message);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -57,30 +65,33 @@ export default function Character() {
     fetchData();
   }, [id]);
 
-  useEffect(() => {
-    animateTitle(".pillow");
-  }, []);
-
-  if (loading) {
-    return <SpinnerLoading />;
-  }
+  const showAsideFigure =
+    !loading && char ? <AsideFigure anime={char} /> : <SkeletonCard />;
 
   return (
     <div className='max-w-7xl mx-auto rounded-2xl sm:shadow sm:p-5 sm:pt-10 pt-0 mb-10 transition duration-300'>
       <div className='grid sm:grid-cols-4 gap-4'>
-        <div className='col-span-1'>
-          <AsideFigure anime={char} />
-        </div>
+        <div className='col-span-1'>{showAsideFigure}</div>
         <div className='rounded px-5 sm:col-span-3'>
           <h2 className='text-base-400 text-2xl font-extrabold mb-2'>
-            Name: <span className='pillow text-warning'>{char.name}</span>
+            Name:{" "}
+            <span className='pillow text-warning'>
+              {char?.name || "Unknown"}
+            </span>
           </h2>
           <p className='font-bold text-base-300'>
-            Role: <span className='text-warning'>{chars[0].role}</span>
+            Role:{" "}
+            <span className='text-warning'>
+              {chars?.[0]?.role || "Unknown"}
+            </span>
           </p>
           <h2 className='font-bold text-base-300'>
-            Title: <span className='text-warning'>{chars[0].anime.title}</span>
+            Title:{" "}
+            <span className='text-warning'>
+              {chars?.[0]?.anime?.title || "Unknown"}
+            </span>
           </h2>
+
           {char?.about ? (
             <h1 className='font-montserrat font-semibold opacity-70'>
               {char.about}
@@ -93,10 +104,10 @@ export default function Character() {
             </div>
           )}
 
-          {chars.length > 0 ? (
+          {Array.isArray(chars) && chars.length > 0 ? (
             <>
               <div className='divider divider-neutral'>
-                <h1 className='text-2xl  text-accent antialiased font-semibold font-momo-signature'>
+                <h1 className='text-2xl text-accent antialiased font-semibold font-momo-signature'>
                   Anime
                 </h1>
               </div>
@@ -115,10 +126,9 @@ export default function Character() {
                       <img
                         src={item.anime.images.webp.large_image_url}
                         alt={item.anime.title}
-                        className={`w-full object-cover transform transition-transform duration-300 
-                           ${
-                             isActiveIndex === index ? "scale-110" : ""
-                           } group-hover:scale-105`}
+                        className={`w-full object-cover transform transition-transform duration-300 ${
+                          isActiveIndex === index ? "scale-110" : ""
+                        } group-hover:scale-105`}
                       />
                     </figure>
                     <div className='card-body'>
@@ -140,7 +150,9 @@ export default function Character() {
               </div>
             </>
           ) : (
-            " "
+            <p className='text-center text-error mt-5'>
+              No anime data available
+            </p>
           )}
         </div>
       </div>
