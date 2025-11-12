@@ -61,11 +61,29 @@ export default function AnimeDetail() {
         </p>
       </Link>
       <div className='grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-4 relative'>
-        {loading ? <SkeletonCard /> : <AsideFigure anime={anime} />}
+        {loading && anime ? (
+          <div className='col-span-1'>
+            <SkeletonCard />
+          </div>
+        ) : (
+          <AsideFigure anime={anime} />
+        )}
 
-        {loading ? <SkeletonCard /> : <MainFigure anime={anime} />}
+        {loading && anime ? (
+          <div className='sm:col-span-2'>
+            <SkeletonCard />
+          </div>
+        ) : (
+          <MainFigure anime={anime} />
+        )}
       </div>
-      <CharacterCards char={char} loading={loading} />
+      {loading && char ? (
+        <div className='mt-5 col-span-1'>
+          <SkeletonCard />
+        </div>
+      ) : (
+        <CharacterCards char={char} loading={loading} />
+      )}
     </div>
   );
 }
