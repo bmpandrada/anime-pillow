@@ -107,13 +107,23 @@ export default function Character() {
             " "
           )}
 
-          {Array.isArray(chars) && chars.length > 0 && (
+          {loading ? (
+            // 👉 show skeletons while loading
+            <div className='max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mt-5 mb-10'>
+              {Array.from({
+                length: Array.isArray(chars) ? chars.length : 12,
+              }).map((_, i) => (
+                <SkeletonCard key={i} />
+              ))}
+            </div>
+          ) : Array.isArray(chars) && chars.length > 0 ? (
             <>
               <div className='divider divider-neutral'>
                 <h1 className='text-2xl text-accent antialiased font-semibold font-momo-signature'>
                   Anime
                 </h1>
               </div>
+
               <div className='max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mt-5 mb-10'>
                 {chars.map((item, index) => (
                   <Link
@@ -152,6 +162,11 @@ export default function Character() {
                 ))}
               </div>
             </>
+          ) : (
+            // 👉 when no anime data available or offline
+            <p className='text-center text-error mt-5'>
+              No anime data available
+            </p>
           )}
         </div>
       </div>
