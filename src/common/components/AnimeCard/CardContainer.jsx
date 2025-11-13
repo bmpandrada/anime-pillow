@@ -32,7 +32,7 @@ const CardContainer = ({ item }) => {
           isActiveIndex === item.mal_id ? "scale-105" : ""
         } group-hover:scale-105`}
         loading='lazy'
-        fetchpriority='high'
+        fetchPriority='high'
       />
       <div className='p-4'>
         <h2 className='sm:text-lg font-semibold text-base-900 truncate'>
