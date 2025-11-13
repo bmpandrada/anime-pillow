@@ -129,14 +129,11 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
                 )}
               </div>
               <img
-                src={
-                  item?.images?.webp?.large_image_url ||
-                  item?.images?.webp?.image_url ||
-                  item?.images?.webp?.small_image_url ||
-                  "/background.webp"
-                }
+                src={item?.images?.webp?.image_url || "/background.webp"}
+                loading='lazy'
+                decoding='async'
                 alt={item.title || "anime card"}
-                className={`w-full h-full object-cover rounded-box transform transition-transform duration-300
+                className={`w-full h-auto object-cover rounded-box transform transition-transform duration-300
         ${isActiveIndex === index ? "scale-110" : ""} group-hover:scale-110`}
               />
               <p

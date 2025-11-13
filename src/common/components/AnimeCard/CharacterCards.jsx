@@ -37,6 +37,7 @@ const CharacterCards = ({ char = [], loading }) => {
                     className={`w-50 object-cover transform transition-transform duration-300 ${
                       isActiveIndex === c.character?.mal_id ? "scale-110" : ""
                     } group-hover:scale-110`}
+                    loading='lazy'
                   />
                 </figure>
                 <div className='card-body'>

@@ -31,6 +31,7 @@ const CardContainer = ({ item }) => {
         className={`w-full h-60 object-cover transform transition-transform duration-300 ${
           isActiveIndex === item.mal_id ? "scale-105" : ""
         } group-hover:scale-105`}
+        loading='lazy'
       />
       <div className='p-4'>
         <h2 className='sm:text-lg font-semibold text-base-900 truncate'>
