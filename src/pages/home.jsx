@@ -3,7 +3,6 @@ import { useAnime } from "../common/context/ContextApi";
 import SkeletonCard from "../common/components/Loaders/SkeletonCard";
 import FeaturedCard from "../common/components/AnimeCard/FeaturedCard";
 import TitleDivider from "../common/components/TitleDivider";
-import MetaTags from "../common/hooks/MetaTags";
 
 const HomePage = () => {
   const { anime, character, upcomming, loading } = useAnime();
@@ -20,12 +19,27 @@ const HomePage = () => {
 
   return (
     <>
-      <MetaTags
-        title='Welcome | TopAnimePillow'
-        description='Welcome to top anime pillow page'
-        image='https://anime-pillow.vercel.app/icons/icon-192x192.png'
-        name='TopAnimePillow'
+      <title>Welcome | TopAnimePillow</title>
+      <meta name='description' content='Top Anime Pillow — BMPA' />
+      <meta
+        property='og:description'
+        content='Welcome to top anime pillow page'
       />
+      <meta property='og:type' content='website' />
+      <meta property='og:url' content='https://anime-pillow.vercel.app/anime' />
+      <meta
+        property='og:image'
+        content='https://anime-pillow.vercel.app/icons/icon-192x192.png'
+      />
+
+      <meta property='og:title' content='Welcome | TopAnimePillow' />
+      <meta name='TopAnimePillow' content='Welcome to top anime pillow page' />
+      <meta
+        name='keywords'
+        content='Anime, Anime streaming, Anime online, Anime streaming sites, Best anime, Best anime movies, Character, Manga, Anime movies, Anime series, Japanese anime'
+      />
+      <meta name='author' content='BMPA' />
+      <link rel='canonical' href='https://anime-pillow.vercel.app/' />
 
       <div className=''>
         {character.length > 0 && <TitleDivider title={"Anime Seasons"} />}

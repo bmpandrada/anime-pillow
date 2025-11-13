@@ -4,7 +4,6 @@ import CardContainer from "../common/components/AnimeCard/CardContainer";
 import Pagination from "../common/components/Navigation/Pagination";
 import SkeletonCard from "../common/components/Loaders/SkeletonCard";
 import AlphabetPagination from "../common/components/Navigation/AlphabetPagination";
-import MetaTags from "../common/hooks/MetaTags";
 
 const AnimePage = () => {
   const {
@@ -38,12 +37,24 @@ const AnimePage = () => {
 
   return (
     <>
-      <MetaTags
-        title='Anime | TopAnimePillow'
-        description='Anime card page'
-        image='https://anime-pillow.vercel.app/icons/icon-192x192.png'
-        name='TopAnimePillow'
+      <title>Anime | TopAnimePillow</title>
+      <meta name='description' content='Top Anime Pillow — BMPA' />
+      <meta property='og:description' content='Top Anime Pillow — BMPA' />
+      <meta property='og:type' content='website' />
+      <meta property='og:url' content='https://anime-pillow.vercel.app/anime' />
+      <meta
+        property='og:image'
+        content='https://anime-pillow.vercel.app/icons/icon-192x192.png'
       />
+
+      <meta property='og:title' content='Anime | TopAnimePillow' />
+      <meta name='TopAnimePillow' content='Anime card page' />
+      <meta
+        name='keywords'
+        content='Anime, Anime streaming, Anime online, Anime streaming sites, Best anime, Best anime movies, Character, Manga, Anime movies, Anime series, Japanese anime'
+      />
+      <meta name='author' content='BMPA' />
+      <link rel='canonical' href='https://anime-pillow.vercel.app/' />
 
       <div className='px-5 sm:px-10'>
         <AlphabetPagination

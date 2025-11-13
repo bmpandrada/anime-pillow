@@ -1,7 +1,6 @@
 import { useAnime } from "../../context/ContextApi";
 import HeroAnime from "../AnimeCard/Hero/HeroAnime";
 import Header from "../Header";
-import { HelmetProvider } from "react-helmet-async";
 import Footer from "../Navigation/Footer";
 import Nav from "../Navigation/Nav";
 
@@ -11,19 +10,17 @@ const Layout = ({ children }) => {
   const displayedAnime = upcomming;
 
   return (
-    <HelmetProvider>
-      <div className='flex flex-col min-h-screen'>
-        <Header marginHeight={"mb-0"} />
-        <HeroAnime displayedAnime={displayedAnime} />
-        <div className='flex-1 max-w-7xl w-full mx-auto'>
-          <div className='mt-5 text-center w-full mx-auto'>
-            <Nav />
-          </div>
-          {children}
+    <div className='flex flex-col min-h-screen'>
+      <Header marginHeight={"mb-0"} />
+      <HeroAnime displayedAnime={displayedAnime} />
+      <div className='flex-1 max-w-7xl w-full mx-auto'>
+        <div className='mt-5 text-center w-full mx-auto'>
+          <Nav />
         </div>
-        <Footer />
+        {children}
       </div>
-    </HelmetProvider>
+      <Footer />
+    </div>
   );
 };
 

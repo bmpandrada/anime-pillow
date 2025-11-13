@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router";
 import AsideFigure from "../common/components/AsideFigure";
 import { animateTitle } from "../common/hooks/animateTitle";
 import SkeletonCard from "../common/components/Loaders/SkeletonCard";
-import MetaTags from "../common/hooks/MetaTags";
 
 export default function Character() {
   const { id } = useParams();
@@ -76,12 +75,24 @@ export default function Character() {
 
   return (
     <>
-      <MetaTags
-        title='Character | TopAnimePillow'
-        description='Character card page'
-        image='https://anime-pillow.vercel.app/icons/icon-192x192.png'
-        name='TopAnimePillow'
+      <title>Character | TopAnimePillow</title>
+      <meta name='description' content='Top Anime Pillow — BMPA' />
+      <meta property='og:description' content='Character card page' />
+      <meta property='og:type' content='website' />
+      <meta property='og:url' content='https://anime-pillow.vercel.app/anime' />
+      <meta
+        property='og:image'
+        content='https://anime-pillow.vercel.app/icons/icon-192x192.png'
       />
+
+      <meta property='og:title' content='Character | TopAnimePillow' />
+      <meta name='TopAnimePillow' content='Character card page' />
+      <meta
+        name='keywords'
+        content='Anime, Anime streaming, Anime online, Anime streaming sites, Best anime, Best anime movies, Character, Manga, Anime movies, Anime series, Japanese anime'
+      />
+      <meta name='author' content='BMPA' />
+      <link rel='canonical' href='https://anime-pillow.vercel.app/' />
 
       <div className='max-w-7xl mx-auto rounded-2xl sm:shadow sm:p-5 sm:pt-10 pt-0 mb-10 transition duration-300'>
         <div className='grid sm:grid-cols-4 gap-4'>

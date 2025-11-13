@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Link } from "react-router";
-import MetaTags from "../common/hooks/MetaTags";
 
 const NotFoundPage = () => {
   useEffect(() => {
@@ -9,12 +8,19 @@ const NotFoundPage = () => {
 
   return (
     <>
-      <MetaTags
-        title='Not Found | TopAnimePillow'
-        description={`We couldn't find that page`}
-        image='https://anime-pillow.vercel.app/icons/icon-192x192.png'
-        name='TopAnimePillow'
+      <title>Not Found | TopAnimePillow</title>
+      <meta name='description' content='Top Anime Pillow — BMPA' />
+      <meta property='og:type' content='website' />
+      <meta property='og:url' content='https://anime-pillow.vercel.app/anime' />
+      <meta
+        property='og:image'
+        content='https://anime-pillow.vercel.app/icons/icon-192x192.png'
       />
+
+      <meta property='og:title' content='Not Found | TopAnimePillow' />
+      <meta name='TopAnimePillow' content='Not Found' />
+      <meta name='author' content='BMPA' />
+      <link rel='canonical' href='https://anime-pillow.vercel.app/' />
 
       <div className='w-full h-screen flex items-center justify-center'>
         <div className='max-w-4xl text-center p-2 mb-52'>

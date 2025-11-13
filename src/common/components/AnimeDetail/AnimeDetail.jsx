@@ -5,7 +5,6 @@ import AsideFigure from "../AsideFigure";
 import MainFigure from "../MainFigure";
 import CharacterCards from "../AnimeCard/CharacterCards";
 import SkeletonCard from "../Loaders/SkeletonCard";
-import MetaTags from "../../hooks/MetaTags";
 
 export default function AnimeDetail() {
   const { id } = useParams();
@@ -65,12 +64,25 @@ export default function AnimeDetail() {
 
   return (
     <>
-      <MetaTags
-        title={`${backToLabel} | TopAnimePillow`}
-        description='Welcome to top anime pillow page'
-        image='https://anime-pillow.vercel.app/icons/icon-192x192.png'
-        name='TopAnimePillow'
+      <title>{`${backToLabel} | TopAnimePillow`}</title>
+      <meta name='description' content='Welcome to top anime pillow page' />
+      <meta property='og:description' content='Top Anime Pillow — BMPA' />
+      <meta property='og:type' content='website' />
+      <meta property='og:url' content='https://anime-pillow.vercel.app/anime' />
+      <meta
+        property='og:image'
+        content='https://anime-pillow.vercel.app/icons/icon-192x192.png'
       />
+
+      <meta property='og:title' content={`${backToLabel} | TopAnimePillow`} />
+      <meta name='TopAnimePillow' content='Anime card page detail' />
+      <meta
+        name='keywords'
+        content='Anime, Anime streaming, Anime online, Anime streaming sites, Best anime, Best anime movies, Character, Manga, Anime movies, Anime series, Japanese anime'
+      />
+      <meta name='author' content='BMPA' />
+      <link rel='canonical' href='https://anime-pillow.vercel.app/' />
+
       <div className='max-w-7xl mx-auto rounded-2xl sm:shadow p-5 sm:pt-10 pt-0 mb-10 transition duration-300'>
         <Link
           to={localPath.pathname.includes("/anime") ? "/anime" : "/movies"}
