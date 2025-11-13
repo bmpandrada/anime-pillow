@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaSquareGithub, FaLinkedin } from "react-icons/fa6";
 
 const HeroSocialLinks = () => {
   return (
@@ -6,11 +6,16 @@ const HeroSocialLinks = () => {
       <a
         href={`https://www.linkedin.com/in/bruce-michael-andrada-565b561a4/`}
         target='_blank'
+        aria-label='linkedin'
       >
         <FaLinkedin className='text-2xl hover:text-blue-400 transition' />
       </a>
-      <a href={`https://github.com/bmpandrada`} target='_blank'>
-        <FaGithub className='text-2xl hover:text-blue-400 transition' />
+      <a
+        href={`https://github.com/bmpandrada`}
+        target='_blank'
+        aria-label='github'
+      >
+        <FaSquareGithub className='text-2xl hover:text-blue-400 transition' />
       </a>
     </div>
   );

@@ -3,6 +3,7 @@ import { useAnime } from "../common/context/ContextApi";
 import SkeletonCard from "../common/components/Loaders/SkeletonCard";
 import FeaturedCard from "../common/components/AnimeCard/FeaturedCard";
 import TitleDivider from "../common/components/TitleDivider";
+import MetaTags from "../common/hooks/MetaTags";
 
 const HomePage = () => {
   const { anime, character, upcomming, loading } = useAnime();
@@ -18,56 +19,65 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className=''>
-      {character.length > 0 && <TitleDivider title={"Anime Seasons"} />}
-      <div className='mt-5'>
-        {loading ? (
-          Array.from({ length: 3 }).map((_, i) => <SkeletonCard key={i} />)
-        ) : (
-          <>
-            {displayedAnime.length === 0 ? (
-              <div className='flex justify-center items-center min-h-[60vh] col-span-full'>
-                <p className='text-center font-bold text-4xl text-gray-600'>
-                  Not Found
-                </p>
-              </div>
-            ) : (
-              <>
-                <FeaturedCard
-                  items={currentAnime}
-                  custom_link={"/anime"}
-                  pause={true}
-                />
-                <>
-                  {displayedAnime.length > 0 && (
-                    <TitleDivider title={"Coming Soon"} />
-                  )}
+    <>
+      <MetaTags
+        title='Welcome | TopAnimePillow'
+        description='Welcome to top anime pillow page'
+        image='https://anime-pillow.vercel.app/icons/icon-192x192.png'
+        name='TopAnimePillow'
+      />
 
-                  <FeaturedCard
-                    pause={false}
-                    items={upcomming}
-                    custom_link={"/anime"}
-                  />
-                </>
+      <div className=''>
+        {character.length > 0 && <TitleDivider title={"Anime Seasons"} />}
+        <div className='mt-5'>
+          {loading ? (
+            Array.from({ length: 3 }).map((_, i) => <SkeletonCard key={i} />)
+          ) : (
+            <>
+              {displayedAnime.length === 0 ? (
+                <div className='flex justify-center items-center min-h-[60vh] col-span-full'>
+                  <p className='text-center font-bold text-4xl text-gray-600'>
+                    Not Found
+                  </p>
+                </div>
+              ) : (
                 <>
-                  {character.length > 0 && (
-                    <TitleDivider title={"Top Characters"} />
-                  )}
-                  <div className='mt-5'></div>
                   <FeaturedCard
-                    items={character}
-                    custom_link={"/characters"}
+                    items={currentAnime}
+                    custom_link={"/anime"}
                     pause={true}
                   />
-                </>
-              </>
-            )}
-          </>
-        )}
-      </div>
+                  <>
+                    {displayedAnime.length > 0 && (
+                      <TitleDivider title={"Coming Soon"} />
+                    )}
 
-      <div className='mb-20'></div>
-    </div>
+                    <FeaturedCard
+                      pause={false}
+                      items={upcomming}
+                      custom_link={"/anime"}
+                    />
+                  </>
+                  <>
+                    {character.length > 0 && (
+                      <TitleDivider title={"Top Characters"} />
+                    )}
+                    <div className='mt-5'></div>
+                    <FeaturedCard
+                      items={character}
+                      custom_link={"/characters"}
+                      pause={true}
+                    />
+                  </>
+                </>
+              )}
+            </>
+          )}
+        </div>
+
+        <div className='mb-20'></div>
+      </div>
+    </>
   );
 };
 

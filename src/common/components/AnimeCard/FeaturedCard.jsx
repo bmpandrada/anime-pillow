@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
-import { FaStar } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
+import { FaStar, FaHeart } from "react-icons/fa6";
 
 const FeaturedCard = ({ items, custom_link, pause }) => {
   const carouselRef = useRef(null);
@@ -98,6 +97,7 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
               className='carousel-item sm:w-1/4 md:w-1/5 w-1/3 h-50 sm:h-90 snap-center rounded-box flex-shrink-0 overflow-hidden relative group'
               onTouchStart={() => setActiveIndex(index)}
               onTouchEnd={() => setTimeout(() => setActiveIndex(null), 50)}
+              aria-label={`go to page ${item?.title_english || item?.name}`}
             >
               <div className='absolute right-0 top-0 bg-gradient-to-l from-black/100 pb-1 pr-2 via-black/40 to-transparent z-10'>
                 {item?.favorites && (
@@ -135,7 +135,7 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
                   item?.images?.webp?.small_image_url ||
                   "/background.webp"
                 }
-                alt={item.title}
+                alt={item.title || "anime card"}
                 className={`w-full h-full object-cover rounded-box transform transition-transform duration-300
         ${isActiveIndex === index ? "scale-110" : ""} group-hover:scale-110`}
               />

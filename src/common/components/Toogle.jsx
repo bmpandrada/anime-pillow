@@ -1,5 +1,4 @@
-import { WiDaySunny } from "react-icons/wi";
-import { AiOutlineMoon } from "react-icons/ai";
+import { FaSun, FaMoon } from "react-icons/fa6";
 import { useAnime } from "../context/ContextApi";
 
 const ThemeToggle = () => {
@@ -15,12 +14,9 @@ const ThemeToggle = () => {
         onChange={toggleTheme}
         checked={theme === "mytheme"}
         className='toggle'
+        placeholder='Theme'
       />
-      {theme === "mytheme" ? (
-        <AiOutlineMoon size={20} />
-      ) : (
-        <WiDaySunny size={20} />
-      )}
+      {theme === "mytheme" ? <FaMoon size={20} /> : <FaSun size={20} />}
     </label>
   );
 };

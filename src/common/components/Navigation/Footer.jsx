@@ -1,8 +1,5 @@
+import { FaBook, FaHouse, FaVideo, FaTableList } from "react-icons/fa6";
 import { NavLink } from "react-router";
-import { FaBookReader } from "react-icons/fa";
-import { IoHome } from "react-icons/io5";
-import { BiSolidCameraMovie } from "react-icons/bi";
-import { MdMovieCreation } from "react-icons/md";
 
 const Footer = () => {
   return (
@@ -15,7 +12,7 @@ const Footer = () => {
           to={"/"}
           className={({ isActive }) => (isActive ? "dock-active" : "")}
         >
-          <IoHome />
+          <FaHouse />
           <span className='dock-label'>Home</span>
         </NavLink>
 
@@ -23,7 +20,7 @@ const Footer = () => {
           to={"/anime"}
           className={({ isActive }) => (isActive ? "dock-active" : "")}
         >
-          <MdMovieCreation />
+          <FaTableList />
           <span className='dock-label'>Anime</span>
         </NavLink>
 
@@ -31,7 +28,7 @@ const Footer = () => {
           to={"/movies"}
           className={({ isActive }) => (isActive ? "dock-active" : "")}
         >
-          <BiSolidCameraMovie />
+          <FaVideo />
           <span className='dock-label'>Movie</span>
         </NavLink>
 
@@ -39,7 +36,7 @@ const Footer = () => {
           to={"/about"}
           className={({ isActive }) => (isActive ? "dock-active" : "")}
         >
-          <FaBookReader />
+          <FaBook />
           <span className='dock-label'>About</span>
         </NavLink>
       </div>

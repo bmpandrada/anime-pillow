@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router";
+import { useLocation } from "react-router";
 import SortOutout from "../SortOutput";
 import FilterInput from "../FilterInput";
 import SelectOption from "../SelectOption";
