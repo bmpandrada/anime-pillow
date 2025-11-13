@@ -13,6 +13,10 @@ export default function Character() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     animateTitle(".pillow");
   }, []);
 

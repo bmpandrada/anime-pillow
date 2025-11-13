@@ -1,8 +1,6 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useAnime } from "../common/context/ContextApi";
-import SkeletonCard from "../common/components/Loaders/SkeletonCard";
 import TitleDivider from "../common/components/TitleDivider";
-import SpinnerLoading from "../common/components/Loaders/SpinnerLoader";
 import { SuspenseSkeleton } from "../common/hooks/SuspenseSkeleton";
 
 const FeaturedCard = React.lazy(() =>
@@ -16,6 +14,10 @@ const HomePage = () => {
   const displayedAnime = anime.slice(0, perPage);
   const displayedCharacters = character.slice(0, perPage);
   const displayedUpcomming = upcomming.slice(0, perPage);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

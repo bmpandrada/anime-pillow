@@ -24,6 +24,10 @@ const MoviePage = () => {
   const firstIndex = lastIndex - perPage;
   const pagedMovies = currentMovie.slice(firstIndex, lastIndex);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <title>Movie | TopAnimePillow</title>
