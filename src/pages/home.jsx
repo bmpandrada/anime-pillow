@@ -1,18 +1,21 @@
-import { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useAnime } from "../common/context/ContextApi";
 import SkeletonCard from "../common/components/Loaders/SkeletonCard";
-import FeaturedCard from "../common/components/AnimeCard/FeaturedCard";
 import TitleDivider from "../common/components/TitleDivider";
+import SpinnerLoading from "../common/components/Loaders/SpinnerLoader";
+
+const FeaturedCard = React.lazy(() =>
+  import("../common/components/AnimeCard/FeaturedCard"),
+);
 
 const HomePage = () => {
   const { anime, character, upcomming, loading } = useAnime();
-  const [currentPage] = useState(1);
-  const perPage = 20;
+  const perPage = 12;
 
-  const displayedAnime = anime;
+  const displayedAnime = anime.slice(0, perPage);
+  const displayedCharacters = character.slice(0, perPage);
+  const displayedUpcomming = upcomming.slice(0, perPage);
 
-  const featuredAnime = currentPage * perPage;
-  const currentAnime = displayedAnime.slice(0, featuredAnime);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -56,32 +59,38 @@ const HomePage = () => {
                 </div>
               ) : (
                 <>
-                  <FeaturedCard
-                    items={currentAnime}
-                    custom_link={"/anime"}
-                    pause={true}
-                  />
+                  <Suspense fallback={<SpinnerLoading />}>
+                    <FeaturedCard
+                      items={displayedAnime}
+                      custom_link='/anime'
+                      pause={true}
+                    />
+                  </Suspense>
                   <>
-                    {displayedAnime.length > 0 && (
+                    {displayedUpcomming.length > 0 && (
                       <TitleDivider title={"Coming Soon"} />
                     )}
 
-                    <FeaturedCard
-                      pause={false}
-                      items={upcomming}
-                      custom_link={"/anime"}
-                    />
+                    <Suspense fallback={<SpinnerLoading />}>
+                      <FeaturedCard
+                        items={displayedUpcomming}
+                        custom_link='/anime'
+                        pause={false}
+                      />
+                    </Suspense>
                   </>
                   <>
-                    {character.length > 0 && (
+                    {displayedCharacters.length > 0 && (
                       <TitleDivider title={"Top Characters"} />
                     )}
                     <div className='mt-5'></div>
-                    <FeaturedCard
-                      items={character}
-                      custom_link={"/characters"}
-                      pause={true}
-                    />
+                    <Suspense fallback={<SpinnerLoading />}>
+                      <FeaturedCard
+                        items={displayedCharacters}
+                        custom_link='/characters'
+                        pause={true}
+                      />
+                    </Suspense>
                   </>
                 </>
               )}

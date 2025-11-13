@@ -1,32 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import HeroBtn from "./HeroBtn";
 import HeroBroadCast from "./HeroBroadCast";
 
 const HeroAnime = ({ displayedAnime }) => {
-  const [titleHeader, setTitleHeader] = useState("");
-  const [broadCast, setBroadCast] = useState(null);
-  const [banner, setBanner] = useState(null);
-  const [linkPage, setLinkPage] = useState(null);
-  const [synopsis, setSynopsis] = useState("");
-  const [offset, setOffset] = useState(0); // parallax offset
+  const [offset, setOffset] = useState(0);
+
+  const bannerItems = useMemo(
+    () => displayedAnime.slice(0, 4),
+    [displayedAnime],
+  );
+
+  const anime = React.useMemo(() => {
+    if (!bannerItems?.length) return null;
+    const randomIndex = Math.floor(Math.random() * bannerItems.length);
+    return bannerItems[randomIndex];
+  }, [bannerItems]);
+
+  if (!anime) return null;
+
+  const banner = anime?.images?.webp?.image_url || "/wallpper.webp";
+  const titleHeader = anime?.title_english || anime?.title || "Untitled Anime";
+  const synopsis = anime?.synopsis || "No synopsis available.";
+  const broadCast = anime?.broadcast;
+  const linkPage = anime?.mal_id;
 
   useEffect(() => {
-    if (!displayedAnime?.length) return;
-
-    const randomIndex = Math.floor(Math.random() * displayedAnime.length);
-    const anime = displayedAnime[randomIndex];
-
-    setTitleHeader(anime?.title_english || anime?.title || "Untitled Anime");
-    setBroadCast(anime?.broadcast);
-    setBanner(anime?.images?.webp?.image_url || "/wallpper.webp");
-    setLinkPage(anime?.mal_id);
-    setSynopsis(anime?.synopsis || "No synopsis available.");
-  }, [displayedAnime]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setOffset(window.scrollY * 0.3);
-    };
+    const handleScroll = () => setOffset(window.scrollY * 0.3);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -37,7 +36,7 @@ const HeroAnime = ({ displayedAnime }) => {
         src={banner}
         alt={titleHeader}
         fetchPriority='high'
-        className='absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out scale-105'
+        className='absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out'
         style={{ transform: `translateY(${offset}px)` }}
       />
 
