@@ -28,13 +28,13 @@ const CharacterCards = ({ char = [], loading }) => {
                 onTouchStart={() => handleTouchStart(c.character?.mal_id)}
                 onTouchEnd={handleTouchEnd}
               >
-                <figure>
+                <figure className='aspect-[3/4]'>
                   <img
                     src={
                       c.character?.images?.webp?.image_url || "/wallpper.webp"
                     }
                     alt={c.character?.name || "Character Name"}
-                    className={`w-50 object-cover transform transition-transform duration-300 ${
+                    className={`w-full h-full object-cover transform transition-transform duration-300 ${
                       isActiveIndex === c.character?.mal_id ? "scale-110" : ""
                     } group-hover:scale-110`}
                     loading='lazy'

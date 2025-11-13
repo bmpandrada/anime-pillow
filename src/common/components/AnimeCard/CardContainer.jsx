@@ -26,7 +26,7 @@ const CardContainer = ({ item }) => {
       onTouchEnd={handleTouchEnd}
     >
       <img
-        src={item.images.webp.large_image_url || "/background.webp"}
+        src={item.images.webp.large_image_url || "/wallpper.webp"}
         alt={item.title || "Anime Title"}
         className={`w-full h-60 object-cover transform transition-transform duration-300 ${
           isActiveIndex === item.mal_id ? "scale-105" : ""
