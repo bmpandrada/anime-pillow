@@ -1,4 +1,5 @@
-import { FaSun, FaMoon } from "react-icons/fa6";
+import { FaSun } from "@react-icons/all-files/fa/FaSun";
+import { FaMoon } from "@react-icons/all-files/fa/FaMoon";
 import { useAnime } from "../context/ContextApi";
 import { useCallback } from "react";
 
@@ -19,7 +20,7 @@ const ThemeToggle = () => {
         className='toggle'
         placeholder='Theme'
       />
-      {theme === "mytheme" ? <FaMoon size={20} /> : <FaSun size={20} />}
+      {theme === "mytheme" ? <FaMoon size={16} /> : <FaSun size={16} />}
     </label>
   );
 };

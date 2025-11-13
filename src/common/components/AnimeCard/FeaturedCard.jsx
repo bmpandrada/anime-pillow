@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
-import { FaStar, FaHeart } from "react-icons/fa6";
+import { FaHeart } from "@react-icons/all-files/fa/FaHeart";
+import { FaStar } from "@react-icons/all-files/fa/FaStar";
 
 const FeaturedCard = ({ items, custom_link, pause }) => {
   const carouselRef = useRef(null);

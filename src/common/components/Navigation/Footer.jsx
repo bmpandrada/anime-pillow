@@ -1,5 +1,9 @@
 import React, { useCallback } from "react";
-import { FaBook, FaHouse, FaVideo, FaTableList } from "react-icons/fa6";
+import { FaBookReader } from "@react-icons/all-files/fa/FaBookReader";
+import { FaHome } from "@react-icons/all-files/fa/FaHome";
+import { FaVideo } from "@react-icons/all-files/fa/FaVideo";
+import { FaListAlt } from "@react-icons/all-files/fa/FaListAlt";
+
 import { NavLink } from "react-router";
 
 const Footer = () => {
@@ -15,12 +19,12 @@ const Footer = () => {
       </div>
       <div className='dock dock-xs sm:hidden z-50 bg-base-200 text-base-400'>
         <NavLink to={"/"} className={activeLink}>
-          <FaHouse />
+          <FaHome />
           <span className='dock-label'>Home</span>
         </NavLink>
 
         <NavLink to={"/anime"} className={activeLink}>
-          <FaTableList />
+          <FaListAlt />
           <span className='dock-label'>Anime</span>
         </NavLink>
 
@@ -30,7 +34,7 @@ const Footer = () => {
         </NavLink>
 
         <NavLink to={"/about"} className={activeLink}>
-          <FaBook />
+          <FaBookReader />
           <span className='dock-label'>About</span>
         </NavLink>
       </div>

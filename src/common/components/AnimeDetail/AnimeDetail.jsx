@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router";
-import { FaCircleArrowLeft } from "react-icons/fa6";
+import { FaArrowAltCircleLeft } from "@react-icons/all-files/fa/FaArrowAltCircleLeft";
+
 import AsideFigure from "../AsideFigure";
 import MainFigure from "../MainFigure";
 import CharacterCards from "../AnimeCard/CharacterCards";
@@ -99,7 +100,7 @@ export default function AnimeDetail() {
             aria-label={backToLabel}
           >
             <p className='flex items-center  gap-2 text-lg font-semibold text-accent hover:text-accent/50 transition'>
-              <FaCircleArrowLeft /> Back to {backToLabel}
+              <FaArrowAltCircleLeft /> Back to {backToLabel}
             </p>
           </Link>
         </div>

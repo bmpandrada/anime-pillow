@@ -1,5 +1,6 @@
 import React from "react";
-import { FaSquareGithub, FaLinkedin } from "react-icons/fa6";
+import { FaLinkedin } from "@react-icons/all-files/fa/FaLinkedin";
+import { FaGithubSquare } from "@react-icons/all-files/fa/FaGithubSquare";
 
 const HeroSocialLinks = () => {
   return (
@@ -18,7 +19,7 @@ const HeroSocialLinks = () => {
         aria-label='github'
         rel='noopener noreferrer'
       >
-        <FaSquareGithub className='text-2xl hover:text-blue-400 transition' />
+        <FaGithubSquare className='text-2xl hover:text-blue-400 transition' />
       </a>
     </div>
   );
