@@ -18,7 +18,7 @@ const HeroAnime = ({ displayedAnime }) => {
 
     setTitleHeader(anime?.title_english || anime?.title || "Untitled Anime");
     setBroadCast(anime?.broadcast);
-    setBanner(anime?.images?.webp?.image_url || "/background.webp");
+    setBanner(anime?.images?.webp?.image_url || "/wallpper.webp");
     setLinkPage(anime?.mal_id);
     setSynopsis(anime?.synopsis || "No synopsis available.");
   }, [displayedAnime]);
