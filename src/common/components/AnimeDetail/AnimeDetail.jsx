@@ -5,14 +5,22 @@ import AsideFigure from "../AsideFigure";
 import MainFigure from "../MainFigure";
 import CharacterCards from "../AnimeCard/CharacterCards";
 import SkeletonCard from "../Loaders/SkeletonCard";
+import Pagination from "../Navigation/Pagination";
 
 export default function AnimeDetail() {
   const { id } = useParams();
   const [anime, setAnime] = useState(null);
-  const [char, setChar] = useState(null);
+  const [char, setChar] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false); // track fetch failure
   const localPath = useLocation();
+  const [currentPage, setCurrentPage] = useState(1);
+  const perPage = 12;
+
+  const totalPage = Math.ceil(char.length / perPage);
+  const lastIndex = currentPage * perPage;
+  const firstIndex = lastIndex - perPage;
+  const animeCharacters = char.slice(firstIndex, lastIndex);
 
   useEffect(() => {
     let isMounted = true;
@@ -107,16 +115,31 @@ export default function AnimeDetail() {
           </div>
         </div>
 
-        {isLoaded && char?.length > 0 && (
+        {isLoaded && animeCharacters?.length > 0 && (
           <div className='mt-5'>
-            <CharacterCards char={char} />
+            <CharacterCards char={animeCharacters} />
           </div>
         )}
-        {isLoading && !char?.length > 0 && (
+        {isLoading && !animeCharacters?.length > 0 && (
           <div className='mt-5'>
             <SkeletonCard />
           </div>
         )}
+
+        {/* Pagination */}
+        <div className='flex justify-center gap-2 mt-8'>
+          {totalPage > 1 &&
+            Array.from({ length: totalPage }, (_, ibtn) => (
+              <Pagination
+                totalPage={totalPage}
+                ibtn={ibtn}
+                key={ibtn}
+                setCurrentPage={setCurrentPage}
+                currentPage={currentPage}
+                scrollTop={false}
+              />
+            ))}
+        </div>
       </div>
     </>
   );

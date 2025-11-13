@@ -21,19 +21,24 @@ const SelectOption = ({
   );
 
   return (
-    <select
-      name='categories'
-      id='categories'
-      value={selectedCategory}
-      onChange={handleChange}
-      className='select'
-    >
-      <option value='' disabled={true}>
-        Categories
-      </option>
-      <option value=''>All Categories</option>
-      {categoryOptions}
-    </select>
+    <>
+      <label htmlFor='categories' className='sr-only'>
+        categories Anime
+      </label>
+      <select
+        name='categories'
+        id='categories'
+        value={selectedCategory}
+        onChange={handleChange}
+        className='select'
+      >
+        <option value='' disabled={true}>
+          Categories
+        </option>
+        <option value=''>All Categories</option>
+        {categoryOptions}
+      </select>
+    </>
   );
 };
 

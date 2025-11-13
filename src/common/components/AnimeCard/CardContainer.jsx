@@ -32,6 +32,7 @@ const CardContainer = ({ item }) => {
           isActiveIndex === item.mal_id ? "scale-105" : ""
         } group-hover:scale-105`}
         loading='lazy'
+        fetchpriority='high'
       />
       <div className='p-4'>
         <h2 className='sm:text-lg font-semibold text-base-900 truncate'>
@@ -39,15 +40,15 @@ const CardContainer = ({ item }) => {
         </h2>
         <div className='flex items-center gap-2 justify-between'>
           {showEp && (
-            <p className='text-sm font-semibold text-base-300 mt-1 w-50'>
+            <p className='text-sm font-semibold mt-1 w-50'>
               Episodes: <span className=''>{item.episodes || "?"}</span>
             </p>
           )}
-          <p className='text-sm font-semibold text-base-300 mt-1 truncate w-50'>
+          <p className='text-sm font-semibold mt-1 truncate w-50'>
             Genre: <span className=''>{item.genres[0].name || "?"}</span>
           </p>
         </div>
-        <p className='text-yellow-500 font-bold mt-2 sm:text-sm text-xs'>
+        <p className='text-yellow-600 font-bold mt-2 sm:text-md text-sm'>
           ⭐ {item.score?.toFixed(1) || "N/A"}
         </p>
       </div>

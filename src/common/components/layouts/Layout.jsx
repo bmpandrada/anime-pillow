@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useAnime } from "../../context/ContextApi";
 import Header from "../Header";
 import Footer from "../Navigation/Footer";
@@ -14,6 +15,10 @@ const Layout = () => {
     selectedCategory,
     setSelectedCategory,
   } = useAnime();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className='flex flex-col min-h-screen'>

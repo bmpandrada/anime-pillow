@@ -3,6 +3,7 @@ import { useAnime } from "../common/context/ContextApi";
 import SkeletonCard from "../common/components/Loaders/SkeletonCard";
 import TitleDivider from "../common/components/TitleDivider";
 import SpinnerLoading from "../common/components/Loaders/SpinnerLoader";
+import { SuspenseSkeleton } from "../common/hooks/SuspenseSkeleton";
 
 const FeaturedCard = React.lazy(() =>
   import("../common/components/AnimeCard/FeaturedCard"),
@@ -15,10 +16,6 @@ const HomePage = () => {
   const displayedAnime = anime.slice(0, perPage);
   const displayedCharacters = character.slice(0, perPage);
   const displayedUpcomming = upcomming.slice(0, perPage);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <>
@@ -47,53 +44,39 @@ const HomePage = () => {
       <div className=''>
         {character.length > 0 && <TitleDivider title={"Anime Seasons"} />}
         <div className='mt-5'>
-          {loading ? (
-            Array.from({ length: 3 }).map((_, i) => <SkeletonCard key={i} />)
-          ) : (
+          {displayedAnime.length > 0 && (
             <>
-              {displayedAnime.length === 0 ? (
-                <div className='flex justify-center items-center min-h-[60vh] col-span-full'>
-                  <p className='text-center font-bold text-4xl text-gray-600'>
-                    Not Found
-                  </p>
-                </div>
-              ) : (
-                <>
-                  <Suspense fallback={<SpinnerLoading />}>
-                    <FeaturedCard
-                      items={displayedAnime}
-                      custom_link='/anime'
-                      pause={true}
-                    />
-                  </Suspense>
-                  <>
-                    {displayedUpcomming.length > 0 && (
-                      <TitleDivider title={"Coming Soon"} />
-                    )}
+              <SuspenseSkeleton>
+                <FeaturedCard
+                  items={displayedAnime}
+                  custom_link='/anime'
+                  pause={true}
+                />
+              </SuspenseSkeleton>
 
-                    <Suspense fallback={<SpinnerLoading />}>
-                      <FeaturedCard
-                        items={displayedUpcomming}
-                        custom_link='/anime'
-                        pause={false}
-                      />
-                    </Suspense>
-                  </>
-                  <>
-                    {displayedCharacters.length > 0 && (
-                      <TitleDivider title={"Top Characters"} />
-                    )}
-                    <div className='mt-5'></div>
-                    <Suspense fallback={<SpinnerLoading />}>
-                      <FeaturedCard
-                        items={displayedCharacters}
-                        custom_link='/characters'
-                        pause={true}
-                      />
-                    </Suspense>
-                  </>
-                </>
+              {displayedUpcomming.length > 0 && (
+                <TitleDivider title={"Coming Soon"} />
               )}
+
+              <SuspenseSkeleton>
+                <FeaturedCard
+                  items={displayedUpcomming}
+                  custom_link='/anime'
+                  pause={false}
+                />
+              </SuspenseSkeleton>
+
+              {displayedCharacters.length > 0 && (
+                <TitleDivider title={"Top Characters"} />
+              )}
+              <div className='mt-5'></div>
+              <SuspenseSkeleton>
+                <FeaturedCard
+                  items={displayedCharacters}
+                  custom_link='/characters'
+                  pause={true}
+                />
+              </SuspenseSkeleton>
             </>
           )}
         </div>

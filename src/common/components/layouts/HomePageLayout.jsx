@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useAnime } from "../../context/ContextApi";
 import HeroAnime from "../AnimeCard/Hero/HeroAnime";
 import Header from "../Header";
@@ -8,6 +9,10 @@ const Layout = ({ children }) => {
   const { upcomming } = useAnime();
 
   const displayedAnime = upcomming;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className='flex flex-col min-h-screen'>

@@ -10,6 +10,8 @@ const AsideFigure = ({ anime }) => {
           anime?.images.webp?.small_image_url
         }
         alt={anime?.title}
+        fetchPriority='high'
+        loading='lazy'
         className='w-full max-w-xs sm:max-w-sm mx-auto rounded-xl object-contain transition duration-300'
       />
       <figcaption className='flex gap-2 items-center text-sm mx-auto md:mx-0'>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAnime } from "../common/context/ContextApi";
 import CardContainer from "../common/components/AnimeCard/CardContainer";
 import Pagination from "../common/components/Navigation/Pagination";
@@ -30,10 +30,6 @@ const AnimePage = () => {
   const lastIndex = currentPage * perPage;
   const firstIndex = lastIndex - perPage;
   const currentAnime = displayedAnime.slice(firstIndex, lastIndex);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <>
@@ -68,20 +64,16 @@ const AnimePage = () => {
             Array.from({ length: perPage }).map((_, i) => (
               <SkeletonCard key={i} />
             ))
+          ) : displayedAnime.length === 0 ? (
+            <div className='flex justify-center items-center min-h-[60vh] col-span-full'>
+              <p className='text-center font-bold text-4xl text-gray-600'>
+                Not Found
+              </p>
+            </div>
           ) : (
-            <>
-              {displayedAnime.length === 0 ? (
-                <div className='flex justify-center items-center min-h-[60vh] col-span-full'>
-                  <p className='text-center font-bold text-4xl text-gray-600'>
-                    Not Found
-                  </p>
-                </div>
-              ) : (
-                currentAnime.map((item) => (
-                  <CardContainer key={item.mal_id} item={item} />
-                ))
-              )}
-            </>
+            currentAnime.map((item) => (
+              <CardContainer key={item.mal_id} item={item} />
+            ))
           )}
         </div>
 
@@ -95,6 +87,7 @@ const AnimePage = () => {
                 key={ibtn}
                 setCurrentPage={setCurrentPage}
                 currentPage={currentPage}
+                scrollTop={true}
               />
             ))}
         </div>
