@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { FaStar, FaHeart } from "react-icons/fa6";
 
@@ -175,4 +175,4 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
   );
 };
 
-export default FeaturedCard;
+export default React.memo(FeaturedCard);

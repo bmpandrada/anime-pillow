@@ -1,15 +1,16 @@
+import React from "react";
 import { Link } from "react-router";
 
-const HeroBtn = ({ linkPage }) => {
+const HeroBtn = ({ linkPage, label = "Anime info" }) => {
   return (
     <Link
       className='btn btn-accent text-white hover:scale-105 transition-transform duration-300'
       to={`/anime/${linkPage}`}
-      aria-label='Anime info'
+      aria-label={label}
     >
       Anime info
     </Link>
   );
 };
 
-export default HeroBtn;
+export default React.memo(HeroBtn);

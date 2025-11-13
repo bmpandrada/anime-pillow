@@ -1,3 +1,5 @@
+import React from "react";
+
 const AsideFigure = ({ anime }) => {
   return (
     <figure className='flex flex-col gap-2'>
@@ -40,4 +42,4 @@ const AsideFigure = ({ anime }) => {
   );
 };
 
-export default AsideFigure;
+export default React.memo(AsideFigure);

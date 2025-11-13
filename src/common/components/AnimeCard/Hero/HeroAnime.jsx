@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeroBtn from "./HeroBtn";
 import HeroBroadCast from "./HeroBroadCast";
 
@@ -20,13 +20,13 @@ const HeroAnime = ({ displayedAnime }) => {
     setBanner(anime?.images?.webp?.image_url || null);
     setLinkPage(anime?.mal_id);
     setSynopsis(anime?.synopsis);
-  }, []);
+  }, [displayedAnime]);
 
   return (
     <div
       className='hero bg-base-200 relative shadow-sm sm:pb-5'
       style={{
-        backgroundImage: `url(${banner})`,
+        backgroundImage: banner ? `url(${banner})` : "url('/background.webp')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -35,7 +35,7 @@ const HeroAnime = ({ displayedAnime }) => {
         {" "}
       </div>
       <div className='hero-content flex-col lg:flex-row'>
-        {banner && banner.trim().length > 0 && (
+        {banner?.trim().length > 0 && (
           <img
             src={banner}
             className='max-w-full rounded-lg shadow-2xl object-cover'
@@ -65,4 +65,4 @@ const HeroAnime = ({ displayedAnime }) => {
   );
 };
 
-export default HeroAnime;
+export default React.memo(HeroAnime);

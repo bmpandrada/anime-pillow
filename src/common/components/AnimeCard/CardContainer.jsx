@@ -1,10 +1,19 @@
-import { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Link, useLocation } from "react-router";
 
 const CardContainer = ({ item }) => {
   const [isActiveIndex, setActiveIndex] = useState(null);
   const localPath = useLocation();
   const showEp = localPath.pathname === "/anime" || "/";
+
+  const handleTouchStart = useCallback(() => {
+    setActiveIndex(item.mal_id);
+  }, [item.mal_id]);
+
+  const handleTouchEnd = useCallback(() => {
+    setTimeout(() => setActiveIndex(null), 50);
+  }, []);
+
   return (
     <Link
       to={`${
@@ -13,8 +22,8 @@ const CardContainer = ({ item }) => {
           : "/movies"
       }/${item.mal_id}`}
       className='bg-base-200 rounded-2xl shadow hover:shadow-lg transition overflow-hidden group'
-      onTouchStart={() => setActiveIndex(item.mal_id)}
-      onTouchEnd={() => setTimeout(() => setActiveIndex(null), 50)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       <img
         src={item.images.webp.large_image_url || "/background.webp"}
@@ -45,4 +54,4 @@ const CardContainer = ({ item }) => {
   );
 };
 
-export default CardContainer;
+export default React.memo(CardContainer);

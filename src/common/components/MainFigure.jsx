@@ -1,22 +1,18 @@
-// import { useEffect } from "react";
+import React from "react";
 import AnimeGenre from "./AnimeDetail/AnimeGenre";
 import AnimeInfo from "./AnimeDetail/AnimeInfo";
 import TitleDivider from "./TitleDivider";
 import TrailerPlayer from "./VideoPlayer";
-// import { animateTitle } from "../hooks/animateTitle";
 
 const MainFigure = ({ anime }) => {
-  const trailerExist = anime?.trailer?.embed_url !== null ? true : false;
+  const trailerExist = anime?.trailer?.embed_url !== null;
 
-  // useEffect(() => {
-  //   animateTitle(".pillow");
-  // }, []);
   return (
     <div className='grid sm:grid-cols-1 col-span-2 items-center gap-2'>
       <div className='sm:col-span-3'>
         <div className=''>
           <h1 className='pillow text-xl sm:text-2xl md:text-3xl font-bold mb-2'>
-            {anime?.title?.length < 0 ? "" : anime?.title}
+            {anime?.title || ""}
             <div className='w-auto h-[2px] bg-gradient-to-r from-base-300 to-transparent mt-2'></div>
           </h1>
 
@@ -44,4 +40,4 @@ const MainFigure = ({ anime }) => {
   );
 };
 
-export default MainFigure;
+export default React.memo(MainFigure);

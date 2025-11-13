@@ -60,7 +60,8 @@ export default function AnimeDetail() {
     ? "Anime"
     : "Movies";
 
-  const showMain = anime ? <MainFigure anime={anime} /> : <SkeletonCard />;
+  const isLoading = loading && !error;
+  const isLoaded = !loading && !error;
 
   return (
     <>
@@ -84,32 +85,34 @@ export default function AnimeDetail() {
       <link rel='canonical' href='https://anime-pillow.vercel.app/' />
 
       <div className='max-w-7xl mx-auto rounded-2xl sm:shadow p-5 sm:pt-10 pt-0 mb-10 transition duration-300'>
-        <Link
-          to={localPath.pathname.includes("/anime") ? "/anime" : "/movies"}
-          aria-label={backToLabel}
-        >
-          <p className='flex items-center gap-2 text-lg font-semibold text-accent hover:text-base-300 transition mb-5 md:mb-2'>
-            <FaCircleArrowLeft /> Back to {backToLabel}
-          </p>
-        </Link>
+        <div className='w-fit mb-5 md:mb-2'>
+          <Link
+            to={localPath.pathname.includes("/anime") ? "/anime" : "/movies"}
+            aria-label={backToLabel}
+          >
+            <p className='flex items-center  gap-2 text-lg font-semibold text-accent hover:text-accent/50 transition'>
+              <FaCircleArrowLeft /> Back to {backToLabel}
+            </p>
+          </Link>
+        </div>
 
         <div className='grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-4 relative'>
           <div className='col-span-1'>
-            {loading && !error && <SkeletonCard />}
-            {!loading && !error && <AsideFigure anime={anime} />}
+            {isLoading && <SkeletonCard />}
+            {isLoaded && <AsideFigure anime={anime} />}
           </div>
           <div className='sm:col-span-2'>
-            {loading && !error && <SkeletonCard />}
-            {!loading && !error && <MainFigure anime={anime} />}
+            {isLoading && <SkeletonCard />}
+            {isLoaded && <MainFigure anime={anime} />}
           </div>
         </div>
 
-        {!loading && !error && char?.length > 0 && (
+        {isLoaded && char?.length > 0 && (
           <div className='mt-5'>
             <CharacterCards char={char} />
           </div>
         )}
-        {loading && !error && !char?.length > 0 && (
+        {isLoading && !char?.length > 0 && (
           <div className='mt-5'>
             <SkeletonCard />
           </div>

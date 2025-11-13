@@ -1,11 +1,20 @@
+import React from "react";
+
 const AnimeInfo = ({ anime }) => {
+  const airedDate = anime?.aired?.from
+    ? new Date(anime.aired.from).toDateString()
+    : "Unknown";
+
+  const studios = anime?.studios?.length
+    ? anime.studios.map((s) => s.name).join(", ")
+    : "Unknown";
+
   return (
     <div className='flex flex-wrap gap-2 items-center mt-2'>
       <p className='text-accent font-semibold'>Info:</p>
       <div className='flex flex-wrap gap-2 space-y-0.5'>
         <p className='badge badge-info font-semibold'>
-          <span className='text-base-200'>Aired:</span>{" "}
-          {new Date(anime?.aired?.from).toDateString()}
+          <span className='text-base-200'>Aired:</span> {airedDate}
         </p>
         <p className='badge badge-info font-semibold'>
           <span className='text-base-200'>Source:</span> {anime?.source}
@@ -23,8 +32,7 @@ const AnimeInfo = ({ anime }) => {
         )}
         {anime?.studios.length > 0 && (
           <p className='badge badge-info font-semibold'>
-            <span className='text-base-200'>Studios:</span>{" "}
-            {anime?.studios?.map((a) => a.name)}
+            <span className='text-base-200'>Studios:</span> {studios}
           </p>
         )}
       </div>
@@ -32,4 +40,4 @@ const AnimeInfo = ({ anime }) => {
   );
 };
 
-export default AnimeInfo;
+export default React.memo(AnimeInfo);

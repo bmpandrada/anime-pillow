@@ -1,11 +1,16 @@
 import { Link } from "react-router";
 import TitleDivider from "../TitleDivider";
 import SkeletonCard from "../Loaders/SkeletonCard";
-import { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 const CharacterCards = ({ char = [], loading }) => {
   const [isActiveIndex, setActiveIndex] = useState(null);
   if (!char || char.length === 0) return null;
+
+  const handleTouchStart = useCallback((id) => setActiveIndex(id), []);
+  const handleTouchEnd = useCallback(() =>
+    setTimeout(() => setActiveIndex(null), 50),
+  );
 
   return (
     <>
@@ -20,8 +25,8 @@ const CharacterCards = ({ char = [], loading }) => {
                 key={c.character?.mal_id}
                 className='card card-side  bg-base-200 w-full shadow-sm group h-30'
                 to={`/characters/${c.character?.mal_id}`}
-                onTouchStart={() => setActiveIndex(c.character?.mal_id)}
-                onTouchEnd={() => setTimeout(() => setActiveIndex(null), 50)}
+                onTouchStart={() => handleTouchStart(c.character?.mal_id)}
+                onTouchEnd={handleTouchEnd}
               >
                 <figure>
                   <img
@@ -60,4 +65,4 @@ const CharacterCards = ({ char = [], loading }) => {
   );
 };
 
-export default CharacterCards;
+export default React.memo(CharacterCards);

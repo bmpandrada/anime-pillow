@@ -1,4 +1,6 @@
-export default function TrailerPlayer({ trailer, className }) {
+import React from "react";
+
+const TrailerPlayer = React.memo(({ trailer, className }) => {
   const embedUrl = `${trailer}=1`;
 
   if (!embedUrl) return;
@@ -27,4 +29,6 @@ export default function TrailerPlayer({ trailer, className }) {
       />
     </div>
   );
-}
+});
+
+export default TrailerPlayer;

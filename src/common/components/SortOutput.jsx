@@ -1,9 +1,13 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router";
+import { useMemo } from "react";
 
 const SortOutout = ({ sortBy, setSortby }) => {
   const localPath = useLocation();
-  const upcoming = localPath.pathname === "/movies";
+  const upcoming = useMemo(
+    () => localPath.pathname === "/movies",
+    [localPath.pathname],
+  );
 
   useEffect(() => {
     if (localPath.pathname === "/movies" && sortBy === "upcoming") {

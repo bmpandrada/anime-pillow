@@ -1,11 +1,14 @@
 import { FaSun, FaMoon } from "react-icons/fa6";
 import { useAnime } from "../context/ContextApi";
+import { useCallback } from "react";
 
 const ThemeToggle = () => {
   const { theme, setTheme } = useAnime();
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === "mytheme" ? "mytheme-light" : "mytheme"));
-  };
+  const toggleTheme = useCallback(
+    () =>
+      setTheme((prev) => (prev === "mytheme" ? "mytheme-light" : "mytheme")),
+    [setTheme],
+  );
 
   return (
     <label className='flex items-center gap-2 cursor-pointer'>

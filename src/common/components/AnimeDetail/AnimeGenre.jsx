@@ -1,4 +1,7 @@
+import React from "react";
+
 const AnimeGenre = ({ anime }) => {
+  if (!anime?.genres?.length) return null;
   return (
     <div className='flex flex-wrap gap-2 items-center'>
       <p className='text-accent font-semibold'>Genre:</p>
@@ -11,4 +14,4 @@ const AnimeGenre = ({ anime }) => {
   );
 };
 
-export default AnimeGenre;
+export default React.memo(AnimeGenre);

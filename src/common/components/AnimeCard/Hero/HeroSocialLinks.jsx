@@ -1,3 +1,4 @@
+import React from "react";
 import { FaSquareGithub, FaLinkedin } from "react-icons/fa6";
 
 const HeroSocialLinks = () => {
@@ -7,6 +8,7 @@ const HeroSocialLinks = () => {
         href={`https://www.linkedin.com/in/bruce-michael-andrada-565b561a4/`}
         target='_blank'
         aria-label='linkedin'
+        rel='noopener noreferrer'
       >
         <FaLinkedin className='text-2xl hover:text-blue-400 transition' />
       </a>
@@ -14,6 +16,7 @@ const HeroSocialLinks = () => {
         href={`https://github.com/bmpandrada`}
         target='_blank'
         aria-label='github'
+        rel='noopener noreferrer'
       >
         <FaSquareGithub className='text-2xl hover:text-blue-400 transition' />
       </a>
@@ -21,4 +24,4 @@ const HeroSocialLinks = () => {
   );
 };
 
-export default HeroSocialLinks;
+export default React.memo(HeroSocialLinks);

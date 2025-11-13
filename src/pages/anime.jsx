@@ -92,8 +92,9 @@ const AnimePage = () => {
               <Pagination
                 totalPage={totalPage}
                 ibtn={ibtn}
-                key={ibtn + 1}
+                key={ibtn}
                 setCurrentPage={setCurrentPage}
+                currentPage={currentPage}
               />
             ))}
         </div>

@@ -1,3 +1,5 @@
+import React from "react";
+
 const FilterInput = ({ filter, onFilterChange }) => {
   return (
     <label className='input'>
@@ -28,4 +30,4 @@ const FilterInput = ({ filter, onFilterChange }) => {
   );
 };
 
-export default FilterInput;
+export default React.memo(FilterInput);

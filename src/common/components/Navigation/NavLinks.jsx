@@ -1,33 +1,23 @@
 import { NavLink } from "react-router";
 
 const NavHead = () => {
-  const base =
-    "text-base-800 font-semibold  hover:text-accent transition duration-400";
-  const active = "text-accent font-semibold";
+  const getNavClass = ({ isActive }) =>
+    isActive
+      ? "text-accent font-semibold"
+      : "text-base-800 font-semibold hover:text-accent transition duration-400";
+
   return (
     <div className='hidden sm:flex flex-row justify-start space-x-5 mr-2 font-montserrat'>
-      <NavLink
-        to={"/"}
-        className={({ isActive }) => (isActive ? active : base)}
-      >
+      <NavLink to={"/"} className={getNavClass}>
         Home
       </NavLink>
-      <NavLink
-        to={"/anime"}
-        className={({ isActive }) => (isActive ? active : base)}
-      >
+      <NavLink to={"/anime"} className={getNavClass}>
         Anime
       </NavLink>
-      <NavLink
-        to={"/movies"}
-        className={({ isActive }) => (isActive ? active : base)}
-      >
+      <NavLink to={"/movies"} className={getNavClass}>
         Movie
       </NavLink>
-      <NavLink
-        to={"/about"}
-        className={({ isActive }) => (isActive ? active : base)}
-      >
+      <NavLink to={"/about"} className={getNavClass}>
         About
       </NavLink>
     </div>

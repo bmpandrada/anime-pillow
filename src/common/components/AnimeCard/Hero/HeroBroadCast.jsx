@@ -1,12 +1,15 @@
+import React from "react";
 import HeroSocialLinks from "./HeroSocialLinks";
 
 const HeroBroadCast = ({ broadCast }) => {
+  const isUnknown =
+    !broadCast?.day ||
+    !broadCast?.string ||
+    broadCast.day.includes("unknown") ||
+    broadCast.string.includes("unknown");
   return (
     <div className='text-sm sm:text-md text-warning'>
-      {!broadCast?.day ||
-      !broadCast?.string ||
-      broadCast?.day.includes("unknown") ||
-      broadCast?.string.includes("unknown") ? (
+      {isUnknown ? (
         <p className='text-lg sm:text-3xl font-bold'>Upcoming</p>
       ) : (
         <>
@@ -25,4 +28,4 @@ const HeroBroadCast = ({ broadCast }) => {
   );
 };
 
-export default HeroBroadCast;
+export default React.memo(HeroBroadCast);
