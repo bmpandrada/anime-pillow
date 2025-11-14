@@ -169,7 +169,10 @@ export default function Character() {
                       <figure className='h-20'>
                         <img
                           src={item.anime.images.webp.large_image_url}
-                          alt={item.anime.title}
+                          alt={
+                            item.anime.title + " " + item.anime.mal_id ||
+                            "Anime series picture"
+                          }
                           className={`w-full object-cover transform transition-transform duration-300 ${
                             isActiveIndex === index ? "scale-110" : ""
                           } group-hover:scale-105`}
