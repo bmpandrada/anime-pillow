@@ -1,5 +1,5 @@
 import { useAnime } from "../../context/ContextApi";
-import HeroAnime from "../AnimeCard/Hero/HeroAnime";
+import HeroAnime from "../Hero/HeroAnime";
 import Header from "../Header";
 import Footer from "../Navigation/Footer";
 import Nav from "../Navigation/Nav";

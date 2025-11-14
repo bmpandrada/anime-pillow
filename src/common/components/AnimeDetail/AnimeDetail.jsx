@@ -133,24 +133,22 @@ export default function AnimeDetail() {
         {/* Pagination */}
         <div className='max-w-md sm:max-w-lg lg:max-w-3xl mx-auto px-2'>
           <div className='flex flex-wrap justify-center gap-2'>
-            {console.log(pageList.length)}
-            {pageList.length === 1
-              ? null
-              : pageList.map((p, idx) =>
-                  p === "..." ? (
-                    <span key={idx} className='px-3 py-1'>
-                      ...
-                    </span>
-                  ) : (
-                    <Pagination
-                      key={idx}
-                      scrollTop={false}
-                      ibtn={p - 1}
-                      currentPage={currentPage}
-                      setCurrentPage={setCurrentPage}
-                    />
-                  ),
-                )}
+            {pageList.length > 1 &&
+              pageList.map((p, idx) =>
+                p === "..." ? (
+                  <span key={idx} className='px-3 py-1'>
+                    ...
+                  </span>
+                ) : (
+                  <Pagination
+                    key={idx}
+                    scrollTop={false}
+                    ibtn={p - 1}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                  />
+                ),
+              )}
           </div>
         </div>
       </div>

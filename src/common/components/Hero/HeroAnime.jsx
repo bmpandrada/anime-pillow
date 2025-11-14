@@ -36,7 +36,7 @@ const HeroAnime = ({ displayedAnime }) => {
         src={banner}
         alt={titleHeader}
         fetchPriority='high'
-        className='absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out'
+        className='absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out scale-105'
         style={{ transform: `translateY(${offset}px)` }}
       />
 
