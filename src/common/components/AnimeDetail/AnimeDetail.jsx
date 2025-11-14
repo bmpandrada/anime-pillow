@@ -7,6 +7,7 @@ import MainFigure from "../MainFigure";
 import CharacterCards from "../AnimeCard/CharacterCards";
 import SkeletonCard from "../Loaders/SkeletonCard";
 import Pagination from "../Navigation/Pagination";
+import { generatePageNumbers } from "../../utils/generatePageNumber";
 
 export default function AnimeDetail() {
   const { id } = useParams();
@@ -72,6 +73,8 @@ export default function AnimeDetail() {
   const isLoading = loading && !error;
   const isLoaded = !loading && !error;
 
+  const pageList = generatePageNumbers(totalPage, currentPage);
+
   return (
     <>
       <title>{`${backToLabel} | TopAnimePillow`}</title>
@@ -130,17 +133,21 @@ export default function AnimeDetail() {
         {/* Pagination */}
         <div className='max-w-md sm:max-w-lg lg:max-w-3xl mx-auto px-2'>
           <div className='flex flex-wrap justify-center gap-2'>
-            {totalPage > 1 &&
-              Array.from({ length: totalPage }, (_, ibtn) => (
+            {pageList.map((p, idx) =>
+              p === "..." ? (
+                <span key={idx} className='px-3 py-1'>
+                  ...
+                </span>
+              ) : (
                 <Pagination
-                  totalPage={totalPage}
-                  ibtn={ibtn}
-                  key={ibtn}
-                  setCurrentPage={setCurrentPage}
-                  currentPage={currentPage}
+                  key={idx}
                   scrollTop={false}
+                  ibtn={p - 1}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
                 />
-              ))}
+              ),
+            )}
           </div>
         </div>
       </div>
