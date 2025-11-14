@@ -1,5 +1,4 @@
 export function generatePageNumbers(total, current) {
-  console.log("🔎 TOTAL:", total, " | CURRENT:", current);
   const pages = [];
 
   if (total <= 8) {
