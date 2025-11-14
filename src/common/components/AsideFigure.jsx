@@ -7,9 +7,10 @@ const AsideFigure = ({ anime }) => {
         src={
           anime?.images?.webp?.large_image_url ||
           anime?.images?.webp?.image_url ||
-          anime?.images?.webp?.small_image_url
+          anime?.images?.webp?.small_image_url ||
+          "/wallpper.webp"
         }
-        alt={anime?.title}
+        alt={anime?.title || "anime figure"}
         fetchPriority='high'
         loading='lazy'
         className='w-full max-w-xs sm:max-w-sm mx-auto rounded-xl object-contain transition duration-300'
