@@ -107,7 +107,7 @@ export default function Character() {
               </h2>
             )}
             {chars?.[0]?.role && (
-              <p className='font-bold text-base-300'>
+              <p className='font-bold text-base-content'>
                 Role:{" "}
                 <span className='text-warning'>
                   {chars?.[0]?.role || "Unknown"}
@@ -115,7 +115,7 @@ export default function Character() {
               </p>
             )}
             {chars?.[0]?.anime?.title && (
-              <h2 className='font-bold text-base-300'>
+              <h2 className='font-bold text-base-content'>
                 Title:{" "}
                 <span className='text-warning'>
                   {chars?.[0]?.anime?.title || "Unknown"}

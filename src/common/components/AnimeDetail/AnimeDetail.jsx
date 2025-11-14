@@ -128,18 +128,20 @@ export default function AnimeDetail() {
         )}
 
         {/* Pagination */}
-        <div className='flex justify-center gap-2 mt-8'>
-          {totalPage > 1 &&
-            Array.from({ length: totalPage }, (_, ibtn) => (
-              <Pagination
-                totalPage={totalPage}
-                ibtn={ibtn}
-                key={ibtn}
-                setCurrentPage={setCurrentPage}
-                currentPage={currentPage}
-                scrollTop={false}
-              />
-            ))}
+        <div className='max-w-md sm:max-w-lg lg:max-w-3xl mx-auto px-2'>
+          <div className='flex flex-wrap justify-center gap-2'>
+            {totalPage > 1 &&
+              Array.from({ length: totalPage }, (_, ibtn) => (
+                <Pagination
+                  totalPage={totalPage}
+                  ibtn={ibtn}
+                  key={ibtn}
+                  setCurrentPage={setCurrentPage}
+                  currentPage={currentPage}
+                  scrollTop={false}
+                />
+              ))}
+          </div>
         </div>
       </div>
     </>

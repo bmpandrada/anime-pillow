@@ -82,7 +82,7 @@ const AnimePage = () => {
         </div>
 
         {/* Pagination */}
-        <div className='flex justify-center gap-2 mt-8'>
+        <div className='flex justify-center gap-2 my-8'>
           {totalPage > 1 &&
             Array.from({ length: totalPage }, (_, ibtn) => (
               <Pagination

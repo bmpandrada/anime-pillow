@@ -15,7 +15,7 @@ const Pagination = React.memo(
       <button
         aria-pressed={isActive}
         onClick={handleClick}
-        className={`px-3 py-1  cursor-pointer rounded mb-10 hover:bg-base-content transition duration-300 
+        className={`px-3 py-1 cursor-pointer rounded h-fit hover:bg-base-content transition duration-300 
                   ${
                     isActive
                       ? "bg-base-content text-base-100"

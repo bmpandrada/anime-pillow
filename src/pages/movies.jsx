@@ -77,7 +77,7 @@ const MoviePage = () => {
           )}
         </div>
 
-        <div className='flex justify-center gap-2 mt-8'>
+        <div className='flex justify-center gap-2 my-8'>
           {totalPage > 1 && (
             <>
               {Array.from({ length: totalPage }, (_, ibtn) => (
@@ -86,6 +86,8 @@ const MoviePage = () => {
                   ibtn={ibtn}
                   key={ibtn + 1}
                   setCurrentPage={setCurrentPage}
+                  currentPage={currentPage}
+                  scrollTop={true}
                 />
               ))}
             </>
