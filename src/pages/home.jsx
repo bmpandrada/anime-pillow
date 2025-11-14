@@ -28,7 +28,7 @@ const HomePage = () => {
         content='Welcome to top anime pillow page'
       />
       <meta property='og:type' content='website' />
-      <meta property='og:url' content='https://anime-pillow.vercel.app/anime' />
+      <meta property='og:url' content='https://anime-pillow.vercel.app' />
       <meta
         property='og:image'
         content='https://anime-pillow.vercel.app/icons/icon-192x192.png'

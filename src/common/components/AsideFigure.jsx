@@ -5,9 +5,9 @@ const AsideFigure = ({ anime }) => {
     <figure className='flex flex-col gap-2'>
       <img
         src={
-          anime?.images.webp?.large_image_url ||
-          anime?.images.webp?.image_url ||
-          anime?.images.webp?.small_image_url
+          anime?.images?.webp?.large_image_url ||
+          anime?.images?.webp?.image_url ||
+          anime?.images?.webp?.small_image_url
         }
         alt={anime?.title}
         fetchPriority='high'

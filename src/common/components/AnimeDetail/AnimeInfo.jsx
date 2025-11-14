@@ -30,7 +30,7 @@ const AnimeInfo = ({ anime }) => {
             <span className='text-base-200'>Season:</span> {anime?.season}
           </p>
         )}
-        {anime?.studios.length > 0 && (
+        {anime?.studios?.length > 0 && (
           <p className='badge badge-info font-semibold'>
             <span className='text-base-200'>Studios:</span> {studios}
           </p>

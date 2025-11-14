@@ -1,4 +1,4 @@
-// src/components/SkeletonCard.jsx
+import React from "react";
 export default function SkeletonCard() {
   return (
     <div className='flex w-full flex-col space-x-5 space-y-5'>

@@ -19,7 +19,7 @@ export default function About() {
       <meta property='og:title' content='About | TopAnimePillow' />
       <meta name='TopAnimePillow' content='about top anime pillow' />
       <meta name='author' content='BMPA' />
-      <link rel='canonical' href='https://anime-pillow.vercel.app/' />
+      <link rel='canonical' href='https://anime-pillow.vercel.app/about' />
 
       <div className='min-h-screen p-5'>
         <div className='max-w-lg m-auto'>

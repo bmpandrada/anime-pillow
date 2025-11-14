@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router";
 import { FaArrowAltCircleLeft } from "@react-icons/all-files/fa/FaArrowAltCircleLeft";
 
@@ -81,7 +81,10 @@ export default function AnimeDetail() {
       <meta name='description' content='Welcome to top anime pillow page' />
       <meta property='og:description' content='Top Anime Pillow — BMPA' />
       <meta property='og:type' content='website' />
-      <meta property='og:url' content='https://anime-pillow.vercel.app/anime' />
+      <meta
+        property='og:url'
+        content={`https://anime-pillow.vercel.app/anime/${id}`}
+      />
       <meta
         property='og:image'
         content='https://anime-pillow.vercel.app/icons/icon-192x192.png'
@@ -93,8 +96,12 @@ export default function AnimeDetail() {
         name='keywords'
         content='Anime, Anime streaming, Anime online, Anime streaming sites, Best anime, Best anime movies, Character, Manga, Anime movies, Anime series, Japanese anime'
       />
+
       <meta name='author' content='BMPA' />
-      <link rel='canonical' href='https://anime-pillow.vercel.app/' />
+      <link
+        rel='canonical'
+        href={`https://anime-pillow.vercel.app/anime/${id}`}
+      />
 
       <div className='max-w-7xl mx-auto rounded-2xl sm:shadow p-5 sm:pt-10 pt-0 mb-10 transition duration-300'>
         <div className='w-fit mb-5 md:mb-2'>

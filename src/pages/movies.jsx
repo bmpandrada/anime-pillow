@@ -34,7 +34,10 @@ const MoviePage = () => {
       <meta name='description' content='Top Anime Pillow — BMPA' />
       <meta property='og:description' content='Movie card page' />
       <meta property='og:type' content='website' />
-      <meta property='og:url' content='https://anime-pillow.vercel.app/anime' />
+      <meta
+        property='og:url'
+        content='https://anime-pillow.vercel.app/movies'
+      />
       <meta
         property='og:image'
         content='https://anime-pillow.vercel.app/icons/icon-192x192.png'
@@ -47,7 +50,7 @@ const MoviePage = () => {
         content='Anime, Anime streaming, Anime online, Anime streaming sites, Best anime, Best anime movies, Character, Manga, Anime movies, Anime series, Japanese anime'
       />
       <meta name='author' content='BMPA' />
-      <link rel='canonical' href='https://anime-pillow.vercel.app/' />
+      <link rel='canonical' href='https://anime-pillow.vercel.app/movies' />
 
       <div className='px-5 sm:px-10'>
         <AlphabetPagination

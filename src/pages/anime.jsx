@@ -54,7 +54,7 @@ const AnimePage = () => {
         content='Anime, Anime streaming, Anime online, Anime streaming sites, Best anime, Best anime movies, Character, Manga, Anime movies, Anime series, Japanese anime'
       />
       <meta name='author' content='BMPA' />
-      <link rel='canonical' href='https://anime-pillow.vercel.app/' />
+      <link rel='canonical' href='https://anime-pillow.vercel.app/anime' />
 
       <div className='px-5 sm:px-10'>
         <AlphabetPagination

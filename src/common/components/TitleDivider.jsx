@@ -1,3 +1,4 @@
+import React from "react";
 const TitleDivider = ({ title }) => {
   return (
     <div className='divider divider-accent max-w-7xl mx-auto'>
