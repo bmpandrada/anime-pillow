@@ -1,4 +1,5 @@
 import { useAnime } from "../../context/ContextApi";
+import AnimatePage from "../Animation/PageTransition";
 import Header from "../Header";
 import Footer from "../Navigation/Footer";
 import Nav from "../Navigation/Nav";
@@ -28,7 +29,9 @@ const Layout = () => {
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
         />
-        <Outlet />
+        <AnimatePage>
+          <Outlet />
+        </AnimatePage>
       </div>
       <Footer />
     </div>

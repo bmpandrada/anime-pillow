@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { Suspense } from "react";
 import { useLocation } from "react-router";
-import SpinnerLoading from "../loaderComponents/SpinnerLoading";
+import SpinnerLoading from "../Loaders/SpinnerLoader";
 
 const pageVariants = {
   initial: {
