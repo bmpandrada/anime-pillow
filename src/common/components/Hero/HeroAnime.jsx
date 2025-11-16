@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import HeroBtn from "./HeroBtn";
 import HeroBroadCast from "./HeroBroadCast";
 
-const HeroAnime = ({ displayedAnime }) => {
+const HeroAnime = ({ displayedAnime = [] }) => {
   const [offset, setOffset] = useState(0);
 
   const bannerItems = useMemo(
@@ -10,11 +10,17 @@ const HeroAnime = ({ displayedAnime }) => {
     [displayedAnime],
   );
 
-  const anime = React.useMemo(() => {
-    if (!bannerItems?.length) return null;
+  const anime = useMemo(() => {
+    if (!bannerItems.length) return null;
     const randomIndex = Math.floor(Math.random() * bannerItems.length);
     return bannerItems[randomIndex];
   }, [bannerItems]);
+
+  useEffect(() => {
+    const handleScroll = () => setOffset(window.scrollY * 0.3);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   if (!anime) return null;
 
@@ -23,12 +29,6 @@ const HeroAnime = ({ displayedAnime }) => {
   const synopsis = anime?.synopsis || "No synopsis available.";
   const broadCast = anime?.broadcast;
   const linkPage = anime?.mal_id;
-
-  useEffect(() => {
-    const handleScroll = () => setOffset(window.scrollY * 0.3);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <section className='relative w-full h-[80vh] sm:h-[90vh] lg:h-[100vh] overflow-hidden'>
@@ -39,7 +39,6 @@ const HeroAnime = ({ displayedAnime }) => {
         className='absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out scale-105'
         style={{ transform: `translateY(${offset}px)` }}
       />
-
       <div className='absolute inset-0 backdrop-blur-sm bg-gradient-to-t from-black/80 via-black/40 to-transparent'></div>
       <div className='absolute inset-0 bg-gradient-to-r from-black/70 to-transparent'></div>
 
