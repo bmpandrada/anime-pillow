@@ -1,5 +1,5 @@
 import { useAnime } from "../../context/ContextApi";
-import AnimatePage from "../Animation/PageTransition";
+import AnimatePage from "../AnimatePage";
 
 import Header from "../Header";
 import Footer from "../Navigation/Footer";
