@@ -13,19 +13,21 @@ const Layout = ({ children }) => {
   const displayedAnime = upcomming;
 
   return (
-    <main className='flex flex-col min-h-screen'>
+    <>
       <Header marginHeight={"mb-0"} />
-      <Suspense fallback={<SkeletonCard />}>
-        <HeroAnime displayedAnime={displayedAnime} />
-      </Suspense>
-      <section className='flex-1 max-w-7xl w-full mx-auto'>
-        <div className='mt-5 text-center w-full mx-auto'>
-          <Nav />
-        </div>
-        {children}
-      </section>
+      <main className='flex flex-col min-h-screen'>
+        <Suspense fallback={<SkeletonCard />}>
+          <HeroAnime displayedAnime={displayedAnime} />
+        </Suspense>
+        <section className='flex-1 max-w-7xl w-full mx-auto'>
+          <div className='mt-5 text-center w-full mx-auto'>
+            <Nav />
+          </div>
+          {children}
+        </section>
+      </main>
       <Footer />
-    </main>
+    </>
   );
 };
 
