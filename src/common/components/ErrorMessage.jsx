@@ -5,11 +5,11 @@ const ErrorMesssage = ({ error, isEmpty }) => {
     <p
       className={`${
         error
-          ? "text-red-500 font-semibold text-2xl"
+          ? "text-gray-500 font-semibold text-xl"
           : "text-slate-400 font-semibold text-2xl"
       } text-center`}
     >
-      {error ? "Failed to load data. Please try again." : "Not Found"}
+      {error ? "Offline or data not available" : "Not Found"}
     </p>
   );
 };

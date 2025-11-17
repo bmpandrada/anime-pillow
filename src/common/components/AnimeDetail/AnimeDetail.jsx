@@ -10,6 +10,7 @@ import Pagination from "../Navigation/Pagination";
 import { generatePageNumbers } from "../../utils/generatePageNumber";
 import { fetchWithRetry } from "../../utils/fetchWithRetry";
 import { SuspenseSkeleton } from "../../hooks/SuspenseSkeleton";
+import ErrorMesssage from "../ErrorMessage";
 
 export default function AnimeDetail() {
   const { id } = useParams();
@@ -149,13 +150,12 @@ export default function AnimeDetail() {
           <div className='sm:col-span-2'>
             <SuspenseSkeleton loading={loading} qty={1}>
               {anime?.mal_id ? (
-                <SuspenseSkeleton loading={loading} qty={1}>
-                  <MainFigure anime={anime} />
-                </SuspenseSkeleton>
+                <MainFigure anime={anime} />
               ) : (
-                <div className='min-h-[300px] flex items-center justify-center text-gray-500'>
-                  Offline or data not available
-                </div>
+                <ErrorMesssage
+                  error={error && !loading}
+                  isEmpty={!loading && !anime?.mal_id}
+                />
               )}
             </SuspenseSkeleton>
           </div>
