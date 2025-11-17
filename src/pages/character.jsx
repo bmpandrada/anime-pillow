@@ -26,6 +26,7 @@ export default function Character() {
 
   useEffect(() => {
     if (!id) return;
+
     const fetchData = async () => {
       setLoading(true);
       setError(false);
@@ -45,19 +46,18 @@ export default function Character() {
             localStorage.removeItem(`charsData_${id}`);
           }
         }
-        const resChar = await fetch(
-          `https://api.jikan.moe/v4/characters/${id}`,
-        );
-        if (!resChar.ok) throw new Error("Character fetch failed");
-        const dataChar = await resChar.json();
 
-        const resChars = await fetch(
-          `https://api.jikan.moe/v4/characters/${id}/anime`,
-        );
-        if (!resChars.ok) throw new Error("Character anime fetch failed");
-        const dataChars = await resChars.json();
+        const [resChar, resChars] = await Promise.all([
+          fetch(`https://api.jikan.moe/v4/characters/${id}`),
+          fetch(`https://api.jikan.moe/v4/characters/${id}/anime`),
+        ]);
 
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        if (!resChar.ok || !resChars.ok) throw new Error("Fetch failed");
+
+        const [dataChar, dataChars] = await Promise.all([
+          resChar.json(),
+          resChars.json(),
+        ]);
 
         setChar(dataChar.data || { name: "Unknown", images: {} });
         setChars(dataChars.data || []);
@@ -65,8 +65,10 @@ export default function Character() {
         localStorage.setItem(`charData_${id}`, JSON.stringify(dataChar.data));
         localStorage.setItem(`charsData_${id}`, JSON.stringify(dataChars.data));
       } catch (err) {
-        console.error("Fetch error:", err.message);
+        console.error("Fetch error:", err);
         setError(true);
+        setChar({ name: "Unknown", images: {} });
+        setChars([]);
       } finally {
         setLoading(false);
       }
@@ -117,9 +119,8 @@ export default function Character() {
               <HeadInfo char={safeChar} chars={chars} />
 
               <AnimeSection title='Anime' show={loading || chars.length > 0}>
-                {loading ? (
-                  <SkeletonCard qty={2} />
-                ) : (
+                {loading && <SkeletonCard qty={2} />}
+                {!loading && !error && (
                   <RelatedAnime
                     chars={safeChars}
                     isActiveIndex={isActiveIndex}
@@ -128,7 +129,7 @@ export default function Character() {
               </AnimeSection>
             </SuspenseSkeleton>
           </div>
-          {error && (
+          {!loading && error && (
             <p className='text-red-500'>
               Failed to load data. Please try again.
             </p>
