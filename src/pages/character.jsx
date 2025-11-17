@@ -25,6 +25,7 @@ export default function Character() {
   }, []);
 
   useEffect(() => {
+    if (!id) return;
     const fetchData = async () => {
       setLoading(true);
       setError(false);
