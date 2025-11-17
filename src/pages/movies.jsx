@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { useAnime } from "../common/context/ContextApi";
 import CardContainer from "../common/components/AnimeCard/CardContainer";
 import Pagination from "../common/components/Navigation/Pagination";
-import SkeletonCard from "../common/components/Loaders/SkeletonCard";
 import AlphabetPagination from "../common/components/Navigation/AlphabetPagination";
+import ErrorMesssage from "../common/components/ErrorMessage";
+import { SuspenseSkeleton } from "../common/hooks/SuspenseSkeleton";
 
 const MoviePage = () => {
   const {
@@ -12,6 +13,7 @@ const MoviePage = () => {
     setSelectedLetter,
     filteredMovieByLetter,
     loading,
+    error,
   } = useAnime();
   const [currentPage, setCurrentPage] = useState(1);
   const perPage = 12;
@@ -58,26 +60,17 @@ const MoviePage = () => {
           setSelectedLetter={setSelectedLetter}
           setCurrentPage={setCurrentPage}
         />
+        <ErrorMesssage
+          error={error && !loading}
+          isEmpty={!loading && currentMovie.length === 0}
+        />
         <div className='grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-5'>
-          {loading ? (
-            Array.from({ length: perPage }).map((_, i) => (
-              <SkeletonCard key={i} />
-            ))
-          ) : (
-            <>
-              {currentMovie.length === 0 ? (
-                <div className='flex justify-center items-center min-h-[60vh] col-span-full'>
-                  <p className='text-center font-bold text-4xl text-gray-600'>
-                    Not Found
-                  </p>
-                </div>
-              ) : (
-                pagedMovies.map((item) => (
-                  <CardContainer key={item.mal_id} item={item} />
-                ))
-              )}
-            </>
-          )}
+          <SuspenseSkeleton loading={loading} qty={8}>
+            {pagedMovies.length > 0 &&
+              pagedMovies.map((item) => (
+                <CardContainer key={item.mal_id} item={item} />
+              ))}
+          </SuspenseSkeleton>
         </div>
 
         <div className='flex justify-center gap-2 my-8'>

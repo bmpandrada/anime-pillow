@@ -4,6 +4,8 @@ import CardContainer from "../common/components/AnimeCard/CardContainer";
 import Pagination from "../common/components/Navigation/Pagination";
 import SkeletonCard from "../common/components/Loaders/SkeletonCard";
 import AlphabetPagination from "../common/components/Navigation/AlphabetPagination";
+import ErrorMesssage from "../common/components/ErrorMessage";
+import { SuspenseSkeleton } from "../common/hooks/SuspenseSkeleton";
 
 const AnimePage = () => {
   const {
@@ -13,6 +15,7 @@ const AnimePage = () => {
     setSelectedLetter,
     selectedLetter,
     loading,
+    error,
   } = useAnime();
   const [currentPage, setCurrentPage] = useState(1);
   const perPage = 12;
@@ -62,23 +65,18 @@ const AnimePage = () => {
           setSelectedLetter={setSelectedLetter}
           setCurrentPage={setCurrentPage}
         />
+        <ErrorMesssage
+          error={error && !loading}
+          isEmpty={!loading && displayedAnime.length === 0}
+        />
 
         <div className='grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-5'>
-          {loading ? (
-            Array.from({ length: perPage }).map((_, i) => (
-              <SkeletonCard key={i} />
-            ))
-          ) : displayedAnime.length === 0 ? (
-            <div className='flex justify-center items-center min-h-[60vh] col-span-full'>
-              <p className='text-center font-bold text-4xl text-gray-600'>
-                Not Found
-              </p>
-            </div>
-          ) : (
-            currentAnime.map((item) => (
-              <CardContainer key={item.mal_id} item={item} />
-            ))
-          )}
+          <SuspenseSkeleton loading={loading} qty={8}>
+            {currentAnime.length > 0 &&
+              currentAnime.map((item) => (
+                <CardContainer key={item.mal_id} item={item} />
+              ))}
+          </SuspenseSkeleton>
         </div>
 
         {/* Pagination */}

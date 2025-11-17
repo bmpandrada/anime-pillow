@@ -8,6 +8,7 @@ import { SuspenseSkeleton } from "../common/hooks/SuspenseSkeleton";
 import AnimeSection from "../common/components/AnimeSection";
 import RelatedAnime from "../common/components/Character/RelatedAnime";
 import { fetchWithRetry } from "../common/utils/fetchWithRetry";
+import ErrorMesssage from "../common/components/ErrorMessage";
 
 export default function Character() {
   const { id } = useParams();
@@ -122,12 +123,9 @@ export default function Character() {
                 )}
               </AnimeSection>
             </SuspenseSkeleton>
+
+            <ErrorMesssage error={error && !loading} />
           </div>
-          {!loading && error && (
-            <p className='text-red-500'>
-              Failed to load data. Please try again.
-            </p>
-          )}
         </div>
       </div>
     </>
