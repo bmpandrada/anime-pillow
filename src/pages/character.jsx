@@ -111,7 +111,7 @@ export default function Character() {
           </SuspenseSkeleton>
           <div className='rounded px-5 sm:col-span-3'>
             <SuspenseSkeleton loading={loading} qty={2}>
-              <HeadInfo char={safeChar} chars={chars} />
+              <HeadInfo char={safeChar} chars={chars} error={error} />
 
               <AnimeSection title='Anime' show={loading || chars.length > 0}>
                 {loading && <SkeletonCard qty={2} />}

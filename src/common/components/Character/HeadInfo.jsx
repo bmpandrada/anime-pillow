@@ -1,4 +1,5 @@
-const HeadInfo = ({ char, chars }) => {
+const HeadInfo = ({ char, chars, error }) => {
+  if (error) return null;
   return (
     <>
       {char?.name && (

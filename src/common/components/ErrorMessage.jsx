@@ -4,7 +4,9 @@ const ErrorMesssage = ({ error, isEmpty }) => {
   return (
     <p
       className={`${
-        error ? "text-red-500" : "text-slate-400 font-semibold text-2xl"
+        error
+          ? "text-red-500 font-semibold text-2xl"
+          : "text-slate-400 font-semibold text-2xl"
       } text-center`}
     >
       {error ? "Failed to load data. Please try again." : "Not Found"}
