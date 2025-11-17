@@ -38,6 +38,9 @@ const CharacterCards = ({ char = [], loading }) => {
                       isActiveIndex === c.character?.mal_id ? "scale-110" : ""
                     } group-hover:scale-110`}
                     loading='lazy'
+                    onError={(e) => {
+                      e.currentTarget.src = "/wallpper.webp";
+                    }}
                   />
                 </figure>
                 <div className='card-body'>

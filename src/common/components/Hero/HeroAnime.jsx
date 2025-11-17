@@ -38,6 +38,9 @@ const HeroAnime = ({ displayedAnime = [] }) => {
         fetchPriority='high'
         className='absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out scale-105'
         style={{ transform: `translateY(${offset}px)` }}
+        onError={(e) => {
+          e.currentTarget.src = "/wallpper.webp";
+        }}
       />
       <div className='absolute inset-0 backdrop-blur-sm bg-gradient-to-t from-black/80 via-black/40 to-transparent'></div>
       <div className='absolute inset-0 bg-gradient-to-r from-black/70 to-transparent'></div>

@@ -131,6 +131,9 @@ const FeaturedCard = ({ items, custom_link, pause }) => {
               </div>
               <img
                 src={item?.images?.webp?.image_url || "/wallpper.webp"}
+                onError={(e) => {
+                  e.currentTarget.src = "/wallpper.webp";
+                }}
                 loading='lazy'
                 decoding='async'
                 alt={item.title || "anime card"}

@@ -10,6 +10,9 @@ const AsideFigure = ({ anime }) => {
           anime?.images?.webp?.small_image_url ||
           "/wallpper.webp"
         }
+        onError={(e) => {
+          e.currentTarget.src = "/wallpper.webp";
+        }}
         alt={anime?.title || "anime figure"}
         fetchPriority='high'
         loading='lazy'

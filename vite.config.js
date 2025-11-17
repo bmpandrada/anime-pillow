@@ -32,13 +32,35 @@ export default defineConfig({
         ],
       },
       devOptions: {
-        enabled: true, // allows PWA preview in dev
+        enabled: true,
         type: "module",
         navigateFallback: "/",
         sdm: {
           screenshot: true,
-          form_factor: "wide", // desktop
+          form_factor: "wide",
         },
+      },
+      workbox: {
+        runtimeCaching: [
+          {
+            urlPattern: ({ request }) => request.destination === "image",
+            handler: "CacheFirst",
+            options: {
+              cacheName: "image-cache",
+              expiration: { maxEntries: 100, maxAgeSeconds: 30 * 24 * 60 * 60 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
+            urlPattern: /.*\.(png|jpg|jpeg|webp)/,
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "fallback-image",
+              networkTimeoutSeconds: 3,
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+        ],
       },
     }),
   ],

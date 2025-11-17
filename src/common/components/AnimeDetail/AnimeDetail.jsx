@@ -148,7 +148,15 @@ export default function AnimeDetail() {
           </div>
           <div className='sm:col-span-2'>
             <SuspenseSkeleton loading={loading} qty={1}>
-              <MainFigure anime={anime} />
+              {anime?.mal_id ? (
+                <SuspenseSkeleton loading={loading} qty={1}>
+                  <MainFigure anime={anime} />
+                </SuspenseSkeleton>
+              ) : (
+                <div className='min-h-[300px] flex items-center justify-center text-gray-500'>
+                  Offline or data not available
+                </div>
+              )}
             </SuspenseSkeleton>
           </div>
         </div>

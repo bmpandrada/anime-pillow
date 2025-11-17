@@ -33,6 +33,9 @@ const CardContainer = ({ item }) => {
         } group-hover:scale-105`}
         loading='lazy'
         fetchPriority='high'
+        onError={(e) => {
+          e.currentTarget.src = "/wallpper.webp";
+        }}
       />
       <div className='p-4'>
         <h2 className='sm:text-lg font-semibold text-base-900 truncate'>
