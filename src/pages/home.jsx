@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useAnime } from "../common/context/ContextApi";
-import TitleDivider from "../common/components/TitleDivider";
 import { SuspenseSkeleton } from "../common/hooks/SuspenseSkeleton";
+import AnimeSection from "../common/components/AnimeSection";
 
 const FeaturedCard = React.lazy(() =>
   import("../common/components/AnimeCard/FeaturedCard"),
@@ -18,6 +18,30 @@ const HomePage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const sections = [
+    {
+      show: character.length,
+      title: "Anime Seasons",
+      items: displayedAnime,
+      link: "/anime",
+      pause: true,
+    },
+    {
+      show: displayedUpcomming.length,
+      title: "Coming Soon",
+      items: displayedUpcomming,
+      link: "/anime",
+      pause: false,
+    },
+    {
+      show: displayedCharacters.length,
+      title: "Top Characters",
+      items: displayedCharacters,
+      link: "/characters",
+      pause: true,
+    },
+  ];
 
   return (
     <>
@@ -44,46 +68,22 @@ const HomePage = () => {
       <link rel='canonical' href='https://anime-pillow.vercel.app/' />
 
       <div className=''>
-        {character.length > 0 && <TitleDivider title={"Anime Seasons"} />}
-        <div className='mt-5'>
-          {displayedAnime.length > 0 && (
-            <>
-              <SuspenseSkeleton>
-                <FeaturedCard
-                  items={displayedAnime}
-                  custom_link='/anime'
-                  pause={true}
-                />
-              </SuspenseSkeleton>
-
-              {displayedUpcomming.length > 0 && (
-                <TitleDivider title={"Coming Soon"} />
-              )}
-
-              <SuspenseSkeleton>
-                <FeaturedCard
-                  items={displayedUpcomming}
-                  custom_link='/anime'
-                  pause={false}
-                />
-              </SuspenseSkeleton>
-
-              {displayedCharacters.length > 0 && (
-                <TitleDivider title={"Top Characters"} />
-              )}
-              <div className='mt-5'></div>
-              <SuspenseSkeleton>
-                <FeaturedCard
-                  items={displayedCharacters}
-                  custom_link='/characters'
-                  pause={true}
-                />
-              </SuspenseSkeleton>
-            </>
-          )}
+        <div className='my-5'>
+          <SuspenseSkeleton loading={loading} qty={3}>
+            {sections.map(
+              ({ show, title, items, link, pause }) =>
+                show && (
+                  <AnimeSection key={title} show title={title}>
+                    <FeaturedCard
+                      items={items}
+                      custom_link={link}
+                      pause={pause}
+                    />
+                  </AnimeSection>
+                ),
+            )}
+          </SuspenseSkeleton>
         </div>
-
-        <div className='mb-20'></div>
       </div>
     </>
   );

@@ -1,12 +1,10 @@
 import { Suspense } from "react";
 import SkeletonCard from "../components/Loaders/SkeletonCard";
 
-export const SuspenseSkeleton = ({ children }) => (
-  <Suspense
-    fallback={Array.from({ length: 3 }).map((_, i) => (
-      <SkeletonCard key={i} />
-    ))}
-  >
-    {children}
-  </Suspense>
-);
+export const SuspenseSkeleton = ({ children, loading, qty = 3 }) => {
+  if (loading) {
+    return <SkeletonCard qty={qty} />;
+  }
+
+  return <Suspense fallback={<SkeletonCard qty={qty} />}>{children}</Suspense>;
+};
