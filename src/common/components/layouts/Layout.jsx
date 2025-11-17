@@ -19,8 +19,8 @@ const Layout = () => {
 
   return (
     <>
+      <Header />
       <main className='flex flex-col min-h-screen'>
-        <Header />
         <Nav
           sortBy={sortBy}
           setSortby={setSortby}
@@ -35,8 +35,8 @@ const Layout = () => {
             <Outlet />
           </AnimatePage>
         </section>
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 };
