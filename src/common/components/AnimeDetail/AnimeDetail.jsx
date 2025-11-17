@@ -117,8 +117,8 @@ export default function AnimeDetail() {
             </p>
           </Link>
         </div>
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-4 relative'>
-          <div className='col-span-1'>
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-4'>
+          <div className='col-span-1 relative md:sticky md:top-10 md:self-start'>
             <SuspenseSkeleton loading={loading} qty={1}>
               <AsideFigure anime={anime} />
             </SuspenseSkeleton>
