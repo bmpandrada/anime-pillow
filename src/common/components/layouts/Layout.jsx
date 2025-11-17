@@ -19,24 +19,24 @@ const Layout = () => {
 
   return (
     <>
-      <div className='flex flex-col min-h-screen'>
+      <main className='flex flex-col min-h-screen'>
         <Header />
-        <div className='flex-1 max-w-7xl w-full mx-auto'>
-          <Nav
-            sortBy={sortBy}
-            setSortby={setSortby}
-            filter={filter}
-            setFilter={setFilter}
-            categories={categories}
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-          />
+        <Nav
+          sortBy={sortBy}
+          setSortby={setSortby}
+          filter={filter}
+          setFilter={setFilter}
+          categories={categories}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
+        <section className='flex-1 max-w-7xl w-full mx-auto'>
           <AnimatePage>
             <Outlet />
           </AnimatePage>
-        </div>
+        </section>
         <Footer />
-      </div>
+      </main>
     </>
   );
 };
