@@ -97,11 +97,16 @@ export default function AnimeDetail() {
     window.scrollTo(0, 0);
   }, [id]);
 
+  const synopsis = anime?.synopsis || "";
+  const shortSynopsis =
+    synopsis.split(" ").slice(0, 20).join(" ") +
+    (synopsis.split(" ").length > 20 ? "..." : "");
+
   return (
     <>
       <SEO
         title={`${backToLabel} | TopAnimePillow`}
-        description={anime?.synopsis}
+        description={shortSynopsis}
         image={anime?.images?.jpg?.large_image_url}
         url={`https://anime-pillow.vercel.app/anime/${id}`}
       />
