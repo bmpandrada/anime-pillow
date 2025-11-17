@@ -8,7 +8,7 @@ import { NavLink } from "react-router";
 
 const Footer = () => {
   const activeLink = useCallback(
-    ({ isActive }) => (isActive ? "dock-active" : ""),
+    ({ isActive }) => (isActive ? "dock-active dock-xs" : ""),
     [],
   );
 
