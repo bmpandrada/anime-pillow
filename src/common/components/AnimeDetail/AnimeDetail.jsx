@@ -11,7 +11,7 @@ import { generatePageNumbers } from "../../utils/generatePageNumber";
 import { fetchWithRetry } from "../../utils/fetchWithRetry";
 import { SuspenseSkeleton } from "../../hooks/SuspenseSkeleton";
 import ErrorMesssage from "../ErrorMessage";
-import SEO from "../layouts/SeoConfig";
+import SEO from "../SeoConfig";
 
 export default function AnimeDetail() {
   const { id } = useParams();

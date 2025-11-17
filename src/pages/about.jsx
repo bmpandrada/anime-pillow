@@ -1,6 +1,6 @@
 import { Helmet } from "@dr.pogodin/react-helmet";
 import { useEffect } from "react";
-import SEO from "../common/components/layouts/SeoConfig";
+import SEO from "../common/components/SeoConfig";
 
 export default function About() {
   useEffect(() => {

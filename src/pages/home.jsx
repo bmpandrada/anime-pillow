@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useAnime } from "../common/context/ContextApi";
 import { SuspenseSkeleton } from "../common/hooks/SuspenseSkeleton";
 import AnimeSection from "../common/components/AnimeSection";
-import SEO from "../common/components/layouts/SeoConfig";
+import SEO from "../common/components/SeoConfig";
 
 const FeaturedCard = React.lazy(() =>
   import("../common/components/AnimeCard/FeaturedCard"),

@@ -5,7 +5,7 @@ import Pagination from "../common/components/Navigation/Pagination";
 import AlphabetPagination from "../common/components/Navigation/AlphabetPagination";
 import ErrorMesssage from "../common/components/ErrorMessage";
 import { SuspenseSkeleton } from "../common/hooks/SuspenseSkeleton";
-import SEO from "../common/components/layouts/SeoConfig";
+import SEO from "../common/components/SeoConfig";
 
 const MoviePage = () => {
   const {

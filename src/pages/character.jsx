@@ -9,7 +9,7 @@ import AnimeSection from "../common/components/AnimeSection";
 import RelatedAnime from "../common/components/Character/RelatedAnime";
 import { fetchWithRetry } from "../common/utils/fetchWithRetry";
 import ErrorMesssage from "../common/components/ErrorMessage";
-import SEO from "../common/components/layouts/SeoConfig";
+import SEO from "../common/components/SeoConfig";
 
 export default function Character() {
   const { id } = useParams();

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router";
-import SEO from "../common/components/layouts/SeoConfig";
+import SEO from "../common/components/SeoConfig";
 
 const NotFoundPage = () => {
   useEffect(() => {
