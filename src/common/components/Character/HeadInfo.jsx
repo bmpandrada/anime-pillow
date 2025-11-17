@@ -23,7 +23,7 @@ const HeadInfo = ({ char, chars, error }) => {
         </h2>
       )}
       {char?.about && (
-        <h1 className='font-montserrat font-semibold opacity-70'>
+        <h1 className='font-montserrat dark:text-white font-semibold'>
           {char.about}
         </h1>
       )}
