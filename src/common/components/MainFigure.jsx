@@ -16,7 +16,7 @@ const MainFigure = ({ anime }) => {
             <div className='w-auto h-[2px] bg-gradient-to-r from-base-300 to-transparent mt-2'></div>
           </h1>
 
-          <p className='mb-4 sm:pr-2 antialiased figcaption font-montserrat font-semibold opacity-70'>
+          <p className='mb-4 sm:pr-2 dark:text-white antialiased figcaption font-montserrat font-semibold'>
             {anime?.synopsis}
           </p>
           {anime?.genres?.length > 0 && <AnimeGenre anime={anime} />}
