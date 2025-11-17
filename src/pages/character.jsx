@@ -96,22 +96,31 @@ export default function Character() {
         href={`https://anime-pillow.vercel.app/characters/${id}`}
       />
 
-      <div className='max-w-7xl mx-auto rounded-2xl sm:shadow sm:p-5 sm:pt-10 pt-0 mb-10 transition duration-300'>
+      <div className='max-w-7xl mx-auto rounded-2xl shadow p-5 pt-10 mb-10'>
         <div className='grid sm:grid-cols-4 gap-4'>
           <div className='col-span-1'>
             <SuspenseSkeleton loading={loading} qty={1}>
-              <AsideFigure anime={char} />
+              <AsideFigure anime={char || { name: "Loading...", images: {} }} />
             </SuspenseSkeleton>
           </div>
           <div className='rounded px-5 sm:col-span-3'>
             <SuspenseSkeleton loading={loading} qty={2}>
               <HeadInfo char={char} chars={chars} />
 
-              <AnimeSection title={"Anime"} show={chars.length > 0}>
-                <RelatedAnime chars={chars} isActiveIndex={isActiveIndex} />
+              <AnimeSection title='Anime' show={loading || chars.length > 0}>
+                {loading ? (
+                  <SkeletonCard qty={2} />
+                ) : (
+                  <RelatedAnime chars={chars} isActiveIndex={isActiveIndex} />
+                )}
               </AnimeSection>
             </SuspenseSkeleton>
           </div>
+          {error && (
+            <p className='text-red-500'>
+              Failed to load data. Please try again.
+            </p>
+          )}
         </div>
       </div>
     </>
