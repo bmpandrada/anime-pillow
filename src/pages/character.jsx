@@ -88,7 +88,7 @@ export default function Character() {
       <div className='max-w-7xl mx-auto rounded-2xl shadow p-5 pt-10 mb-10'>
         <div className='grid sm:grid-cols-4 gap-4'>
           <SuspenseSkeleton loading={loading} qty={1}>
-            <div className='col-span-1'>
+            <div className='col-span-1 relative sm:sticky sm:self-start sm:top-10'>
               <AsideFigure anime={char || { name: "Loading...", images: {} }} />
             </div>
           </SuspenseSkeleton>
