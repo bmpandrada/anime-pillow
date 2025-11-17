@@ -13,7 +13,7 @@ const Footer = () => {
   );
 
   return (
-    <>
+    <footer>
       <div className='text-center p-5 bg-base-200 text-base-400'>
         <p className='text-sm'>Created By: BMPA {new Date().getFullYear()}</p>
       </div>
@@ -38,7 +38,7 @@ const Footer = () => {
           <span className='dock-label'>About</span>
         </NavLink>
       </div>
-    </>
+    </footer>
   );
 };
 

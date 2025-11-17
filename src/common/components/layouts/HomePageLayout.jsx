@@ -13,19 +13,19 @@ const Layout = ({ children }) => {
   const displayedAnime = upcomming;
 
   return (
-    <div className='flex flex-col min-h-screen'>
+    <main className='flex flex-col min-h-screen'>
       <Header marginHeight={"mb-0"} />
       <Suspense fallback={<SkeletonCard />}>
         <HeroAnime displayedAnime={displayedAnime} />
       </Suspense>
-      <div className='flex-1 max-w-7xl w-full mx-auto'>
+      <section className='flex-1 max-w-7xl w-full mx-auto'>
         <div className='mt-5 text-center w-full mx-auto'>
           <Nav />
         </div>
         {children}
-      </div>
+      </section>
       <Footer />
-    </div>
+    </main>
   );
 };
 

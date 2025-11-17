@@ -56,23 +56,21 @@ const HomePage = () => {
         ]}
       />
 
-      <div className=''>
-        <div className='my-5'>
-          <SuspenseSkeleton loading={loading} qty={3}>
-            {sections.map(
-              ({ show, title, items, link, pause }) =>
-                show && (
-                  <AnimeSection key={title} show title={title}>
-                    <FeaturedCard
-                      items={items}
-                      custom_link={link}
-                      pause={pause}
-                    />
-                  </AnimeSection>
-                ),
-            )}
-          </SuspenseSkeleton>
-        </div>
+      <div className='my-5'>
+        <SuspenseSkeleton loading={loading} qty={3}>
+          {sections.map(
+            ({ show, title, items, link, pause }) =>
+              show && (
+                <AnimeSection key={title} show title={title}>
+                  <FeaturedCard
+                    items={items}
+                    custom_link={link}
+                    pause={pause}
+                  />
+                </AnimeSection>
+              ),
+          )}
+        </SuspenseSkeleton>
       </div>
     </>
   );
