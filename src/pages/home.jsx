@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useAnime } from "../common/context/ContextApi";
 import { SuspenseSkeleton } from "../common/hooks/SuspenseSkeleton";
 import AnimeSection from "../common/components/AnimeSection";
+import SEO from "../common/components/layouts/SeoConfig";
 
 const FeaturedCard = React.lazy(() =>
   import("../common/components/AnimeCard/FeaturedCard"),
@@ -45,27 +46,15 @@ const HomePage = () => {
 
   return (
     <>
-      <title>Welcome | TopAnimePillow</title>
-      <meta name='description' content='Top Anime Pillow — BMPA' />
-      <meta
-        property='og:description'
-        content='Welcome to top anime pillow page'
+      <SEO
+        title='Welcome | TopAnimePillow'
+        image='https://anime-pillow.vercel.app/icons/icon-192x192.png'
+        description='Welcome to top anime pillow page'
+        url='https://anime-pillow.vercel.app'
+        keywords={[
+          "Anime, Anime streaming, Anime online, Anime streaming sites, Best anime, Best anime movies, Character, Manga, Anime movies, Anime series, Japanese anime",
+        ]}
       />
-      <meta property='og:type' content='website' />
-      <meta property='og:url' content='https://anime-pillow.vercel.app' />
-      <meta
-        property='og:image'
-        content='https://anime-pillow.vercel.app/icons/icon-192x192.png'
-      />
-
-      <meta property='og:title' content='Welcome | TopAnimePillow' />
-      <meta name='TopAnimePillow' content='Welcome to top anime pillow page' />
-      <meta
-        name='keywords'
-        content='Anime, Anime streaming, Anime online, Anime streaming sites, Best anime, Best anime movies, Character, Manga, Anime movies, Anime series, Japanese anime'
-      />
-      <meta name='author' content='BMPA' />
-      <link rel='canonical' href='https://anime-pillow.vercel.app/' />
 
       <div className=''>
         <div className='my-5'>

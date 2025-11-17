@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router";
+import SEO from "../common/components/layouts/SeoConfig";
 
 const NotFoundPage = () => {
   useEffect(() => {
@@ -8,19 +9,7 @@ const NotFoundPage = () => {
 
   return (
     <>
-      <title>Not Found | TopAnimePillow</title>
-      <meta name='description' content='Top Anime Pillow — BMPA' />
-      <meta property='og:type' content='website' />
-      <meta property='og:url' content='https://anime-pillow.vercel.app/' />
-      <meta
-        property='og:image'
-        content='https://anime-pillow.vercel.app/icons/icon-192x192.png'
-      />
-
-      <meta property='og:title' content='Not Found | TopAnimePillow' />
-      <meta name='TopAnimePillow' content='Not Found' />
-      <meta name='author' content='BMPA' />
-      <link rel='canonical' href='https://anime-pillow.vercel.app/' />
+      <SEO title='404 | TopAnimePillow' description='Not Found' />
 
       <div className='w-full h-screen flex items-center justify-center'>
         <div className='max-w-4xl text-center p-2 mb-52'>

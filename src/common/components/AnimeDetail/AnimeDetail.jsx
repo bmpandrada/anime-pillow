@@ -11,6 +11,7 @@ import { generatePageNumbers } from "../../utils/generatePageNumber";
 import { fetchWithRetry } from "../../utils/fetchWithRetry";
 import { SuspenseSkeleton } from "../../hooks/SuspenseSkeleton";
 import ErrorMesssage from "../ErrorMessage";
+import SEO from "../layouts/SeoConfig";
 
 export default function AnimeDetail() {
   const { id } = useParams();
@@ -98,30 +99,11 @@ export default function AnimeDetail() {
 
   return (
     <>
-      <title>{`${backToLabel} | TopAnimePillow`}</title>
-      <meta name='description' content='Welcome to top anime pillow page' />
-      <meta property='og:description' content='Top Anime Pillow — BMPA' />
-      <meta property='og:type' content='website' />
-      <meta
-        property='og:url'
-        content={`https://anime-pillow.vercel.app/anime/${id}`}
-      />
-      <meta
-        property='og:image'
-        content='https://anime-pillow.vercel.app/icons/icon-192x192.png'
-      />
-
-      <meta property='og:title' content={`${backToLabel} | TopAnimePillow`} />
-      <meta name='TopAnimePillow' content='Anime card page detail' />
-      <meta
-        name='keywords'
-        content='Anime, Anime streaming, Anime online, Anime streaming sites, Best anime, Best anime movies, Character, Manga, Anime movies, Anime series, Japanese anime'
-      />
-
-      <meta name='author' content='BMPA' />
-      <link
-        rel='canonical'
-        href={`https://anime-pillow.vercel.app/anime/${id}`}
+      <SEO
+        title={`${backToLabel} | TopAnimePillow`}
+        description={anime?.synopsis}
+        image={anime?.images?.jpg?.large_image_url}
+        url={`https://anime-pillow.vercel.app/anime/${id}`}
       />
 
       <div className='max-w-7xl mx-auto rounded-2xl sm:shadow p-5 sm:pt-10 pt-0 mb-10 transition duration-300'>

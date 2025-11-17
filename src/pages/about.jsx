@@ -1,4 +1,6 @@
+import { Helmet } from "@dr.pogodin/react-helmet";
 import { useEffect } from "react";
+import SEO from "../common/components/layouts/SeoConfig";
 
 export default function About() {
   useEffect(() => {
@@ -6,21 +8,11 @@ export default function About() {
   }, []);
   return (
     <>
-      <title>About | TopAnimePillow</title>
-      <meta name='description' content='About Top Anime Pillow — BMPA' />
-      <meta property='og:description' content='About Top Anime Pillow — BMPA' />
-      <meta property='og:type' content='website' />
-      <meta property='og:url' content='https://anime-pillow.vercel.app/about' />
-      <meta
-        property='og:image'
-        content='https://anime-pillow.vercel.app/og-image.jpg'
+      <SEO
+        title='About | TopAnimePillow'
+        description='About Top Anime Pillow — BMPA'
+        url='https://anime-pillow.vercel.app/about'
       />
-
-      <meta property='og:title' content='About | TopAnimePillow' />
-      <meta name='TopAnimePillow' content='about top anime pillow' />
-      <meta name='author' content='BMPA' />
-      <link rel='canonical' href='https://anime-pillow.vercel.app/about' />
-
       <div className='min-h-screen p-5'>
         <div className='max-w-lg m-auto'>
           <h1 className='font-bold  text-2xl text-center'>

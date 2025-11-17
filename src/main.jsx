@@ -6,14 +6,17 @@ import App from "./App.jsx";
 import { BrowserRouter } from "react-router";
 import { ContextProvider } from "./common/context/ContextApi.jsx";
 import CookieConsent from "./common/components/CookieConsent.jsx";
+import { HelmetProvider } from "@dr.pogodin/react-helmet";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <ContextProvider>
-        <App />
-        <CookieConsent />
-      </ContextProvider>
+      <HelmetProvider>
+        <ContextProvider>
+          <App />
+          <CookieConsent />
+        </ContextProvider>
+      </HelmetProvider>
     </BrowserRouter>
   </StrictMode>,
 );

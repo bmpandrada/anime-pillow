@@ -9,6 +9,7 @@ import AnimeSection from "../common/components/AnimeSection";
 import RelatedAnime from "../common/components/Character/RelatedAnime";
 import { fetchWithRetry } from "../common/utils/fetchWithRetry";
 import ErrorMesssage from "../common/components/ErrorMessage";
+import SEO from "../common/components/layouts/SeoConfig";
 
 export default function Character() {
   const { id } = useParams();
@@ -77,29 +78,11 @@ export default function Character() {
 
   return (
     <>
-      <title>Character | TopAnimePillow</title>
-      <meta name='description' content='Top Anime Pillow — BMPA' />
-      <meta property='og:description' content='Character card page' />
-      <meta property='og:type' content='website' />
-      <meta
-        property='og:url'
-        content={`https://anime-pillow.vercel.app/characters/${id}`}
-      />
-      <meta
-        property='og:image'
-        content='https://anime-pillow.vercel.app/icons/icon-192x192.png'
-      />
-
-      <meta property='og:title' content='Character | TopAnimePillow' />
-      <meta name='TopAnimePillow' content='Character card page' />
-      <meta
-        name='keywords'
-        content='Anime, Anime streaming, Anime online, Anime streaming sites, Best anime, Best anime movies, Character, Manga, Anime movies, Anime series, Japanese anime'
-      />
-      <meta name='author' content='BMPA' />
-      <link
-        rel='canonical'
-        href={`https://anime-pillow.vercel.app/characters/${id}`}
+      <SEO
+        title={`Character | TopAnimePillow`}
+        description={`Character: ${char?.name} | card page`}
+        image={safeChar?.images?.jpg?.large_image_url}
+        url={`https://anime-pillow.vercel.app/characters/${id}`}
       />
 
       <div className='max-w-7xl mx-auto rounded-2xl shadow p-5 pt-10 mb-10'>
@@ -111,7 +94,7 @@ export default function Character() {
           </SuspenseSkeleton>
           <div className='rounded px-5 sm:col-span-3'>
             <SuspenseSkeleton loading={loading} qty={2}>
-              <HeadInfo char={safeChar} chars={chars} error={error} />
+              <HeadInfo char={safeChar} chars={safeChars} error={error} />
 
               <AnimeSection title='Anime' show={loading || chars.length > 0}>
                 {loading && <SkeletonCard qty={2} />}

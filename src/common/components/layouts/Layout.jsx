@@ -18,24 +18,26 @@ const Layout = () => {
   } = useAnime();
 
   return (
-    <div className='flex flex-col min-h-screen'>
-      <Header />
-      <div className='flex-1 max-w-7xl w-full mx-auto'>
-        <Nav
-          sortBy={sortBy}
-          setSortby={setSortby}
-          filter={filter}
-          setFilter={setFilter}
-          categories={categories}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-        />
-        <AnimatePage>
-          <Outlet />
-        </AnimatePage>
+    <>
+      <div className='flex flex-col min-h-screen'>
+        <Header />
+        <div className='flex-1 max-w-7xl w-full mx-auto'>
+          <Nav
+            sortBy={sortBy}
+            setSortby={setSortby}
+            filter={filter}
+            setFilter={setFilter}
+            categories={categories}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+          />
+          <AnimatePage>
+            <Outlet />
+          </AnimatePage>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </>
   );
 };
 

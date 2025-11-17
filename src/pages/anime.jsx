@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useAnime } from "../common/context/ContextApi";
 import CardContainer from "../common/components/AnimeCard/CardContainer";
 import Pagination from "../common/components/Navigation/Pagination";
-import SkeletonCard from "../common/components/Loaders/SkeletonCard";
 import AlphabetPagination from "../common/components/Navigation/AlphabetPagination";
 import ErrorMesssage from "../common/components/ErrorMessage";
 import { SuspenseSkeleton } from "../common/hooks/SuspenseSkeleton";
+import SEO from "../common/components/layouts/SeoConfig";
 
 const AnimePage = () => {
   const {
@@ -40,24 +40,15 @@ const AnimePage = () => {
 
   return (
     <>
-      <title>Anime | TopAnimePillow</title>
-      <meta name='description' content='Top Anime Pillow — BMPA' />
-      <meta property='og:description' content='Top Anime Pillow — BMPA' />
-      <meta property='og:type' content='website' />
-      <meta property='og:url' content='https://anime-pillow.vercel.app/anime' />
-      <meta
-        property='og:image'
-        content='https://anime-pillow.vercel.app/icons/icon-192x192.png'
+      <SEO
+        title={`Anime | TopAnimePillow`}
+        description={"Top Anime Pillow — BMPA"}
+        image={"https://anime-pillow.vercel.app/icons/icon-192x192.png"}
+        keywords={[
+          "Anime, Anime streaming, Anime online, Anime streaming sites, Best anime, Best anime movies, Character, Manga, Anime movies, Anime series, Japanese anime",
+        ]}
+        url={"https://anime-pillow.vercel.app/anime"}
       />
-
-      <meta property='og:title' content='Anime | TopAnimePillow' />
-      <meta name='TopAnimePillow' content='Anime card page' />
-      <meta
-        name='keywords'
-        content='Anime, Anime streaming, Anime online, Anime streaming sites, Best anime, Best anime movies, Character, Manga, Anime movies, Anime series, Japanese anime'
-      />
-      <meta name='author' content='BMPA' />
-      <link rel='canonical' href='https://anime-pillow.vercel.app/anime' />
 
       <div className='px-5 sm:px-10'>
         <AlphabetPagination
