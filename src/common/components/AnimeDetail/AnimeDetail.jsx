@@ -8,6 +8,8 @@ import CharacterCards from "../AnimeCard/CharacterCards";
 import SkeletonCard from "../Loaders/SkeletonCard";
 import Pagination from "../Navigation/Pagination";
 import { generatePageNumbers } from "../../utils/generatePageNumber";
+import { fetchWithRetry } from "../../utils/fetchWithRetry";
+import { SuspenseSkeleton } from "../../hooks/SuspenseSkeleton";
 
 export default function AnimeDetail() {
   const { id } = useParams();
@@ -23,33 +25,60 @@ export default function AnimeDetail() {
   const lastIndex = currentPage * perPage;
   const firstIndex = lastIndex - perPage;
   const animeCharacters = char.slice(firstIndex, lastIndex);
+  const backToLabel = localPath.pathname.includes("/anime")
+    ? "Anime"
+    : "Movies";
+
+  const pageList = generatePageNumbers(totalPage, currentPage);
 
   useEffect(() => {
     let isMounted = true;
 
     const fetchData = async () => {
-      try {
-        const [resDetail, resChar] = await Promise.all([
-          fetch(`https://api.jikan.moe/v4/anime/${id}`),
-          fetch(`https://api.jikan.moe/v4/anime/${id}/characters`),
-        ]);
+      setLoading(true);
+      setError(false);
 
-        if (!resDetail.ok || !resChar.ok) {
-          throw new Error("Failed to fetch anime or character data");
+      const cachedAnime = localStorage.getItem(`animeData_${id}`);
+      const cachedChar = localStorage.getItem(`animeChars_${id}`);
+
+      if (cachedAnime && cachedChar) {
+        try {
+          setAnime(JSON.parse(cachedAnime));
+          setChar(JSON.parse(cachedChar));
+          setLoading(false);
+          return;
+        } catch {
+          localStorage.removeItem(`animeData_${id}`);
+          localStorage.removeItem(`animeChars_${id}`);
         }
+      }
 
+      try {
         const [dataDetail, dataChar] = await Promise.all([
-          resDetail.json(),
-          resChar.json(),
+          fetchWithRetry(`https://api.jikan.moe/v4/anime/${id}`),
+          fetchWithRetry(`https://api.jikan.moe/v4/anime/${id}/characters`),
         ]);
 
         if (isMounted) {
           setAnime(dataDetail?.data || null);
           setChar(dataChar?.data || []);
+
+          localStorage.setItem(
+            `animeData_${id}`,
+            JSON.stringify(dataDetail?.data),
+          );
+          localStorage.setItem(
+            `animeChars_${id}`,
+            JSON.stringify(dataChar?.data),
+          );
         }
       } catch (err) {
-        console.log(err.message);
+        console.error("Fetch error:", err);
         if (isMounted) setError(true);
+        if (isMounted) {
+          setAnime({ title: "Unknown", images: {} });
+          setChar([]);
+        }
       } finally {
         if (isMounted) setLoading(false);
       }
@@ -65,15 +94,6 @@ export default function AnimeDetail() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
-
-  const backToLabel = localPath.pathname.includes("/anime")
-    ? "Anime"
-    : "Movies";
-
-  const isLoading = loading && !error;
-  const isLoaded = !loading && !error;
-
-  const pageList = generatePageNumbers(totalPage, currentPage);
 
   return (
     <>
@@ -114,28 +134,30 @@ export default function AnimeDetail() {
             </p>
           </Link>
         </div>
+        {!loading && error && !anime ? (
+          <p className='text-red-500 text-center mt-5'>
+            Failed to load data. Please try again.
+          </p>
+        ) : null}
 
         <div className='grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-4 relative'>
           <div className='col-span-1'>
-            {isLoading && <SkeletonCard />}
-            {isLoaded && <AsideFigure anime={anime} />}
+            <SuspenseSkeleton loading={loading} qty={1}>
+              <AsideFigure anime={anime} />
+            </SuspenseSkeleton>
           </div>
           <div className='sm:col-span-2'>
-            {isLoading && <SkeletonCard />}
-            {isLoaded && <MainFigure anime={anime} />}
+            <SuspenseSkeleton loading={loading} qty={1}>
+              <MainFigure anime={anime} />
+            </SuspenseSkeleton>
           </div>
         </div>
 
-        {isLoaded && animeCharacters?.length > 0 && (
+        <SuspenseSkeleton loading={loading} qty={1}>
           <div className='mt-5'>
             <CharacterCards char={animeCharacters} />
           </div>
-        )}
-        {isLoading && !animeCharacters?.length > 0 && (
-          <div className='mt-5'>
-            <SkeletonCard />
-          </div>
-        )}
+        </SuspenseSkeleton>
 
         {/* Pagination */}
         <div className='max-w-md sm:max-w-lg lg:max-w-3xl mx-auto px-2'>
