@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
+import { useParams } from "react-router";
 import AsideFigure from "../common/components/AsideFigure";
 import { animateTitle } from "../common/hooks/animateTitle";
 import SkeletonCard from "../common/components/Loaders/SkeletonCard";
@@ -7,6 +7,7 @@ import HeadInfo from "../common/components/Character/HeadInfo";
 import { SuspenseSkeleton } from "../common/hooks/SuspenseSkeleton";
 import AnimeSection from "../common/components/AnimeSection";
 import RelatedAnime from "../common/components/Character/RelatedAnime";
+import { fetchWithRetry } from "../common/utils/fetchWithRetry";
 
 export default function Character() {
   const { id } = useParams();
@@ -47,16 +48,9 @@ export default function Character() {
           }
         }
 
-        const [resChar, resChars] = await Promise.all([
-          fetch(`https://api.jikan.moe/v4/characters/${id}`),
-          fetch(`https://api.jikan.moe/v4/characters/${id}/anime`),
-        ]);
-
-        if (!resChar.ok || !resChars.ok) throw new Error("Fetch failed");
-
         const [dataChar, dataChars] = await Promise.all([
-          resChar.json(),
-          resChars.json(),
+          fetchWithRetry(`https://api.jikan.moe/v4/characters/${id}`),
+          fetchWithRetry(`https://api.jikan.moe/v4/characters/${id}/anime`),
         ]);
 
         setChar(dataChar.data || { name: "Unknown", images: {} });
