@@ -34,10 +34,15 @@ export default function Character() {
         const cachedChars = localStorage.getItem(`charsData_${id}`);
 
         if (cachedChar && cachedChars) {
-          setChar(JSON.parse(cachedChar));
-          setChars(JSON.parse(cachedChars));
-          setLoading(false);
-          return;
+          try {
+            setChar(JSON.parse(cachedChar));
+            setChars(JSON.parse(cachedChars));
+            setLoading(false);
+            return;
+          } catch {
+            localStorage.removeItem(`charData_${id}`);
+            localStorage.removeItem(`charsData_${id}`);
+          }
         }
         const resChar = await fetch(
           `https://api.jikan.moe/v4/characters/${id}`,
@@ -53,8 +58,8 @@ export default function Character() {
 
         await new Promise((resolve) => setTimeout(resolve, 1000));
 
-        setChar(dataChar.data);
-        setChars(dataChars.data);
+        setChar(dataChar.data || { name: "Unknown", images: {} });
+        setChars(dataChars.data || []);
 
         localStorage.setItem(`charData_${id}`, JSON.stringify(dataChar.data));
         localStorage.setItem(`charsData_${id}`, JSON.stringify(dataChars.data));
@@ -68,6 +73,9 @@ export default function Character() {
 
     fetchData();
   }, [id]);
+
+  const safeChar = char || { name: "Loading...", images: {} };
+  const safeChars = chars.length ? chars : [{ title: "Loading..." }];
 
   return (
     <>
@@ -98,20 +106,23 @@ export default function Character() {
 
       <div className='max-w-7xl mx-auto rounded-2xl shadow p-5 pt-10 mb-10'>
         <div className='grid sm:grid-cols-4 gap-4'>
-          <div className='col-span-1'>
-            <SuspenseSkeleton loading={loading} qty={1}>
+          <SuspenseSkeleton loading={loading} qty={1}>
+            <div className='col-span-1'>
               <AsideFigure anime={char || { name: "Loading...", images: {} }} />
-            </SuspenseSkeleton>
-          </div>
+            </div>
+          </SuspenseSkeleton>
           <div className='rounded px-5 sm:col-span-3'>
             <SuspenseSkeleton loading={loading} qty={2}>
-              <HeadInfo char={char} chars={chars} />
+              <HeadInfo char={safeChar} chars={chars} />
 
               <AnimeSection title='Anime' show={loading || chars.length > 0}>
                 {loading ? (
                   <SkeletonCard qty={2} />
                 ) : (
-                  <RelatedAnime chars={chars} isActiveIndex={isActiveIndex} />
+                  <RelatedAnime
+                    chars={safeChars}
+                    isActiveIndex={isActiveIndex}
+                  />
                 )}
               </AnimeSection>
             </SuspenseSkeleton>
