@@ -135,12 +135,6 @@ export default function AnimeDetail() {
             </p>
           </Link>
         </div>
-        {!loading && error && !anime ? (
-          <p className='text-red-500 text-center mt-5'>
-            Failed to load data. Please try again.
-          </p>
-        ) : null}
-
         <div className='grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-4 relative'>
           <div className='col-span-1'>
             <SuspenseSkeleton loading={loading} qty={1}>
