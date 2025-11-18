@@ -36,14 +36,12 @@ export function ContextProvider({ children }) {
 
     if (localPath.pathname === "/clear") {
       clearCacheData();
-      window.location.href = "/"; // redirect sa home pagkatapos mag-clear
+      window.location.href = "/";
       return;
     }
-
-    // dito na yung normal fetch / cache logic mo
   }, [localPath.pathname]);
 
-  const CACHE_VERSION = "v2";
+  const CACHE_VERSION = "v3";
 
   useEffect(() => {
     const lastFetch = localStorage.getItem("lastFetch");
