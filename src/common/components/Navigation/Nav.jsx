@@ -17,7 +17,7 @@ const Nav = ({
   const showNav = ["/anime", "/movies"].includes(localPath.pathname);
 
   return (
-    <nav className='w-full md:flex flex-col md:flex-row space-y-1.5 px-5 sm:px-10 sm:justify-between sm:items-center'>
+    <nav className='max-w-7xl w-full mx-auto md:flex flex-col md:flex-row space-y-1.5 px-5 sm:px-10 sm:justify-between sm:items-center'>
       <NavHead />
       {showNav && (
         <div className='grid grid-cols-6 gap-2 items-center w-fit'>
