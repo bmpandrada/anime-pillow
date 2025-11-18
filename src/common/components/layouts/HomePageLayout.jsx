@@ -14,15 +14,14 @@ const Layout = ({ children }) => {
 
   return (
     <>
+      <Nav />
       <Header marginHeight={"mb-0"} />
       <main className='flex flex-col min-h-screen'>
         <Suspense fallback={<SkeletonCard />}>
           <HeroAnime displayedAnime={displayedAnime} />
         </Suspense>
         <section className='flex-1 max-w-7xl w-full mx-auto'>
-          <div className='mt-5 text-center w-full mx-auto'>
-            <Nav />
-          </div>
+          <div className='mt-5 text-center w-full mx-auto'></div>
           {children}
         </section>
       </main>

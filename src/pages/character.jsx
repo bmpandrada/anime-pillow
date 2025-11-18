@@ -85,14 +85,14 @@ export default function Character() {
         url={`https://anime-pillow.vercel.app/characters/${id}`}
       />
 
-      <div className='max-w-7xl mx-auto rounded-2xl shadow p-5 pt-10 mb-10'>
+      <div className='max-w-7xl mx-auto rounded-2xl sm:shadow p-5 sm:pt-10 pt-0 mb-10 transition duration-300'>
         <div className='grid sm:grid-cols-4 gap-4'>
           <SuspenseSkeleton loading={loading} qty={1}>
             <div className='col-span-1 relative sm:sticky sm:self-start sm:top-10'>
               <AsideFigure anime={char || { name: "Loading...", images: {} }} />
             </div>
           </SuspenseSkeleton>
-          <div className='rounded px-5 sm:col-span-3'>
+          <div className='rounded sm:px-2 sm:col-span-3'>
             <SuspenseSkeleton loading={loading} qty={2}>
               <HeadInfo char={safeChar} chars={safeChars} error={error} />
 
