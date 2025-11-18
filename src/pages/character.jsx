@@ -96,12 +96,16 @@ export default function Character() {
             <SuspenseSkeleton loading={loading} qty={2}>
               <HeadInfo char={safeChar} chars={safeChars} error={error} />
 
-              <AnimeSection title='Anime' show={loading || chars.length > 0}>
+              <AnimeSection
+                title='Related Anime'
+                show={loading || chars.length > 0}
+              >
                 {loading && <SkeletonCard qty={2} />}
                 {!loading && !error && (
                   <RelatedAnime
                     chars={safeChars}
                     isActiveIndex={isActiveIndex}
+                    setActiveIndex={setActiveIndex}
                   />
                 )}
               </AnimeSection>

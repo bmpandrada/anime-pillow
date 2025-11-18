@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 
-const RelatedAnime = ({ chars, isActiveIndex }) => {
+const RelatedAnime = ({ chars, isActiveIndex, setActiveIndex }) => {
   return (
     <div className='max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mt-5 mb-10'>
       {chars.map((item, index) => (
