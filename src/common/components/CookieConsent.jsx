@@ -27,7 +27,7 @@ const CookieConsent = () => {
   return (
     <div className='fixed bottom-5 left-0 right-0 flex justify-center z-50'>
       <div className='bg-base-200 text-sm p-4 rounded-xl shadow-lg flex flex-col sm:flex-row items-center gap-3 w-[90%] sm:w-auto'>
-        <p className='text-center text-xs sm:text-left sm:text-sm md:text-md text-lg:text-lg'>
+        <p className='text-center text-xs sm:text-left sm:text-sm md:text-md text-lg:text-lg dark:text-white'>
           We use cookies to improve your experience. By continuing, you agree to
           our use of cookies.
         </p>
