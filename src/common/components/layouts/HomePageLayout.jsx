@@ -16,7 +16,13 @@ const Layout = ({ children }) => {
     <>
       <Header marginHeight={"mb-0"} />
       <main className='flex flex-col min-h-screen'>
-        <Suspense fallback={<SkeletonCard />}>
+        <Suspense
+          fallback={
+            <div className='max-w-xl mx-auto'>
+              <SkeletonCard />
+            </div>
+          }
+        >
           <HeroAnime displayedAnime={displayedAnime} />
         </Suspense>
         <section className='flex-1 max-w-7xl mt-5 text-center w-full  mx-auto'>
