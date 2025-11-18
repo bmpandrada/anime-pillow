@@ -15,7 +15,16 @@ const Footer = () => {
   return (
     <footer>
       <div className='text-center p-5 bg-base-200 text-base-400'>
-        <p className='text-sm'>Created By: BMPA {new Date().getFullYear()}</p>
+        <div className='text-center p-3 opacity-80 text-xs'>
+          Created by BMPA {new Date().getFullYear()} | Anime data via
+          <a
+            href='https://jikan.moe/'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Jikan API
+          </a>
+        </div>
       </div>
       <div className='dock dock-xs sm:hidden z-50 bg-base-200 text-base-400'>
         <NavLink to={"/"} className={activeLink}>
