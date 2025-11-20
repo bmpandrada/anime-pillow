@@ -26,6 +26,7 @@ export default function About() {
             This project is an Anime Browser App built with React and
             TailwindCSS, powered by the Jikan API
           </p>
+          
         </div>
       </div>
     </>

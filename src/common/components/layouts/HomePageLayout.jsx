@@ -4,13 +4,18 @@ import SkeletonCard from "../Loaders/SkeletonCard";
 import Footer from "../Navigation/Footer";
 import Nav from "../Navigation/Nav";
 import { lazy, Suspense } from "react";
+import { useEffect, useState } from "react";
 
 const HeroAnime = lazy(() => import("../Hero/HeroAnime"));
 
 const Layout = ({ children }) => {
-  const { upcomming } = useAnime();
+  const { upcomming, loading } = useAnime();
 
-  const displayedAnime = upcomming;
+  const [displayedAnime, setDisplayedAnime] = useState([]);
+
+  useEffect(() => {
+    if (upcomming.length) setDisplayedAnime(upcomming);
+  }, [upcomming]);
 
   return (
     <>
@@ -19,7 +24,7 @@ const Layout = ({ children }) => {
         <Suspense
           fallback={
             <div className='max-w-xl mx-auto'>
-              <SkeletonCard />
+              {loading && <SkeletonCard />}
             </div>
           }
         >
