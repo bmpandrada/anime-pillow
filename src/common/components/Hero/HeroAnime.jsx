@@ -17,7 +17,7 @@ const HeroAnime = ({ displayedAnime = [] }) => {
   }, [bannerItems]);
 
   useEffect(() => {
-    const handleScroll = () => setOffset(window.scrollY * 0.3);
+    const handleScroll = () => setOffset(window.scrollY * 0.2);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);

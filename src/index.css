@@ -38,6 +38,10 @@ html[data-theme] {
   transition: background-color 0.3s, color 0.3s;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @custom-variant dark (&:where([data-theme=mytheme], [data-theme=mytheme] *));
 
 @plugin "daisyui" {
