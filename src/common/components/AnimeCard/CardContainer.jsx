@@ -47,7 +47,7 @@ const CardContainer = ({ item }) => {
               Episodes: <span className=''>{item.episodes || "?"}</span>
             </p>
           )}
-          <p className='text-sm font-semibold mt-1 truncate w-50'>
+          <p className='text-sm font-semibold mt-1 truncate w-50 text-right'>
             Genre: <span className=''>{item.genres[0].name || "?"}</span>
           </p>
         </div>
