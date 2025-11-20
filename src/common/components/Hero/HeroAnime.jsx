@@ -31,7 +31,7 @@ const HeroAnime = ({ displayedAnime = [] }) => {
   const linkPage = anime?.mal_id;
 
   return (
-    <section className='relative w-full h-[80vh] sm:h-[90vh] lg:h-[100vh] overflow-hidden fade-in'>
+    <section className='relative w-full h-[80vh] sm:h-[90vh] lg:h-[100vh] overflow-hidden'>
       <img
         src={banner}
         alt={titleHeader}
