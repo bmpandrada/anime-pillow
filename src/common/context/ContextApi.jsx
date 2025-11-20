@@ -41,7 +41,7 @@ export function ContextProvider({ children }) {
     }
   }, [localPath.pathname]);
 
-  const CACHE_VERSION = "v4";
+  const CACHE_VERSION = "v5";
 
   useEffect(() => {
     const lastFetch = localStorage.getItem("lastFetch");
