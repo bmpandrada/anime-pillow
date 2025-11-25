@@ -38,9 +38,9 @@ html[data-theme] {
   transition: background-color 0.3s, color 0.3s;
 }
 
-html {
+/* html {
   scroll-behavior: smooth;
-}
+} */
 
 .fade-in {
   opacity: 0;
