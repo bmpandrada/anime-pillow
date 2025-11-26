@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import ThemeToggle from "./Toogle";
 
 const Header = ({ marginHeight }) => {
@@ -9,7 +10,7 @@ const Header = ({ marginHeight }) => {
     >
       <div className='max-w-7xl w-full flex justify-between items-center mx-auto'>
         <h1 className='text-lg md:text-xl font-bold text-center font-momo-signature'>
-          ⛩️ TopAnimePillow
+          <Link to={"/"}>⛩️ TopAnimePillow</Link>
         </h1>
         <ThemeToggle />
       </div>
